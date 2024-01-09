@@ -13,7 +13,7 @@
 void	ft_bzero(void *s, size_t n)
 {
 	unsigned char	*p;
-	size_t i;
+	int i;
 
 	p = s;
 	i = 0;

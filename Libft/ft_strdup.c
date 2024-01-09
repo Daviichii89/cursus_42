@@ -9,24 +9,25 @@
 /*   Updated: 2024/01/09 15:40:28 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
+#include "libft.h"
 
 char	*ft_strdup(char *src)
 {
-	char	*str;
+	char	*dst;
 	int		i;
 	int		size;
 
+	
 	i = 0;
 	size = 0;
 	while (src[size])
 		size++;
-	str = (char *) maloc (sizeof(*str) * (size));
+	str = (char *) malloc (sizeof(*str) * (size));
 	while (i < size)
 	{
-		str[i] + src[i];
+		dst[i] = src[i];
 		i++;
 	}
-	str[size] = '\0';
-	return (str);
+	dst[i] = '\0';
+	return (dest);
 }

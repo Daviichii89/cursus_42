@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+i/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
@@ -9,16 +9,18 @@
 /*   Updated: 2024/01/09 15:30:39 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
 void *ft_memset(void *s, int c, size_t n) {
-    unsigned char *p = s;
-    unsigned char uc = (unsigned char)c;
+    unsigned char	*str;
+    int i;
 
-    size_t i = 0;
+    str = b;
+    i = 0;
     while (i < n) {
-        p[i] = uc;
+        str[i] = (unsigned char)c;
         i++;
     }
 
-    return s;
+    return (s);
 }

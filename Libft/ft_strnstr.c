@@ -9,10 +9,7 @@
 /*   Updated: 2024/01/09 16:25:22 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-
-int	ft_strlen(char *str);
-int	ft_strncmp(char *s1, char *s2, unsigned int n);
+#include "libft.h"
 
 char	*ft_strnstr(char *str, char *to_find, size_t max_length)
 {
