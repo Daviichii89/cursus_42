@@ -6,13 +6,10 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 16:10:00 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/09 16:25:22 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/01/10 18:03:58 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
-
-int	ft_strlen(char *str);
-int	ft_strncmp(char *s1, char *s2, unsigned int n);
 
 char	*ft_strnstr(char *str, char *to_find, size_t max_length)
 {

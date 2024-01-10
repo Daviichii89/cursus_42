@@ -6,13 +6,13 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 16:02:23 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/09 16:03:09 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/01/10 17:58:54 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+int	ft_strncmp(char *s1, char *s2, size_t n)
 {
-	unsigned int	i;
+	size_t	i;
 
 	i = 0;
 	if (n == 0)

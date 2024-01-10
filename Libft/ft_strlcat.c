@@ -6,15 +6,15 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 14:43:47 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/09 15:25:50 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/01/10 18:00:29 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
+size_t	ft_strlcat(char *dest, char *src, size_t size)
 {
-	unsigned int	i;
-	unsigned int	len_src;
-	unsigned int	len_dest;
+	size_t	i;
+	size_t	len_src;
+	size_t	len_dest;
 
 	i = 0;
 	len_src = 0;

@@ -6,29 +6,30 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:34:26 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/09 11:38:55 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/01/10 17:33:40 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-int		ft_atoi(char *s)
+int	ft_atoi(char *str)
 {
 	int		sign;
-	long	r;
+	int		res;
 
-	r = 0;
+	res = 0;
 	sign = 1;
-	while (*s == 32 || (*s >= 9 && *s <= 13))
+	while (*str == 32 || (*str >= 9 && *str <= 13))
 		s++;
-	if (*s == '-' || *s == '+')
+	if (*str == '-' || *str == '+')
 	{
-		if (*s == '-')
+		if (*str == '-')
 			sign = -1;
 		s++;
 	}
-	while (*s >= '0' && *s <= '9')
+	while (*str >= '0' && *str <= '9')
 	{
-		r = r * 10 + *s - '0';
-		s++;
+		res = res * 10 + *str - '0';
+		str++;
 	}
-	return (sign * (int)r);
+	return (sign * res);
 }
