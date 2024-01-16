@@ -12,38 +12,41 @@
 #include "libft.h"
 #include <stdio.h>
 
-
-void	*ft_memchr(const void *s, int c, size_t n)
+void *ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned char	*str;
-	size_t			i;
+  unsigned char *str;
+  size_t i;
 
-	i = 0;
-	str = (unsigned char *)s;
-	while (i < n)
-	{
-		if (str[i] == (unsigned char)c)
-		{
-			return ((void *)&str[i]);
-		}
-		i++;
-	}
-	return (0);
+  i = 0;
+  str = (unsigned char *)s;
+  while (i < n)
+  {
+    if (str[i] == (unsigned char)c)
+    {
+      return ((void *)&str[i]);
+    }
+    i++;
+  }
+  return (NULL);
 }
 
-int main() {
-    const char *str = "Hello, World!";
-    char searchChar = 'o';
+int main()
+{
+  const char *str = "Hello, World!";
+  char searchChar = 'o';
 
-    // Buscar la primera aparición de 'W' en la cadena
-    const char *result = (const char *)ft_memchr(str, searchChar, ft_strlen(str));
+  // Buscar la primera aparición de 'W' en la cadena
+  const char *result = (const char *)ft_memchr(str, searchChar, ft_strlen(str));
 
-    if (result != NULL) {
-        printf("Encontrado '%c' en la posición %ld.\n", 
-		searchChar, result - str);
-    } else {
-        printf("'%c' no encontrado en la cadena.\n", searchChar);
-    }
+  if (result != NULL)
+  {
+    printf("Encontrado '%c' en la posición %ld.\n",
+           searchChar, result - str);
+  }
+  else
+  {
+    printf("'%c' no encontrado en la cadena.\n", searchChar);
+  }
 
-    return 0;
+  return 0;
 }
