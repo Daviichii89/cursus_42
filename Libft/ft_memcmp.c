@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
-#include <stdio.h>
-#include <string.h>
 
 int ft_memcmp(const void *p1, const void *p2, size_t n)
 {
@@ -25,21 +23,9 @@ int ft_memcmp(const void *p1, const void *p2, size_t n)
 
   while (i < n)
   {
-    if (str1[i] != str2[i])
-      return (str1[i] - str2[i]);
+    if (*str1++ != *str2++)
+      return ((int)*(str1) - (int)*(str2));
     i++;
   }
   return (0);
-}
-
-int main()
-{
-	char *str1 = "abcdfe";
-	char *str2 = "abcdje";
-	int n = 5;
-	int result = ft_memcmp(str1, str2, n);
-	int result2 = memcmp(str1, str2, n);
-	printf("%d\n", result);
-	printf("%d\n", result2);
-	return (0);
 }
