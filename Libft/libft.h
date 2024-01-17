@@ -2,7 +2,7 @@
 # define _LIBRERIA
 # include <stddef.h>
 
-int				ft_atoi(char *str);
+int				ft_atoi(const char *str);
 void    		ft_bzero(void *str, size_t n);
 void			*ft_calloc(size_t nitems, size_t size);
 int				ft_isalnum(int c);

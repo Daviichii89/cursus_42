@@ -29,13 +29,12 @@ void *ft_memmove(void *dest, const void *src, size_t n)
 	return (dest);
 }
 int main() {
-    // Ejemplo de uso
+    
     char source[] = "Hello, World!";
     char destination[20];
 
     ft_memmove(destination, source, 13);
 
-    // Imprimir el resultado
     printf("Source: %s\n", source);
     printf("Destination: %s\n", destination);
 

@@ -10,8 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
+#include <stdlib.h>
+#include <stdio.h>
 
-int	ft_atoi(char *str)
+int	ft_atoi(const char *str)
 {
 	int		sign;
 	int		res;
@@ -19,12 +21,12 @@ int	ft_atoi(char *str)
 	res = 0;
 	sign = 1;
 	while (*str == 32 || (*str >= 9 && *str <= 13))
-		s++;
+		str++;
 	if (*str == '-' || *str == '+')
 	{
 		if (*str == '-')
 			sign = -1;
-		s++;
+		str++;
 	}
 	while (*str >= '0' && *str <= '9')
 	{
@@ -32,4 +34,15 @@ int	ft_atoi(char *str)
 		str++;
 	}
 	return (sign * res);
+}
+
+int main(void)
+{
+	//const char *str = "\n1234abad678";
+	const char *str = "\n12312312322";
+	int result = ft_atoi(str);
+	int result2 = atoi(str);
+
+	printf("%d\n", result);
+	printf("%d", result2);
 }

@@ -17,7 +17,7 @@ void	*ft_calloc(size_t nitems, size_t size)
 	size_t	total_size;
 	void	*p;
 
-	total_size = nitems * element_size;
+	total_size = nitems * size;
 	p = malloc(total_size);
 	if (p != NULL)
 	{

@@ -16,10 +16,15 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
 	size_t	j;
-	char	substring;
+	char	*substring;
 
 	i = 0;
 	j = 0;
+	substring = (char *)malloc(len * sizeof(char));
+	while(i < start)
+	{
+		
+	}
 
 
 	

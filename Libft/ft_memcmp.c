@@ -9,22 +9,37 @@
 /*   Updated: 2024/01/10 17:49:56 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-//#include "libft.h"
+#include "libft.h"
+#include <stdio.h>
+#include <string.h>
 
-int	ft_memcmp(const void *p1, const void *p2, size_t n)
+int ft_memcmp(const void *p1, const void *p2, size_t n)
 {
-	size_t	i;
-	int	diff;
-	unsigned char	*p1;
-	unsigned char	*p2;
+  size_t i;
+  const unsigned char *str1;
+  const unsigned char *str2;
 
-	 = (unsigned char*)p1;
-	str2 = (unsigned char *)p2;
-	i = 0;
-	diff = 0;
-	if (n)
-		while (n--)
-			if (*dst2++ != *str2++)
-				return (*(--dst2) - *(--str2));
+  i = 0;
+  str1 = (unsigned char *)p1;
+  str2 = (unsigned char *)p2;
+
+  while (i < n)
+  {
+    if (str1[i] != str2[i])
+      return (str1[i] - str2[i]);
+    i++;
+  }
+  return (0);
+}
+
+int main()
+{
+	char *str1 = "abcdfe";
+	char *str2 = "abcdje";
+	int n = 5;
+	int result = ft_memcmp(str1, str2, n);
+	int result2 = memcmp(str1, str2, n);
+	printf("%d\n", result);
+	printf("%d\n", result2);
 	return (0);
 }
