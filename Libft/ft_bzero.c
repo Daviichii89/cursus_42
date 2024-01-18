@@ -22,11 +22,10 @@ int	main(void)
 	char	buffer[10];
 
 	ft_bzero(buffer, sizeof(buffer));
-  printf("Buffer after ft_bzero: ");
-  for (size_t i = 0; i < sizeof(buffer); i++) {
-      printf("%d ", buffer[i]);
-  }
-  printf("\n");
-
+	printf("Buffer after ft_bzero: ");
+	for (size_t i = 0; i < sizeof(buffer); i++) {
+		printf("%d ", buffer[i]);
+	}
+	printf("\n");
 	return (0);
 }

@@ -12,6 +12,7 @@
 #include "libft.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <limits.h>
 
 int	ft_atoi(const char *str)
 {
@@ -36,13 +37,11 @@ int	ft_atoi(const char *str)
 	return (sign * res);
 }
 
-int main(void)
+int	main(void)
 {
-	//const char *str = "\n1234abad678";
-	const char *str = "\n12312312322";
-	int result = ft_atoi(str);
-	int result2 = atoi(str);
-
-	printf("%d\n", result);
-	printf("%d", result2);
+	const	char *str = "2147483649";
+	int	result = ft_atoi(str);
+	int	result2 = atoi(str);
+	printf("ft_atoi: %d\n", result);
+	printf("atoi: %d", result2);
 }

@@ -1,41 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/10 18:09:27 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/18 16:23:42 by davifer2         ###   ########.fr       */
+/*   Created: 2024/01/18 16:32:07 by davifer2          #+#    #+#             */
+/*   Updated: 2024/01/18 16:39:28 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*substring;
+	char	*str;
 	int		i;
+	int		j;
+	int		len;
 
-	substring = (char *)malloc(len * sizeof(char));
-	i = start;
-	while (i < len)
+	i = 0;
+	j = 0;
+	len = ft_strlen(s1) + ft_strlen(s2);
+	str = (char *) malloc(len * sizeof(char));
+	while (s1[i] != '\0')
 	{
-		substring[i] = s[i];
+		str[i] = s1[i];
 		i++;
 	}
-	substring[i] = '\0';
-	return (&substring[start]);
+	while (s2[j] != '\0')
+	{
+		str[j + i] = s2[j];
+		j++;
+	}
+	return (str);
 }
 
 int	main(void)
 {
-	char	*str;
+	char	*str1;
+	char	*str2;
 	char	*result;
 
-	str = "Hola mundo";
-	result = ft_substr(str, 5, 10);
+	str1 = "Hola ";
+	str2 = "mundo";
+	result = ft_strjoin(str1, str2);
 	printf("El resultado es: %s", result);
 	return (0);
 }
