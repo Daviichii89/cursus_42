@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/10 18:09:27 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/18 16:23:42 by davifer2         ###   ########.fr       */
+/*   Created: 2024/01/19 16:55:18 by davifer2          #+#    #+#             */
+/*   Updated: 2024/01/19 18:45:53 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
-#include <stdio.h>
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+void	ft_putendl_fd(char *s, int fd)
 {
-	char	*substring;
-	int		i;
+	int	i;
+	int	len;
 
-	substring = (char *)malloc(len * sizeof(char));
-	i = start;
+	i = 0;
+	len = ft_strlen(s);
 	while (i < len)
 	{
-		substring[i] = s[i];
+		write(fd, &s[i], 1);
 		i++;
 	}
-	substring[i] = '\0';
-	return (&substring[start]);
+	write(fd, "\n", 1);
 }
 
-/* int	main(void)
+/*
+int main(void)
 {
-	char	*str;
-	char	*result;
-
-	str = "Hola mundo";
-	result = ft_substr(str, 5, 10);
-	printf("El resultado es: %s", result);
-	return (0);
-} */
+	char	str[] = "Hola";
+    ft_putendl_fd(str, 1);
+    return (0);
+}*/

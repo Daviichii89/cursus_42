@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 13:53:00 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/19 16:09:07 by davifer2         ###   ########.fr       */
+/*   Created: 2024/01/19 17:02:46 by davifer2          #+#    #+#             */
+/*   Updated: 2024/01/19 18:24:42 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+void	ft_putnbr_fd(int n, int fd)
 {
-	while (*s != '\0')
-	{
-		if (*s == c)
-			return (s);
-		s++;
-	}
-	if (c == '\0')
-		return (c);
-	return (0);
+	char	c;
+
+	c = n + '0';
+	write(fd, &c, 1);
 }

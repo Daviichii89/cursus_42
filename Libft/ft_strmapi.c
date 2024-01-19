@@ -1,41 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/10 18:09:27 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/18 16:23:42 by davifer2         ###   ########.fr       */
+/*   Created: 2024/01/19 18:56:24 by davifer2          #+#    #+#             */
+/*   Updated: 2024/01/19 19:13:06 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
-#include <stdio.h>
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*substring;
-	int		i;
+	unsigned int	i;
+	char			*str;
 
-	substring = (char *)malloc(len * sizeof(char));
-	i = start;
-	while (i < len)
+	i = 0;
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s)) + 1);
+	if (!str)
+		return (0);
+	while (s[i])
 	{
-		substring[i] = s[i];
+		str[i] = f(i, s[i]);
 		i++;
 	}
-	substring[i] = '\0';
-	return (&substring[start]);
+	str[i] = '\0';
+	return (str);
 }
-
-/* int	main(void)
-{
-	char	*str;
-	char	*result;
-
-	str = "Hola mundo";
-	result = ft_substr(str, 5, 10);
-	printf("El resultado es: %s", result);
-	return (0);
-} */
