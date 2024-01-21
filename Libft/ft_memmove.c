@@ -6,28 +6,27 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 18:07:08 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/19 18:31:28 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/01/21 11:40:09 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
+#include "libft.h"
 
-void *ft_memmove(void *dest, const void *src, size_t n)
+void	*ft_memmove(void *dest, const void *src, size_t len)
 {
-	const unsigned char	*s;
-	unsigned char	*d;
-	int i;
+	unsigned char				*dest_p;
 
-	s = src;
-	d = dest;
-	i = 0;
-	if (d == s)
+	dest_p = dest;
+	if ((!dest && !src) || dest == src)
 		return (dest);
-	while (i < n)
-	{
-		d[i] = s[i];
-	}
-	return (dest);
+	if (dest > src)
+		while (len--)
+			((char *)dest)[len] = ((char *)src)[len];
+	else
+		while (len--)
+			*(char *)dest++ = *(char *)src++;
+	return (dest_p);
 }
+/*
 int main() {
     
     char source[] = "Hello, World!";
@@ -39,4 +38,4 @@ int main() {
     printf("Destination: %s\n", destination);
 
     return 0;
-}
+}*/

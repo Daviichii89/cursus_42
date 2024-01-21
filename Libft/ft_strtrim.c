@@ -6,11 +6,10 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:39:52 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/19 16:44:38 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/01/21 14:54:23 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
-#include <stdio.h>
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
@@ -19,17 +18,20 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int		j;
 
 	i = 0;
+	if (!s1 || !set)
+		return (0);
 	j = ft_strlen(s1) - 1;
-	printf("El valor de j: %d\n", j);
-	while (i < j && ft_strchr(set, s1[i]))
+	while (i <= j && ft_strchr(set, s1[i]))
 	{
 		i++;
 	}
+	if (i > j)
+		return (ft_strdup(""));
 	while (j > i && ft_strchr(set, s1[j]))
 	{
 		j--;
 	}
-	str = ft_substr(s1, i, j + 1);
+	str = ft_substr(s1, i, j - i + 1);
 	if (!(str))
 		return (0);
 	return (str);
@@ -37,8 +39,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 /*
 int	main(void)
 {
-	char		str[] = "  uu  Houla uu   ";
-	const char	*set = " u";
+	char		str[] = "lorem ipsum dolor sit amet";
+	const char	*set = "tel";
 	char		*result = ft_strtrim(str, set);
 	printf("%s", result);
 	return (0);

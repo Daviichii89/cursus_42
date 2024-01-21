@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:53:00 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/19 16:09:07 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/01/21 14:57:56 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@ char	*ft_strchr(const char *s, int c)
 {
 	while (*s != '\0')
 	{
-		if (*s == c)
-			return (s);
+		if (*s == (char)c)
+			return ((char *)s);
 		s++;
 	}
-	if (c == '\0')
-		return (c);
-	return (0);
+	if (*s == (char)c)
+		return ((char *)s);
+	else
+		return (0);
 }

@@ -6,10 +6,9 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:56:40 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/10 11:38:40 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/01/20 15:10:35 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 
 int	ft_isprint(int c)
 {

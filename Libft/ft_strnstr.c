@@ -6,16 +6,15 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 16:10:00 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/10 18:03:58 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/01/20 17:04:34 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <string.h>
+#include "libft.h"
 
 char	*ft_strnstr(char *str, char *needle, size_t max_length)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	if (needle[i] == '\0')
@@ -25,7 +24,8 @@ char	*ft_strnstr(char *str, char *needle, size_t max_length)
 	while (str[i] != '\0')
 	{
 		j = 0;
-		while (str[i + j] == needle[j] && needle[j] != '\0' && i + j < max_length)
+		while (str[i + j] == needle[j]
+			&& needle[j] != '\0' && i + j < max_length)
 		{
 			j++;
 		}
@@ -37,6 +37,7 @@ char	*ft_strnstr(char *str, char *needle, size_t max_length)
 	}
 	return (0);
 }
+/*
 int main() {
     char *haystack = "Hola, esto es una cadena de prueba.";
     char *needle = "es";
@@ -54,4 +55,4 @@ int main() {
     }
 
     return 0;
-}
+}*/

@@ -6,12 +6,10 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 11:48:29 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/10 15:39:55 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/01/20 15:17:18 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
-#include <stdio.h>
-
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
@@ -30,13 +28,14 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	}
 	return (0);
 }
-
+/*
 int main() {
     const char *str = "Hello, World!";
     char searchChar = 'o';
 
     // Buscar la primera aparición de 'W' en la cadena
-    const char *result = (const char *)ft_memchr(str, searchChar, ft_strlen(str));
+    const char *result = (const char *)ft_memchr(str, 
+		searchChar, ft_strlen(str));
 
     if (result != NULL) {
         printf("Encontrado '%c' en la posición %ld.\n", 
@@ -46,4 +45,4 @@ int main() {
     }
 
     return 0;
-}
+}*/

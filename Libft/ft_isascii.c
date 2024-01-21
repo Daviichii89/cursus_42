@@ -6,10 +6,9 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 12:03:03 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/10 11:29:21 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/01/20 15:09:45 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 
 int	ft_isascii(int c)
 {

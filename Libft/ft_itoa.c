@@ -6,14 +6,14 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 19:53:29 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/19 20:00:54 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/01/20 15:13:00 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-static int	ft_get_size(int n)
+static int	ft_len_nbr(int n)
 {
-	int size;
+	int	size;
 
 	size = 0;
 	if (n <= 0)
@@ -26,45 +26,45 @@ static int	ft_get_size(int n)
 	return (size);
 }
 
-static void	ft_fill_res(int size, int offset, int n, char *res)
+static void	ft_fill_str(int size, int offset, int n, char *str)
 {
 	while (size > offset)
 	{
-		res[size - 1] = n % 10 + '0';
+		str[size - 1] = n % 10 + '0';
 		n = n / 10;
 		size--;
 	}
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	int		offset;
 	int		size;
-	char	*res;
+	char	*str;
 
 	offset = 0;
-	size = ft_get_size(n);
-	if (!(res = (char *)malloc(sizeof(char) * size + 1)))
+	size = ft_len_nbr(n);
+	str = (char *)malloc(sizeof(char) * size + 1);
+	if (!(str))
 		return (0);
 	if (n == -2147483648)
 	{
-		res[0] = '-';
-		res[1] = '2';
+		str[0] = '-';
+		str[1] = '2';
 		n = 147483648;
 		offset = 2;
 	}
 	if (n < 0)
 	{
-		res[0] = '-';
+		str[0] = '-';
 		offset = 1;
 		n = -n;
 	}
-	ft_fill_res(size, offset, n, res);
-	res[size] = '\0';
-	return (res);
+	ft_fill_str(size, offset, n, str);
+	str[size] = '\0';
+	return (str);
 }
-
-
+/*
 int main(void)
 {
 	char *result1 = ft_itoa(12345);
@@ -79,4 +79,4 @@ int main(void)
 	printf("El resultado de 2147483647 es: %s\n", result4);
 	printf("El resultado de -2147483648 es: %s\n", result5);
 	return (0);
-}
+}*/

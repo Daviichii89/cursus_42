@@ -6,13 +6,9 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:34:26 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/10 17:33:40 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/01/20 15:06:54 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <limits.h>
 
 int	ft_atoi(const char *str)
 {
@@ -36,7 +32,7 @@ int	ft_atoi(const char *str)
 	}
 	return (sign * res);
 }
-
+/*
 int	main(void)
 {
 	const	char *str = "2147483649";
@@ -44,4 +40,4 @@ int	main(void)
 	int	result2 = atoi(str);
 	printf("ft_atoi: %d\n", result);
 	printf("atoi: %d", result2);
-}
+}*/

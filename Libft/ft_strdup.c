@@ -6,10 +6,10 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 15:30:58 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/10 17:33:02 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/01/21 14:40:04 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
+#include "libft.h"
 
 char	*ft_strdup(const char *src)
 {
@@ -22,6 +22,8 @@ char	*ft_strdup(const char *src)
 	while (src[size])
 		size++;
 	str = (char *) malloc (sizeof(*str) * (size + 1));
+	if (!str)
+		return (0);
 	while (i < size)
 	{
 		str[i] = src[i];
