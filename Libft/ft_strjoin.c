@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:32:07 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/21 14:41:19 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/01/22 02:45:13 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -18,6 +18,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		j;
 	int		len;
 
+	if (!s1 || !s2)
+		return (0);
 	i = ft_strlen(s1);
 	j = ft_strlen(s2);
 	len = i + j + 1;

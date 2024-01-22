@@ -31,3 +31,14 @@ size_t	ft_strlcpy(char *dest, char *src, size_t size)
 	}
 	return (len);
 }
+/*
+int main()
+{
+	char *src = "hola";
+	char dest[10];
+	int size = 10;
+	printf("%zu\n", ft_strlcpy(dest, src, size));
+	printf("%s\n", dest);
+	return (0);
+}
+*/

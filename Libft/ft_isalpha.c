@@ -16,13 +16,3 @@ int	ft_isalpha(int c)
 		return (1);
 	return (0);
 }
-/*
-int main(void)
-{
-	char	c = 1;
-	int	result = ft_isalpha(c);
-	if (result == 1)
-		printf("Es una letra");
-	else
-		printf("No es una letra");
-}*/

@@ -26,3 +26,13 @@ char	*ft_strrchr(const char *s, int c)
 	else
 		return ((char *)last);
 }
+/*
+int main()
+{
+	char *str = "hola";
+	char c = 'a';
+	printf("%s\n", ft_strrchr(str, c));
+	printf("%s\n", strrchr(str, c));
+	return (0);
+}
+*/

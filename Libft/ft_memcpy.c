@@ -31,7 +31,6 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	}
 	return (dst);
 }
-
 /*
 int main() {
     const char origen[] = "Hola, mundo!";

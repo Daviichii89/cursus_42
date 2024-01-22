@@ -31,12 +31,10 @@ int	ft_memcmp(const void *p1, const void *p2, size_t n)
 /*
 int main()
 {
-	char *str1 = "abcdfe";
-	char *str2 = "abcdje";
-	int n = 5;
-	int result = ft_memcmp(str1, str2, n);
-	int result2 = memcmp(str1, str2, n);
+	int result = ft_memcmp("hola2", "holai", 6);
+	int result2 = memcmp("hola2", "holai", 6);
 	printf("%d\n", result);
 	printf("%d\n", result2);
 	return (0);
-}*/
+}
+*/

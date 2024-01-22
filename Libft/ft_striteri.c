@@ -9,6 +9,7 @@
 /*   Updated: 2024/01/19 19:52:56 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
@@ -21,3 +22,16 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 		i++;
 	}
 }
+/*
+	void uppercase(unsigned int index, char *ch)
+	{
+		printf("index: %d\n", index);
+		printf("char: %c\n", *ch);
+	}
+	int main()
+	{
+		char *str = "hola";
+		ft_striteri(str, uppercase);
+		return (0);
+	}
+*/

@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 15:30:58 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/21 14:40:04 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/01/22 02:50:28 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -32,3 +32,14 @@ char	*ft_strdup(const char *src)
 	str[size] = '\0';
 	return (str);
 }
+/*
+int main(void)
+{
+	char *src;
+
+	src = NULL;
+	//char *result = ft_strdup(src);
+	char *result = strdup(src);
+	printf("%s", result);
+}
+*/

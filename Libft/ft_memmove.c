@@ -29,13 +29,17 @@ void	*ft_memmove(void *dest, const void *src, size_t len)
 /*
 int main() {
     
-    char source[] = "Hello, World!";
-    char destination[20];
+    char source[] = "Hello, ";
+    char destination[] = "Mundo";
+    char source2[] = "Hello, ";
+    char destination2[] = "Mundo";
 
-    ft_memmove(destination, source, 13);
-
+    ft_memmove(destination, source, 3);
+	memmove(destination2, source2, 3);
     printf("Source: %s\n", source);
     printf("Destination: %s\n", destination);
+    printf("Destination2: %s\n", destination2);
 
     return 0;
-}*/
+}
+*/

@@ -24,3 +24,10 @@ void	*ft_calloc(size_t nitems, size_t size)
 	}
 	return (p);
 }
+/*
+int main()
+{
+	printf("%s\n", ft_calloc(5, sizeof(char)));
+	return (0);
+}
+*/

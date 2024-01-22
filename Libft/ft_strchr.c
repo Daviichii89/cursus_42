@@ -23,3 +23,12 @@ char	*ft_strchr(const char *s, int c)
 	else
 		return (0);
 }
+/*
+int main()
+{
+	char *str = "hola";
+	char *str2 = ft_strchr(str, 'a');
+	printf("%s\n", str2);
+	return (0);
+}
+*/

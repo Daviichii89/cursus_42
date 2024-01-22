@@ -65,18 +65,21 @@ char	*ft_itoa(int n)
 	return (str);
 }
 /*
-int main(void)
-{
-	char *result1 = ft_itoa(12345);
-	char *result2 = ft_itoa(-456);
-	char *result3 = ft_itoa(0);
-	char *result4 = ft_itoa(2147483647);
-	char *result5 = ft_itoa(-2147483648);
+	int main(void)
+	{
+		char *result1 = ft_itoa(12345);
+		char *result2 = ft_itoa(-456);
+		char *result3 = ft_itoa(0);
+		char *result4 = ft_itoa(10);
+		char *result5 = ft_itoa(2147483647);
+		char *result6 = ft_itoa(-2147483648);
 
-	printf("El resultado de 12345 es: %s\n", result1);
-	printf("El resultado de -456 es: %s\n", result2);
-	printf("El resultado de 0 es: %s\n", result3);
-	printf("El resultado de 2147483647 es: %s\n", result4);
-	printf("El resultado de -2147483648 es: %s\n", result5);
-	return (0);
-}*/
+		printf("El resultado de 12345 es: %s\n", result1);
+		printf("El resultado de -456 es: %s\n", result2);
+		printf("El resultado de 0 es: %s\n", result3);
+		printf("El resultado de 10 es: %s\n", result4);
+		printf("El resultado de 2147483647 es: %s\n", result5);
+		printf("El resultado de -2147483648 es: %s\n", result6);
+		return (0);
+	}
+*/
