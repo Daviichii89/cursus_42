@@ -5,26 +5,30 @@
 #                                                     +:+ +:+         +:+      #
 #    By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/22 15:31:27 by davifer2          #+#    #+#              #
-#    Updated: 2024/01/31 19:16:36 by davifer2         ###   ########.fr        #
+#    Created: 2024/01/09 13:06:50 by davifer2          #+#    #+#              #
+#    Updated: 2024/01/31 19:54:28 by davifer2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
-SOURCES = ft_printf.c
+NAME = libft.a
+SOURCES = ft_atoi.c ft_bzero.c ft_calloc.c \
+		  ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c \
+		  ft_itoa.c ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c \
+		  ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_putstr_fd.c \
+		  ft_split.c ft_strchr.c ft_strdup.c ft_striteri.c ft_strjoin.c \
+		  ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c \
+		  ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c 
 
 OBJECTS = $(SOURCES:.c=.o)
-CFLAGS = #-Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 
 all: $(NAME)
 $(NAME): $(OBJECTS)
-	make -C libft
 	ar rcs $(NAME) $(OBJECTS)
 %.o: %.c Makefile libft.h
 	cc $(CFLAGS) -c $< -o $@
 clean:
 	rm -f $(OBJECTS)
-	make -C libft fclean
 fclean: clean
 	rm -f $(NAME)
 re: fclean all
