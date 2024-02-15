@@ -6,20 +6,25 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:10 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/09 13:28:22 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/01/20 15:07:40 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void ft_bzero(void *str, size_t n)
 {
-	unsigned char	*p;
-	int i;
-
-	p = s;
-	i = 0;
-	while(i < n)
-	{
-		s[i] = 0;
-		i++;
-	}
+	ft_memset(str, 0, n);
 }
+/*
+int	main(void)
+{
+	char	buffer[10];
+
+	ft_bzero(buffer, sizeof(buffer));
+	printf("Buffer after ft_bzero: ");
+	for (size_t i = 0; i < sizeof(buffer); i++) {
+		printf("%d ", buffer[i]);
+	}
+	printf("\n");
+	return (0);
+}*/

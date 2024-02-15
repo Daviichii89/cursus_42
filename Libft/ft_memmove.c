@@ -1,17 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/09 18:07:08 by davifer2          #+#    #+#             */
+/*   Updated: 2024/01/21 11:40:09 by davifer2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "libft.h"
 
-void	*ft_memmove(void *str1, const void *str2, size_t n)
+void *ft_memmove(void *dest, const void *src, size_t len)
 {
-	unsigned char		*p_str1;
-	unsigned const char	*p_str2;
+	unsigned char *dest_p;
 
-	if (str1 < str2)
-		return (ft_memcpy(str1, str2, n));
-	p_str1 = (unsigned char*)str1;
-	p_str2 = (unsigned const char*)str2;
-	if (!n || str1 == str2)
-		return (str1);
-	while (n--)
-		p_str1[n] = p_str2[n];
-	return (str1);
+	dest_p = dest;
+	if ((!dest && !src) || dest == src)
+		return (dest);
+	if (dest > src)
+		while (len--)
+			((char *)dest)[len] = ((char *)src)[len];
+	else
+		while (len--)
+			*(char *)dest++ = *(char *)src++;
+	return (dest_p);
 }
+/*
+int main() {
+
+	char source[] = "Hello, ";
+	char destination[] = "Mundo";
+	char source2[] = "Hello, ";
+	char destination2[] = "Mundo";
+
+	ft_memmove(destination, source, 3);
+	memmove(destination2, source2, 3);
+	printf("Source: %s\n", source);
+	printf("Destination: %s\n", destination);
+	printf("Destination2: %s\n", destination2);
+
+	return 0;
+}
+*/

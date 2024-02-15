@@ -6,29 +6,29 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 16:10:00 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/09 16:25:22 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/01/20 17:04:34 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-char	*ft_strnstr(char *str, char *to_find, size_t max_length)
+char *ft_strnstr(char *str, char *needle, size_t max_length)
 {
-	int	i;
-	int	j;
+	size_t i;
+	size_t j;
 
 	i = 0;
-	if (to_find[i] == '\0')
+	if (needle[i] == '\0')
 	{
 		return (str);
 	}
 	while (str[i] != '\0')
 	{
 		j = 0;
-		while (str[i + j] == to_find[j] && to_find[j] != '\0')
+		while (str[i + j] == needle[j] && needle[j] != '\0' && i + j < max_length)
 		{
 			j++;
 		}
-		if (to_find[j] == '\0')
+		if (needle[j] == '\0')
 		{
 			return (str + i);
 		}
@@ -36,19 +36,22 @@ char	*ft_strnstr(char *str, char *to_find, size_t max_length)
 	}
 	return (0);
 }
+/*
 int main() {
-    const char *haystack = "Hola, esto es una cadena de prueba.";
-    const char *needle = "es";
-    size_t max_length = 20;
+	char *haystack = "Hola, esto es una cadena de prueba.";
+	char *needle = "es";
+	size_t max_length = 9;
 
-    // Busca la subcadena "es" en la cadena de prueba con un límite de 20 caracteres.
-    char *result = ft_strnstr(haystack, needle, max_length);
+	char *result = ft_strnstr(haystack, needle, max_length);
+	char *result2 = strnstr(haystack, needle, max_length);
 
-    if (result != NULL) {
-        printf("Subcadena encontrada en la posición: %ld\n", result - haystack);
-    } else {
-        printf("Subcadena no encontrada.\n");
-    }
+	if (result != 0) {
+		printf("Subcadena encontrada en la posición: %ld\n", result - haystack);
+		printf("Subcadena encontrada en la posición: %ld\n", result2 - haystack);
+	} else {
+		printf("Subcadena no encontrada. %s\n", result);
+		printf("Subcadena no encontrada. %s\n", result2);
+	}
 
-    return 0;
-}
+	return 0;
+}*/

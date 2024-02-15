@@ -6,14 +6,13 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:56:40 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/09 12:00:29 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/01/20 15:10:35 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 
-int	isprint(int c)
+int ft_isprint(int c)
 {
-	if (c >= 32 && <= 126)
+	if (c >= 32 && c <= 126)
 		return (1);
 	return (0);
 }

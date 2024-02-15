@@ -1,22 +1,50 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/10 17:50:22 by davifer2          #+#    #+#             */
+/*   Updated: 2024/01/20 16:23:41 by davifer2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void *ft_memcpy(void *dst, const void *src, size_t n)
 {
-	unsigned const char	*s;
-	unsigned char		*d;
-	size_t				i;
+	size_t i;
+	char *dest_p;
+	const char *src_p;
 
-	s = (unsigned char *)src;
-	d = (unsigned char *)dst;
 	i = 0;
-	while (dst == src || !n)
+	dest_p = (char *)dst;
+	src_p = (char *)src;
+	while (dst == src || (!dst && !src))
 	{
 		return (dst);
 	}
-	while (n > i)
+	while (i < n)
 	{
-		d[i] = s[i];
+		dest_p[i] = src_p[i];
 		i++;
 	}
 	return (dst);
 }
+/*
+int main() {
+	const char origen[] = "Hola, mundo!";
+	char destino[20];
+
+	printf("Contenido original: %s\n", origen);
+
+	ft_memcpy(destino, origen, sizeof(origen));
+
+	printf("ft_memcpy: %s\n", destino);
+
+	ft_memcpy(destino, origen, sizeof(origen));
+	printf("memcpy: %s\n", destino);
+
+	return 0;
+}
+*/

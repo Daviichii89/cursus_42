@@ -6,15 +6,15 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 14:08:24 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/09 14:41:39 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/01/21 15:09:25 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
+size_t ft_strlcpy(char *dest, char *src, size_t size)
 {
-	unsigned int	i;
-	unsigned int	len;
+	size_t i;
+	size_t len;
 
 	i = 0;
 	len = 0;
@@ -31,3 +31,14 @@ unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 	}
 	return (len);
 }
+/*
+int main()
+{
+	char *src = "hola";
+	char dest[10];
+	int size = 10;
+	printf("%zu\n", ft_strlcpy(dest, src, size));
+	printf("%s\n", dest);
+	return (0);
+}
+*/
