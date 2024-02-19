@@ -12,7 +12,7 @@ Este repositorio contiene una serie de proyectos realizados como parte del cursu
 1. **[Libft](https://github.com/Daviichii89/cursus_42/tree/main/Libft)**
    - Libreria con una serie de implementaciones de distintas funciones de C.
   
-2. **[Born2beroot](https://github.com/Daviichii89/cursus_42/tree/main/Libft)**
+2. **[Born2beroot](https://github.com/Daviichii89/cursus_42/tree/main/Born2beroot)**
    - Creación de maquina virtual con Debian.
 
 4. **[printf](https://github.com/Daviichii89/cursus_42/tree/main/printf)**
