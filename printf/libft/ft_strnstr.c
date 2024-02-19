@@ -47,8 +47,10 @@ int main() {
 	char *result2 = strnstr(haystack, needle, max_length);
 
     if (result != 0) {
-        printf("Subcadena encontrada en la posición: %ld\n", result - haystack);
-        printf("Subcadena encontrada en la posición: %ld\n", result2 - haystack);
+        printf("Subcadena encontrada en la 
+		posición: %ld\n", result - haystack);
+        printf("Subcadena encontrada en la 
+		posición: %ld\n", result2 - haystack);
     } else {
         printf("Subcadena no encontrada. %s\n", result);
         printf("Subcadena no encontrada. %s\n", result2);

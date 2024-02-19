@@ -9,6 +9,7 @@
 /*   Updated: 2024/02/14 13:47:58 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft/libft.h"
 #include "ft_printf.h"
 
 static int	ft_len_nbr(int n)
@@ -26,32 +27,73 @@ static int	ft_len_nbr(int n)
 	return (size);
 }
 
-static int	ft_puthex(unsigned long long n, int fd)
+static int	ft_puthex(unsigned long long n, int fd, char format)
 {
 	unsigned long long	nbr;
-	int					len;
+	int		len;
 
 	nbr = (unsigned long long)n;
 	len = ft_len_nbr(nbr) + 2;
 	if (nbr >= 16)
 	{
-		ft_puthex(nbr / 16, fd);
-		ft_puthex(nbr % 16, fd);
+		ft_puthex(nbr / 16, fd, format);
+		ft_puthex(nbr % 16, fd, format);
 	}
 	else
 	{
 		if (nbr < 10)
 			ft_putchar_fd(nbr + '0', fd);
+		else if (format == 'X')
+			ft_putchar_fd(nbr - 10 + 'A', fd);
 		else
 			ft_putchar_fd(nbr - 10 + 'a', fd);
 	}
 	return (len);
 }
 
+static int	ft_putnbrunsig_fd(unsigned int n, int fd)
+{
+	unsigned int	nbr;
+	int		len;
+
+	nbr = (unsigned int)n;
+	len = ft_len_nbr(nbr);
+	if (nbr < 10)
+		ft_putchar_fd(nbr + '0', fd);
+	else
+	{
+		ft_putnbrunsig_fd(nbr / 10, fd);
+		ft_putnbrunsig_fd(nbr % 10, fd);
+	}
+	return (len);
+}
+
+static int	ft_format(va_list args, const char format)
+{
+	if (format == 'c')
+		ft_putchar_fd(va_arg(args, int), 1);
+	else if (format == 's')
+		ft_putstr_fd(va_arg(args, char *), 1);
+	else if (format == 'd' || format == 'i')
+		ft_putnbr_fd(va_arg(args, int), 1);
+	else if (format == 'X' || format == 'x')
+		ft_puthex(va_arg(args, unsigned int), 1, format);
+	else if (format == 'p')
+	{
+		write(1, "0x", 2);
+		ft_puthex(va_arg(args, unsigned long long), 1, format);
+	}
+	else if (format == 'u')
+		ft_putnbrunsig_fd(va_arg(args, unsigned int), 1);
+	else if (format == '%')
+		ft_putchar_fd('%', 1);
+	return (-1);
+}
+
 int	ft_printf(char const *str, ...)
 {
 	va_list	args;
-	int		i;
+	int	i;
 
 	i = 0;
 	va_start(args, str);
@@ -60,27 +102,7 @@ int	ft_printf(char const *str, ...)
 		if (str[i] == '%')
 		{
 			i++;
-			if (str[i] == 'c')
-				ft_putchar_fd(va_arg(args, int), 1);
-			else if (str[i] == 's')
-			{
-				ft_putstr_fd(va_arg(args, char *), 1);
-			}
-			else if (str[i] == 'p')
-			{
-				write(1, "0x", 2);
-				ft_puthex(va_arg(args, unsigned long long), 1);
-			}
-			else if (str[i] == 'd' || str[i] == 'i')
-				ft_putnbr_fd(va_arg(args, int), 1);
-			else if (str[i] == 'u')
-				ft_putnbr_fd(va_arg(args, int), 1);
-			else if (str[i] == 'x' || str[i] == 'X')
-			{
-				ft_puthex(va_arg(args, unsigned long long), 1);
-			}
-			else if (str[i] == '%')
-				ft_putchar_fd('%', 1);
+			ft_format(args, str[i]);
 		}
 		else
 			ft_putchar_fd(str[i], 1);
@@ -92,15 +114,166 @@ int	ft_printf(char const *str, ...)
 /*
 int main(void)
 {
-	//char	str[] = "abc";
-	char	c = 'r';
-	int	x = 1;
-	int min = -2147483648;
-	char s[] = "Hola";
-	//ft_printf("Own function result: %c %% %d\n%d\n%X\n", c, x, min, &hex);
-	//printf("Original result: %c %% %d\n%d\n%X\n", c, x, min, &hex);
-	
-	ft_printf("%s", s);
-	//ft_printf("Own: %p", &x);
-	//printf("\nOriginal: %p\n", &x);
+	// test empty and special characters
+	ft_printf("");
+	printf("");
+
+	ft_printf("Own: \x01\x02\a\v\b\f\r\n");
+	printf("Original: \x01\x02\a\v\b\f\r\n");
+
+	// test with %%
+	ft_printf("%%\n");
+	printf("%%\n");
+	ft_printf(" %%\n");
+	printf(" %%\n");
+	ft_printf("%%c\n");
+	printf("%%c\n");
+	ft_printf("%%%%%%\n");
+	printf("%%%%%%\n");
+	ft_printf("%%%c\n", 'x');
+	printf("%%%c\n", 'x');
+
+	// test with %s
+	ft_printf("%s\n", "");
+	printf("%s\n", "");
+	ft_printf("%s\n", (char *)NULL);
+	printf("%s\n", (char *)NULL);
+	ft_printf("%s\n", "some string with %s hehe");
+	printf("%s\n", "some string with %s hehe");
+	ft_printf(" %s\n", "can it handle \t and \n?");
+	printf(" %s\n", "can it handle \t and \n?");
+	ft_printf("%sx\n", "{} al$#@@@^&$$^#^@@^$*((&");
+	printf("%sx\n", "{} al$#@@@^&$$^#^@@^$*((&");
+	ft_printf("%s%s%s\n", "And ", "some", "joined");
+	printf("%s%s%s\n", "And ", "some", "joined");
+	ft_printf("%ss%ss%ss\n", "And ", "some other", "joined");
+	printf("%ss%ss%ss\n", "And ", "some other", "joined");
+
+	// test with %p
+
+	ft_printf("%s\n", "Ahora los punteros");
+	ft_printf("%p\n", "");
+	printf("%p\n", "");
+	ft_printf("%p\n", NULL);
+	printf("%p\n", NULL);
+	ft_printf("%p\n", (void *)-14523);
+	printf("%p\n", (void *)-14523);
+	ft_printf("0x%p-\n", (void *)ULONG_MAX);
+	printf("0x%p-\n", (void *)ULONG_MAX);
+	ft_printf("%pp%p%p\n", (void *)LONG_MAX + 423856, (void *)0, (void *)INT_MAX);
+	printf("%pp%p%p\n", (void *)LONG_MAX + 423856, (void *)0, (void *)INT_MAX);
+
+	// test with %d and %i
+
+	ft_printf("%d\n", 0);
+	printf("%d\n", 0);
+	ft_printf("%d\n", -10);
+	printf("%d\n", -10);
+	ft_printf("%d\n", -200000);
+	printf("%d\n", -200000);
+	ft_printf("%d\n", -6000023);
+	printf("%d\n", -6000023);
+	ft_printf("%d\n", 10);
+	printf("%d\n", 10);
+	ft_printf("%d\n", 10000);
+	printf("%d\n", 10000);
+	ft_printf("%d\n", 100023);
+	printf("%d\n", 100023);
+	ft_printf("%d\n", INT_MAX);
+	printf("%d\n", INT_MAX);
+	ft_printf("%d\n", INT_MIN);
+	printf("%d\n", INT_MIN);
+	ft_printf("dgs%dxx\n", 10);
+	printf("dgs%dxx\n", 10);
+	ft_printf("%d%dd%d\n", 1, 2, -3);
+	printf("%d%dd%d\n", 1, 2, -3);
+
+	// test with %u
+	ft_printf("%s\n", "AHORA LOS UNSIGNED INTS");
+	ft_printf("%u\n", 0);
+	printf("%u\n", 0);
+	ft_printf("%u\n", -10);
+	printf("%u\n", -10);
+	ft_printf("%u\n", -200000);
+	printf("%u\n", -200000);
+	ft_printf("%u\n", -6000023);
+	printf("%u\n", -6000023);
+	ft_printf("%u\n", 10);
+	printf("%u\n", 10);
+	ft_printf("%u\n", 10000);
+	printf("%u\n", 10000);
+	ft_printf("%u\n", 100023);
+	printf("%u\n", 100023);
+	ft_printf("%u\n", INT_MAX);
+	printf("%u\n", INT_MAX);
+	ft_printf("%u\n", INT_MIN);
+	printf("%u\n", INT_MIN);
+	ft_printf("%u\n", UINT_MAX);
+	printf("%u\n", UINT_MAX);
+	ft_printf("dgs%uxx\n", 10);
+	printf("dgs%uxx\n", 10);
+	ft_printf("%u%uu%u\n", 1, 2, -3);
+	printf("%u%uu%u\n", 1, 2, -3);
+
+	// test with %x and %X
+
+	ft_printf("%s\n", "AHORA x");
+	ft_printf("%x\n", 0);
+	printf("%x\n", 0);
+	ft_printf("%x\n", -10);
+	printf("%x\n", -10);
+	ft_printf("%x\n", -200000);
+	printf("%x\n", -200000);
+	ft_printf("%x\n", -6000023);
+	printf("%x\n", -6000023);
+	ft_printf("%x\n", 10);
+	printf("%x\n", 10);
+	ft_printf("%x\n", 10000);
+	printf("%x\n", 10000);
+	ft_printf("%x\n", 100023);
+	printf("%x\n", 100023);
+	ft_printf("%x\n", 0xabcdef);
+	printf("%x\n", 0xabcdef);
+	ft_printf("%x\n", 0x7fedcba1);
+	printf("%x\n", 0x7fedcba1);
+	ft_printf("%x\n", INT_MAX);
+	printf("%x\n", INT_MAX);
+	ft_printf("%x\n", INT_MIN);
+	printf("%x\n", INT_MIN);
+	ft_printf("%x\n", UINT_MAX);
+	printf("%x\n", UINT_MAX);
+	ft_printf("dgs%xxx\n", 10);
+	printf("dgs%xxx\n", 10);
+	ft_printf("%x%xx%x\n", 1, 2, -3);
+	printf("%x%xx%x\n", 1, 2, -3);
+
+	ft_printf("%s\n", "AHORA X");
+	ft_printf("%X\n", 0);
+	printf("%X\n", 0);
+	ft_printf("%X\n", -10);
+	printf("%X\n", -10);
+	ft_printf("%X\n", -200000);
+	printf("%X\n", -200000);
+	ft_printf("%X\n", -6000023);
+	printf("%X\n", -6000023);
+	ft_printf("%X\n", 10);
+	printf("%X\n", 10);
+	ft_printf("%X\n", 10000);
+	printf("%X\n", 10000);
+	ft_printf("%X\n", 100023);
+	printf("%X\n", 100023);
+	ft_printf("%X\n", 0xabcdef);
+	printf("%X\n", 0xabcdef);
+	ft_printf("%X\n", 0x7fedcba1);
+	printf("%X\n", 0x7fedcba1);
+	ft_printf("%X\n", INT_MAX);
+	printf("%X\n", INT_MAX);
+	ft_printf("%X\n", INT_MIN);
+	printf("%X\n", INT_MIN);
+	ft_printf("%X\n", UINT_MAX);
+	printf("%X\n", UINT_MAX);
+	ft_printf("dgs%Xxx\n", 10);
+	printf("dgs%Xxx\n", 10);
+	ft_printf("%X%Xx%X\n", 1, 2, -3);
+	printf("%X%Xx%X\n", 1, 2, -3);
 }*/

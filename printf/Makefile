@@ -14,18 +14,21 @@ NAME = libftprintf.a
 SOURCES = ft_printf.c
 
 OBJECTS = $(SOURCES:.c=.o)
+LIBFT = ./libft/libft.a
 CFLAGS = #-Wall -Werror -Wextra
 
-all: $(NAME)
-$(NAME): $(OBJECTS)
-	make -C libft
+all: $(NAME) $(LIBFT)
+$(NAME): $(OBJECTS) $(LIBFT)
 	ar rcs $(NAME) $(OBJECTS)
-%.o: %.c Makefile libft.h
+%.o: %.c Makefile ft_printf.h
 	cc $(CFLAGS) -c $< -o $@
+$(LIBFT):
+	make -C ./libft all
 clean:
 	rm -f $(OBJECTS)
-	make -C libft fclean
+	make -C ./libft clean
 fclean: clean
 	rm -f $(NAME)
+	make -C ./libft fclean
 re: fclean all
 .PHONY: all clean fclean re
