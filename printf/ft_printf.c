@@ -11,49 +11,21 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-static int	ft_puthex(unsigned long long n, int fd, char format)
-{
-	unsigned long long	nbr;
-	int					len;
-
-	nbr = (unsigned long long)n;
-	len = ft_nbrlen(nbr) + 2;
-	if (nbr >= 16)
-	{
-		if (ft_puthex(nbr / 16, fd, format) == -1)
-			return (-1);
-		if (ft_puthex(nbr % 16, fd, format) == -1)
-			return (-1);
-	}
-	else
-	{
-		if (nbr < 10)
-			ft_putchar_fd(nbr + '0', fd);
-		else if (format == 'X')
-			ft_putchar_fd(nbr - 10 + 'A', fd);
-		else
-			ft_putchar_fd(nbr - 10 + 'a', fd);
-	}
-	return (len);
-}
-
 static int	ft_putnbrunsig_fd(unsigned int n, int fd)
 {
-	unsigned int	nbr;
-	int				len;
-
-	nbr = (unsigned int)n;
-	len = ft_nbrlen(nbr);
-	if (nbr < 10)
-		ft_putchar_fd(nbr + '0', fd);
-	else
+	if (n < 10)
 	{
-		if (ft_putnbrunsig_fd(nbr / 10, fd) == -1)
-			return (-1);
-		if (ft_putnbrunsig_fd(nbr % 10, fd) == -1)
+		if (ft_putchar_fd(n + '0', fd) == -1)
 			return (-1);
 	}
-	return (len);
+	else
+	{
+		if (ft_putnbrunsig_fd(n / 10, fd) == -1)
+			return (-1);
+		if (ft_putnbrunsig_fd(n % 10, fd) == -1)
+			return (-1);
+	}
+	return (ft_nbrunsiglen(n));
 }
 
 static int	ft_format(va_list args, const char format, int count)
@@ -97,9 +69,15 @@ int	ft_printf(char const *str, ...)
 		{
 			i++;
 			count += ft_format(args, str[i], count);
+			if (count == -1)
+				return (-1);
 		}
 		else
+		{
 			count += ft_putchar_fd(str[i], 1);
+			if (count == -1)
+				return (-1);
+		}
 		i++;
 	}
 	va_end(args);
@@ -108,10 +86,20 @@ int	ft_printf(char const *str, ...)
 /*
 int main(void)
 {
-	ft_printf("\nTiene: %i caracteres", ft_printf("%c", 'a'));
-	printf("\nTiene: %i caracteres", ft_printf("%c", 'a'));
-	ft_printf("\nTiene: %i caracteres", ft_printf("\x01\x02\a\v\b\f\r\n"));
-    printf("\nTiene: %i caracteres", ft_printf("\x01\x02\a\v\b\f\r\n"));
+	//ft_printf("\nTiene: %i caracteres\n", ft_printf("%c", 'a'));
+	//printf("\nTiene: %i caracteres\n", printf("%c", 'a'));
+	//ft_printf("\nTiene: %i caracteres\n", 
+		ft_printf("\x01\x02\a\v\b\f\r\n"));
+    //printf("\nTiene: %i caracteres\n", 
+		printf("\x01\x02\a\v\b\f\r\n"));
+	//char s = 'a';
+	ft_printf("Funcion propia\n\n");
+	ft_printf("\nTiene: %i caracteres\n", 
+		ft_printf("\001\002\007\v\010\f\r\n"));
+	ft_printf("\nFuncion original\n\n");
+    printf("\nTiene: %i caracteres\n", 
+		printf("\001\002\007\v\010\f\r\n"));
+
 
 	return (0);
 }*/

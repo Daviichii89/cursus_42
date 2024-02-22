@@ -12,11 +12,9 @@
 
 NAME = libftprintf.a
 SOURCES = ft_printf.c \
-		  ft_putnbr_fd.c \
-		  ft_putchar_fd.c \
-		  ft_putstr_fd.c \
-		  ft_strlen.c \
-		  ft_nbrlen.c
+		  ft_putnbr_fd.c ft_puthex_fd.c \
+		  ft_putchar_fd.c ft_putstr_fd.c \
+		  ft_strlen.c ft_nbrlen.c ft_hexlen.c ft_nbrunsiglen.c
 
 OBJECTS = $(SOURCES:.c=.o)
 CFLAGS = -Wall -Werror -Wextra

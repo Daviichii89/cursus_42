@@ -1,52 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_nbrlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/19 17:02:46 by davifer2          #+#    #+#             */
-/*   Updated: 2024/02/22 15:02:04 by davifer2         ###   ########.fr       */
+/*   Created: 2024/02/22 14:31:44 by davifer2          #+#    #+#             */
+/*   Updated: 2024/02/22 14:59:00 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-int	ft_putnbr_max(int nb)
+int ft_puthex_fd(unsigned long long n, int fd, char format)
 {
-	if (nb == -2147483648)
+	if (n >= 16)
 	{
-		if (write(1, "-2147483648", 11) == -1)
+		if (ft_puthex_fd(n / 16, fd, format) == -1
+			|| ft_puthex_fd(n % 16, fd, format) == -1)
 			return (-1);
 	}
-	return (11);
-}
-
-int	ft_putnbr_fd(int n, int fd)
-{
-	unsigned int	nbr;
-
-	nbr = n;
-	if (n == -2147483648)
-		return (ft_putnbr_max(n));
 	else
 	{
-		if (n < 0)
+		if (n < 10)
 		{
-			if (ft_putchar_fd('-', fd) == -1)
+			if (ft_putchar_fd(n + '0', fd) == -1)
 				return (-1);
-			n = -n;
 		}
-		if (n > 9)
-			if (ft_putnbr_fd(n / 10, fd) == -1)
+		else if (format == 'X')
+		{
+			if (ft_putchar_fd(n - 10 + 'A', fd) == -1)
 				return (-1);
-		if (ft_putchar_fd(n % 10 + '0', fd) == -1)
-			return (-1);
+		}
+		else
+		{
+			if (ft_putchar_fd(n - 10 + 'a', fd) == -1)
+				return (-1);
+		}
 	}
-	return (ft_nbrlen(nbr));
+	return (ft_hexlen(n, format));
 }
-/*
-int main()
-{
-	ft_putnbr_fd(-2147483648, 1);
-	return (0);
-}*/

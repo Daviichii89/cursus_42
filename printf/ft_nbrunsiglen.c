@@ -11,17 +11,16 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-size_t	ft_nbrlen(int n)
+size_t	ft_nbrunsiglen(unsigned int nb)
 {
-	size_t	len;
+	unsigned long int	i;
 
-	len = 0;
-	if (n <= 0)
-		len++;
-	while (n != 0)
+	i = 0;
+	while (nb / 10 != 0)
 	{
-		n = n / 10;
-		len++;
+		i++;
+		nb /= 10;
 	}
-	return (len);
+	i++;
+	return (i);
 }

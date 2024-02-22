@@ -13,23 +13,22 @@
 
 int	ft_putstr_fd(char *s, int fd)
 {
-	int	len;
 	int	i;
 
+	i = 0;
 	if (!s)
 	{
-		if (write(fd, "(null)", 6) == -1)
+		if (write(fd, "(null)", 6) != 6)
 			return (-1);
 		return (6);
 	}
-	len = ft_strlen(s);
-	i = 0;
-	while (i < len)
+	while (s[i])
 	{
-		ft_putchar_fd(s[i], fd);
+		if (ft_putchar_fd(s[i], fd) == -1)
+			return (-1);
 		i++;
 	}
-	return (len);
+	return (i);
 }
 /*
 int	main(void)
