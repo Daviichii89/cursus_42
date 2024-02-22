@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:28:53 by davifer2          #+#    #+#             */
-/*   Updated: 2024/02/22 14:49:56 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:02:53 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -60,26 +60,26 @@ static int	ft_format(va_list args, const char format, int count)
 {
 	count = 0;
 	if (format == 'c')
-		ft_putchar_fd(va_arg(args, int), 1);
+		count = ft_putchar_fd(va_arg(args, int), 1);
 	else if (format == 's')
-		ft_putstr_fd(va_arg(args, char *), 1);
+		count = ft_putstr_fd(va_arg(args, char *), 1);
 	else if (format == 'd' || format == 'i')
-		ft_putnbr_fd(va_arg(args, int), 1);
+		count = ft_putnbr_fd(va_arg(args, int), 1);
 	else if (format == 'X' || format == 'x')
-		ft_puthex(va_arg(args, unsigned int), 1, format);
+		count = ft_puthex(va_arg(args, unsigned int), 1, format);
 	else if (format == 'p')
 	{
 		if (write(1, "0x", 2) == -1)
 			return (-1);
-		ft_puthex(va_arg(args, unsigned long long), 1, format);
+		count = ft_puthex(va_arg(args, unsigned long long), 1, format);
 	}
 	else if (format == 'u')
-		ft_putnbrunsig_fd(va_arg(args, unsigned int), 1);
+		count = ft_putnbrunsig_fd(va_arg(args, unsigned int), 1);
 	else if (format == '%')
-	{
-		ft_putchar_fd('%', 1);
-	}
-	return (-1);
+		count = ft_putchar_fd('%', 1);
+	else
+		return (-1);
+	return (count);
 }
 
 int	ft_printf(char const *str, ...)
@@ -96,18 +96,26 @@ int	ft_printf(char const *str, ...)
 		if (str[i] == '%')
 		{
 			i++;
-			ft_format(args, str[i], count);
+			count += ft_format(args, str[i], count);
 		}
 		else
-			ft_putchar_fd(str[i], 1);
+			count += ft_putchar_fd(str[i], 1);
 		i++;
 	}
 	va_end(args);
-	return (i);
+	return (count);
 }
 /*
 int main(void)
 {
+	ft_printf("\nTiene: %i caracteres", ft_printf("%c", 'a'));
+	printf("\nTiene: %i caracteres", ft_printf("%c", 'a'));
+	ft_printf("\nTiene: %i caracteres", ft_printf("\x01\x02\a\v\b\f\r\n"));
+    printf("\nTiene: %i caracteres", ft_printf("\x01\x02\a\v\b\f\r\n"));
+
+	return (0);
+}*/
+/*
 	// test empty and special characters
 	ft_printf("");
 	printf("");
@@ -271,4 +279,5 @@ int main(void)
 	printf("dgs%Xxx\n", 10);
 	ft_printf("%X%Xx%X\n", 1, 2, -3);
 	printf("%X%Xx%X\n", 1, 2, -3);
+
 }*/
