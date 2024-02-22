@@ -6,12 +6,13 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:44:29 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/31 16:40:36 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:22:54 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
 void	ft_putchar_fd(char c, int fd)
 {
-	write(fd, &c, 1);
+	if (write(fd, &c, 1) == -1)
+		return (-1);
 }
