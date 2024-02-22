@@ -1,45 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 15:30:58 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/22 02:50:28 by davifer2         ###   ########.fr       */
+/*   Created: 2024/01/19 16:53:17 by davifer2          #+#    #+#             */
+/*   Updated: 2024/02/22 15:02:19 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "ft_printf.h"
 
-char	*ft_strdup(const char *src)
+int	ft_putstr_fd(char *s, int fd)
 {
-	char	*str;
-	int		i;
-	int		size;
+	int	len;
+	int	i;
 
-	i = 0;
-	size = 0;
-	while (src[size])
-		size++;
-	str = (char *) malloc (sizeof(*str) * (size + 1));
-	if (!str)
-		return (0);
-	while (i < size)
+	if (!s)
 	{
-		str[i] = src[i];
+		if (write(fd, "(null)", 6) == -1)
+			return (-1);
+		return (6);
+	}
+	len = ft_strlen(s);
+	i = 0;
+	while (i < len)
+	{
+		ft_putchar_fd(s[i], fd);
 		i++;
 	}
-	str[size] = '\0';
-	return (str);
+	return (len);
 }
 /*
-int main(void)
+int	main(void)
 {
-	char *src;
-
-	src = NULL;
-	//char *result = ft_strdup(src);
-	char *result = strdup(src);
-	printf("%s", result);
-}
-*/
+	char	str[] = "Hola";
+	int	fd = 1;
+	ft_putstr_fd(str, fd);
+}*/

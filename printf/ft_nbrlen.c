@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_len_nbr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 13:48:50 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/20 16:36:02 by davifer2         ###   ########.fr       */
+/*   Created: 2024/02/22 14:31:44 by davifer2          #+#    #+#             */
+/*   Updated: 2024/02/22 14:59:00 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "ft_printf.h"
 
-int	ft_tolower(int c)
+size_t	ft_nbrlen(int n)
 {
-	if (c >= 'A' && c <= 'Z')
+	size_t	len;
+
+	len = 0;
+	if (n <= 0)
+		len++;
+	while (n != 0)
 	{
-		c += 32;
-		return (c);
+		n = n / 10;
+		len++;
 	}
-	return (c);
+	return (len);
 }

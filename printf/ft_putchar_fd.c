@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 16:27:48 by davifer2          #+#    #+#             */
-/*   Updated: 2024/02/02 11:59:54 by davifer2         ###   ########.fr       */
+/*   Created: 2024/01/19 16:44:29 by davifer2          #+#    #+#             */
+/*   Updated: 2024/02/22 14:56:11 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "ft_printf.h"
 
-size_t	ft_strlen(const char *str)
+int	ft_putchar_fd(char c, int fd)
 {
-	size_t	i;
-
-	i = 0;
-	while (str[i] != '\0' )
-	{
-		i++;
-	}
-	return (i);
+	if (write(fd, &c, 1) == -1)
+		return (-1);
+	return (1);
 }

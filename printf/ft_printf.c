@@ -6,38 +6,24 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:28:53 by davifer2          #+#    #+#             */
-/*   Updated: 2024/02/14 13:47:58 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/02/22 14:49:56 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft/libft.h"
 #include "ft_printf.h"
-
-static int	ft_len_nbr(int n)
-{
-	int	size;
-
-	size = 0;
-	if (n <= 0)
-		size++;
-	while (n != 0)
-	{
-		n = n / 10;
-		size++;
-	}
-	return (size);
-}
 
 static int	ft_puthex(unsigned long long n, int fd, char format)
 {
 	unsigned long long	nbr;
-	int		len;
+	int					len;
 
 	nbr = (unsigned long long)n;
-	len = ft_len_nbr(nbr) + 2;
+	len = ft_nbrlen(nbr) + 2;
 	if (nbr >= 16)
 	{
-		ft_puthex(nbr / 16, fd, format);
-		ft_puthex(nbr % 16, fd, format);
+		if (ft_puthex(nbr / 16, fd, format) == -1)
+			return (-1);
+		if (ft_puthex(nbr % 16, fd, format) == -1)
+			return (-1);
 	}
 	else
 	{
@@ -54,22 +40,25 @@ static int	ft_puthex(unsigned long long n, int fd, char format)
 static int	ft_putnbrunsig_fd(unsigned int n, int fd)
 {
 	unsigned int	nbr;
-	int		len;
+	int				len;
 
 	nbr = (unsigned int)n;
-	len = ft_len_nbr(nbr);
+	len = ft_nbrlen(nbr);
 	if (nbr < 10)
 		ft_putchar_fd(nbr + '0', fd);
 	else
 	{
-		ft_putnbrunsig_fd(nbr / 10, fd);
-		ft_putnbrunsig_fd(nbr % 10, fd);
+		if (ft_putnbrunsig_fd(nbr / 10, fd) == -1)
+			return (-1);
+		if (ft_putnbrunsig_fd(nbr % 10, fd) == -1)
+			return (-1);
 	}
 	return (len);
 }
 
-static int	ft_format(va_list args, const char format)
+static int	ft_format(va_list args, const char format, int count)
 {
+	count = 0;
 	if (format == 'c')
 		ft_putchar_fd(va_arg(args, int), 1);
 	else if (format == 's')
@@ -80,29 +69,34 @@ static int	ft_format(va_list args, const char format)
 		ft_puthex(va_arg(args, unsigned int), 1, format);
 	else if (format == 'p')
 	{
-		write(1, "0x", 2);
+		if (write(1, "0x", 2) == -1)
+			return (-1);
 		ft_puthex(va_arg(args, unsigned long long), 1, format);
 	}
 	else if (format == 'u')
 		ft_putnbrunsig_fd(va_arg(args, unsigned int), 1);
 	else if (format == '%')
+	{
 		ft_putchar_fd('%', 1);
+	}
 	return (-1);
 }
 
 int	ft_printf(char const *str, ...)
 {
 	va_list	args;
-	int	i;
+	int		i;
+	int		count;
 
 	i = 0;
+	count = 0;
 	va_start(args, str);
 	while (str[i])
 	{
 		if (str[i] == '%')
 		{
 			i++;
-			ft_format(args, str[i]);
+			ft_format(args, str[i], count);
 		}
 		else
 			ft_putchar_fd(str[i], 1);
@@ -160,7 +154,8 @@ int main(void)
 	printf("%p\n", (void *)-14523);
 	ft_printf("0x%p-\n", (void *)ULONG_MAX);
 	printf("0x%p-\n", (void *)ULONG_MAX);
-	ft_printf("%pp%p%p\n", (void *)LONG_MAX + 423856, (void *)0, (void *)INT_MAX);
+	ft_printf("%pp%p%p\n", 
+		(void *)LONG_MAX + 423856, (void *)0, (void *)INT_MAX);
 	printf("%pp%p%p\n", (void *)LONG_MAX + 423856, (void *)0, (void *)INT_MAX);
 
 	// test with %d and %i
