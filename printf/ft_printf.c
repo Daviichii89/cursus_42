@@ -11,64 +11,41 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-static int	ft_putnbrunsig_fd(unsigned int n, int fd)
+static int	ft_format(va_list args, const char format)
 {
-	if (n < 10)
-	{
-		if (ft_putchar_fd(n + '0', fd) == -1)
-			return (-1);
-	}
-	else
-	{
-		if (ft_putnbrunsig_fd(n / 10, fd) == -1)
-			return (-1);
-		if (ft_putnbrunsig_fd(n % 10, fd) == -1)
-			return (-1);
-	}
-	return (ft_nbrunsiglen(n));
-}
-
-static int	ft_format(va_list args, const char format, int count)
-{
-	count = 0;
 	if (format == 'c')
-		count = ft_putchar_fd(va_arg(args, int), 1);
+		return (ft_putchar_fd(va_arg(args, int), 1));
 	else if (format == 's')
-		count = ft_putstr_fd(va_arg(args, char *), 1);
+		return (ft_putstr_fd(va_arg(args, char *), 1));
 	else if (format == 'd' || format == 'i')
-		count = ft_putnbr_fd(va_arg(args, int), 1);
+		return (ft_putnbr_fd(va_arg(args, int), 1));
 	else if (format == 'X' || format == 'x')
-		count = ft_puthex(va_arg(args, unsigned int), 1, format);
+		return (ft_puthex_fd(va_arg(args, unsigned int), 1, format));
 	else if (format == 'p')
 	{
 		if (write(1, "0x", 2) == -1)
 			return (-1);
-		count = ft_puthex(va_arg(args, unsigned long long), 1, format);
+		return (ft_puthex_fd(va_arg(args, unsigned long long), 1, format));
 	}
 	else if (format == 'u')
-		count = ft_putnbrunsig_fd(va_arg(args, unsigned int), 1);
+		return (ft_putnbrunsig_fd(va_arg(args, unsigned int), 1));
 	else if (format == '%')
-		count = ft_putchar_fd('%', 1);
+		return (ft_putchar_fd('%', 1));
 	else
 		return (-1);
-	return (count);
 }
 
-int	ft_printf(char const *str, ...)
+int	ft_printf_loop(const char *str, va_list args, int count)
 {
-	va_list	args;
-	int		i;
-	int		count;
+	int	i;
 
 	i = 0;
-	count = 0;
-	va_start(args, str);
 	while (str[i])
 	{
 		if (str[i] == '%')
 		{
 			i++;
-			count += ft_format(args, str[i], count);
+			count += ft_format(args, str[i]);
 			if (count == -1)
 				return (-1);
 		}
@@ -80,6 +57,17 @@ int	ft_printf(char const *str, ...)
 		}
 		i++;
 	}
+	return (count);
+}
+
+int	ft_printf(char const *str, ...)
+{
+	va_list	args;
+	int		count;
+
+	count = 0;
+	va_start(args, str);
+	count = ft_printf_loop(str, args, count);
 	va_end(args);
 	return (count);
 }

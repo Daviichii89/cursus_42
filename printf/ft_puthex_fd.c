@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-int ft_puthex_fd(unsigned long long n, int fd, char format)
+int	ft_puthex_fd(unsigned long long n, int fd, char format)
 {
 	if (n >= 16)
 	{
