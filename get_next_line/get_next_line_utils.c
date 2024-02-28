@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 #include "get_next_line.h"
 
-size_t ft_strlen(const char *str)
+size_t	ft_strlen(const char *str)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (str[i] != '\0')
@@ -23,7 +23,7 @@ size_t ft_strlen(const char *str)
 	return (i);
 }
 
-char *ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
 	while (*s != '\0')
 	{
@@ -37,10 +37,10 @@ char *ft_strchr(const char *s, int c)
 		return (0);
 }
 
-size_t ft_strlcpy(char *dest, char *src, size_t size)
+size_t	ft_strlcpy(char *dest, char *src, size_t size)
 {
-	size_t i;
-	size_t len;
+	size_t	i;
+	size_t	len;
 
 	i = 0;
 	len = 0;
@@ -58,9 +58,9 @@ size_t ft_strlcpy(char *dest, char *src, size_t size)
 	return (len);
 }
 
-char *ft_substr(const char *s, unsigned int start, size_t len)
+char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
-	char *substring;
+	char	*substring;
 
 	if (!s)
 		return (0);
@@ -75,33 +75,26 @@ char *ft_substr(const char *s, unsigned int start, size_t len)
 	return (substring);
 }
 
-char *ft_strdup(const char *src)
+char	*ft_strdup(const char *src)
 {
-	char *dest;
-	int i;
-	int size;
+	char	*dest;
+	size_t	i;
 
-	i = 0;
-	size = 0;
-	while (src[size])
-		i++;
-	dest = (char *)malloc((size + 1) * sizeof(char));
+	i = -1;
+	dest = (char *)malloc((ft_strlen(src) + 1) * sizeof(char));
 	if (!dest)
 		return (NULL);
-	while (i < size)
-	{
+	while (src[++i] != '\0')
 		dest[i] = src[i];
-		i++;
-	}
-	dest[size] = '\0';
+	dest[i] = '\0';
 	return (dest);
 }
 
-char *ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char *str;
-	int i;
-	int j;
+	char	*str;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
@@ -122,9 +115,9 @@ char *ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
-size_t ft_strcpy(char *dest, const char *src)
+size_t	ft_strcpy(char *dest, const char *src)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (src[i] != '\0')
@@ -136,10 +129,10 @@ size_t ft_strcpy(char *dest, const char *src)
 	return (i);
 }
 
-void *ft_memset(void *s, int c, size_t n)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	unsigned char *str;
-	size_t i;
+	unsigned char	*str;
+	size_t			i;
 
 	str = s;
 	i = 0;
@@ -151,10 +144,10 @@ void *ft_memset(void *s, int c, size_t n)
 	return (s);
 }
 
-void *ft_calloc(size_t nitems, size_t size)
+void	*ft_calloc(size_t nitems, size_t size)
 {
-	size_t total_size;
-	void *p;
+	size_t	total_size;
+	void	*p;
 
 	total_size = nitems * size;
 	p = malloc(total_size);

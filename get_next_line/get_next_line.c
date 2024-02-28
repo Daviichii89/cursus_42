@@ -1,59 +1,64 @@
-#include <fcntl.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
+#include "get_next_line.h"
 
-char *get_next_line(int fd, void *buffer, size_t size)
+char	*extract_line(char *buffer)
 {
-	char *string = (char *)buffer;
-	int bytes_read = read(fd, string, size - 1);
-	if (bytes_read <= 0)
-	{
-		if (bytes_read == 0)
-			return (NULL);
-		else
-		{
-			printf("Error al leer");
-			return (NULL);
-		}
-	}
-	string[bytes_read] = '\0';
+	char	*line;
+	int		i;
 
-	return (string);
+	i = 0;
+	while (buffer[i] && buffer[i] != '\n')
+		i++;
+	if (buffer[i] == 0 || buffer[1] == 0)
+		return (NULL);
+	line = ft_substr(buffer, i + 1, ft_strlen(buffer) - i);
+	if (!line)
+		return (free(buffer), NULL);
+	buffer[i + 1] = '\0';
+	return (line);
 }
 
-int main(int argc, char *argv[])
+char	*read_extract_line(int fd, char *store, char *buffer)
 {
-	if (argc != 2)
+	char	*temp;
+	int		bytes_read;
+
+	bytes_read = 1;
+	while (bytes_read > 0)
 	{
-		printf("Uso: %s <nombre_archivo>\n", argv[0]);
-		return 1;
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_read == -1)
+			return (free(store), NULL);
+		else if (bytes_read == 0)
+			break ;
+		buffer[bytes_read] = '\0';
+		if (!store)
+			store = ft_strdup("");
+		temp = store;
+		store = ft_strjoin(temp, buffer);
+		free(temp);
+		temp = NULL;
+		if (ft_strchr(buffer, '\n'))
+			break ;
 	}
+	return (store);
+}
 
-	int fd;
-
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-	{
-		printf("Error opening file");
-		return 1;
-	}
-
-	char buffer[10];
-	char *line = get_next_line(fd, buffer, sizeof(buffer));
-	// print number of bytes read and the text of the actual line
-	printf("Line: %s\n", line);
-
-	// int i = 1;
-	// while (line != NULL)
-	// {
-	// 	// print number of bytes read and the text of the actual line
-	// 	printf("Line %d: %s\n", i, line);
-
-	// 	line = get_next_line(fd, buffer, sizeof(buffer));
-	// 	i++;
-	// }
-	close(fd);
-	return (0);
+char	*get_next_line(int fd)
+{
+	static char	*store;
+	char		*line;
+	char		*buffer;
+	
+	buffer = (char *)malloc(BUFFER_SIZE + 1 * sizeof(char));
+	if (fd < 0 || read(fd, NULL, 0) < 0 || BUFFER_SIZE <= 0)
+		return (free(store), free(buffer), store = NULL, buffer = NULL, NULL);
+	if (!buffer)
+		return (NULL);
+	line = read_extract_line(fd, store, buffer);
+	free(buffer);
+	buffer = NULL;
+	if (!line)
+		return (NULL);
+	free(store);
+	return (line);
 }
