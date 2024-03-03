@@ -1,36 +1,42 @@
 #include "get_next_line.h"
 
-char	*extract_line(char *buffer)
+char	*free_store(char *buffer)
 {
-	char	*line;
-	int		i;
+	char		*store;
+	ssize_t		i;
 
 	i = 0;
-	while (buffer[i] && buffer[i] != '\n')
+	while (buffer[i] != '\0' && buffer[i] != '\n')
 		i++;
 	if (buffer[i] == 0 || buffer[1] == 0)
 		return (NULL);
-	line = ft_substr(buffer, i + 1, ft_strlen(buffer) - i);
-	if (!line)
-		return (free(buffer), NULL);
-	buffer[i + 1] = '\0';
-	return (line);
+	store = ft_substr(buffer, i + 1, ft_strlen(buffer) - i);
+	if (*store == 0)
+	{
+		free(store);
+		store = NULL;
+	}
+	buffer[i + 1] = 0;
+	return (store);
 }
 
 char	*read_extract_line(int fd, char *store, char *buffer)
 {
-	char	*temp;
-	int		bytes_read;
+	char		*temp;
+	ssize_t		bytes_read;
 
 	bytes_read = 1;
 	while (bytes_read > 0)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
-			return (free(store), NULL);
+		{
+			free(store);
+			return (NULL);
+		}
 		else if (bytes_read == 0)
 			break ;
-		buffer[bytes_read] = '\0';
+		buffer[bytes_read] = 0;
 		if (!store)
 			store = ft_strdup("");
 		temp = store;
@@ -50,7 +56,7 @@ char	*get_next_line(int fd)
 	char		*buffer;
 	
 	buffer = (char *)malloc(BUFFER_SIZE + 1 * sizeof(char));
-	if (fd < 0 || read(fd, NULL, 0) < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || read(fd, 0, 0) < 0 || BUFFER_SIZE <= 0)
 		return (free(store), free(buffer), store = NULL, buffer = NULL, NULL);
 	if (!buffer)
 		return (NULL);
@@ -59,6 +65,6 @@ char	*get_next_line(int fd)
 	buffer = NULL;
 	if (!line)
 		return (NULL);
-	free(store);
+	store = free_store(line);
 	return (line);
 }
