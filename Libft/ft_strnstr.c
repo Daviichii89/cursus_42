@@ -11,10 +11,10 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-char *ft_strnstr(char *str, char *needle, size_t max_length)
+char	*ft_strnstr(char *str, char *needle, size_t max_length)
 {
-	size_t i;
-	size_t j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	if (needle[i] == '\0')
@@ -24,7 +24,8 @@ char *ft_strnstr(char *str, char *needle, size_t max_length)
 	while (str[i] != '\0')
 	{
 		j = 0;
-		while (str[i + j] == needle[j] && needle[j] != '\0' && i + j < max_length)
+		while (str[i + j] == needle[j] && needle[j] != '\0'
+			&& i + j < max_length)
 		{
 			j++;
 		}

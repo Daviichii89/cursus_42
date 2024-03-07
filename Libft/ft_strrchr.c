@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-char *ft_strrchr(const char *s, int c)
+char	*ft_strrchr(const char *s, int c)
 {
-	const char *last;
+	const char	*last;
 
 	last = 0;
 	while (*s != '\0')

@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-void *ft_memmove(void *dest, const void *src, size_t len)
+void	*ft_memmove(void *dest, const void *src, size_t len)
 {
-	unsigned char *dest_p;
+	unsigned char	*dest_p;
 
 	dest_p = dest;
 	if ((!dest && !src) || dest == src)

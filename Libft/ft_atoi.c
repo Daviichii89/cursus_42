@@ -6,17 +6,6 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:34:26 by davifer2          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/01/09 11:38:55 by davifer2         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-#include "libft.h"
-
-int		ft_atoi(char *str)
-{
-	int	sign;
-	int	res;
-=======
 /*   Updated: 2024/01/20 15:06:54 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -25,7 +14,6 @@ int	ft_atoi(const char *str)
 {
 	int		sign;
 	int		res;
->>>>>>> master
 
 	res = 0;
 	sign = 1;
@@ -34,11 +22,7 @@ int	ft_atoi(const char *str)
 	if (*str == '-' || *str == '+')
 	{
 		if (*str == '-')
-<<<<<<< HEAD
-			sign -= 1;
-=======
 			sign = -1;
->>>>>>> master
 		str++;
 	}
 	while (*str >= '0' && *str <= '9')
@@ -48,8 +32,7 @@ int	ft_atoi(const char *str)
 	}
 	return (sign * res);
 }
-<<<<<<< HEAD
-=======
+
 /*
 int	main(void)
 {
@@ -59,4 +42,3 @@ int	main(void)
 	printf("ft_atoi: %d\n", result);
 	printf("atoi: %d", result2);
 }*/
->>>>>>> master
