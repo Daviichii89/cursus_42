@@ -80,7 +80,7 @@ char	*cut_line(char *line, int *info)
 
 char	*get_next_line(int fd)
 {
-	static char	*store;
+	static char	*store[OPEN_MAX];
 	char		*line;
 	char		*buffer;
 	int			info;
@@ -88,19 +88,20 @@ char	*get_next_line(int fd)
 	info = 1;
 	buffer = (char *)malloc(BUFFER_SIZE + 1 * sizeof(char));
 	if (fd < 0 || read(fd, 0, 0) < 0 || BUFFER_SIZE <= 0)
-		return (free(store), free(buffer), store = NULL, buffer = NULL, NULL);
+		return (free(store[fd]), free(buffer),
+			store[fd] = NULL, buffer = NULL, NULL);
 	if (!buffer)
-		return (free(store), store = NULL, NULL);
-	line = read_extract_line(fd, store, buffer, &info);
+		return (free(store[fd]), store[fd] = NULL, NULL);
+	line = read_extract_line(fd, store[fd], buffer, &info);
 	free(buffer);
 	if (!info)
-		return (store = NULL, NULL);
+		return (store[fd] = NULL, NULL);
 	buffer = NULL;
 	if (!line)
 		return (NULL);
-	store = free_store(line);
+	store[fd] = free_store(line);
 	line = cut_line(line, &info);
 	if (!info)
-		return (free(store), store = NULL, NULL);
+		return (free(store[fd]), store[fd] = NULL, NULL);
 	return (line);
 }

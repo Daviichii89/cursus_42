@@ -22,17 +22,16 @@ char	*free_store(char *buffer)
 	if (buffer[i] == 0 || buffer[1] == 0)
 		return (NULL);
 	store = ft_substr(buffer, i + 1, ft_strlen(buffer) - i);
-	if (!store)
-		return (NULL);
 	if (*store == 0)
 	{
 		free(store);
 		store = NULL;
 	}
+	buffer[i + 1] = 0;
 	return (store);
 }
 
-char	*read_extract_line(int fd, char *store, char *buffer, int *info)
+char	*read_extract_line(int fd, char *store, char *buffer)
 {
 	char		*temp;
 	ssize_t		bytes_read;
@@ -44,16 +43,16 @@ char	*read_extract_line(int fd, char *store, char *buffer, int *info)
 		if (bytes_read == -1)
 		{
 			free(store);
-			return (*info = 0, NULL);
+			return (NULL);
 		}
 		else if (bytes_read == 0)
 			break ;
 		buffer[bytes_read] = 0;
+		if (!store)
+			store = ft_strdup("");
 		temp = store;
 		store = ft_strjoin(temp, buffer);
 		free(temp);
-		if (!store)
-			return (*info = 0, NULL);
 		temp = NULL;
 		if (ft_strchr(buffer, '\n'))
 			break ;
@@ -61,46 +60,23 @@ char	*read_extract_line(int fd, char *store, char *buffer, int *info)
 	return (store);
 }
 
-char	*cut_line(char *line, int *info)
-{
-	char	*nw_line;
-	int		i;
-
-	i = 0;
-	while (line[i] != '\n' && line[i])
-		i++;
-	if (line[i] == '\n')
-		i++;
-	nw_line = ft_substr(line, 0, i);
-	if (nw_line == NULL)
-		return (*info = 0, free(line), NULL);
-	free(line);
-	return (nw_line);
-}
-
 char	*get_next_line(int fd)
 {
-	static char	*store;
+	static char	*store[OPEN_MAX];
 	char		*line;
 	char		*buffer;
-	int			info;
 
-	info = 1;
 	buffer = (char *)malloc(BUFFER_SIZE + 1 * sizeof(char));
 	if (fd < 0 || read(fd, 0, 0) < 0 || BUFFER_SIZE <= 0)
-		return (free(store), free(buffer), store = NULL, buffer = NULL, NULL);
+		return (free(store[fd]), free(buffer),
+			store[fd] = NULL, buffer = NULL, NULL);
 	if (!buffer)
-		return (free(store), store = NULL, NULL);
-	line = read_extract_line(fd, store, buffer, &info);
+		return (NULL);
+	line = read_extract_line(fd, store[fd], buffer);
 	free(buffer);
-	if (!info)
-		return (store = NULL, NULL);
 	buffer = NULL;
 	if (!line)
 		return (NULL);
-	store = free_store(line);
-	line = cut_line(line, &info);
-	if (!info)
-		return (free(store), store = NULL, NULL);
+	store[fd] = free_store(line);
 	return (line);
 }
