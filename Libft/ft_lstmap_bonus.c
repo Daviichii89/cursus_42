@@ -10,7 +10,62 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
+/*
+void *uppercase_content(void *content)
+{
+	size_t	i;
+	char	*str;
+	char *result;
 
-//t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
-//{
-//}
+	i = 0;
+    if (content == NULL) {
+        return NULL;
+	}
+    str = (char *)content;
+    result = ft_strdup(str);
+    while (result[i]) {
+        result[i] = ft_toupper(result[i]);
+		i++;
+    }
+    return result;
+}
+
+void free_content(void *content)
+{
+    free(content);
+}*/
+
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+{
+	t_list	*new_lst;
+	t_list	*new_node;
+	void	*set;
+
+	if (!lst || !f || !del)
+		return (NULL);
+	new_lst = NULL;
+	while (lst)
+	{
+		set = f(lst->content);
+		new_node = ft_lstnew(set);
+		if (!new_node)
+		{
+			del(set);
+			ft_lstclear(&new_lst, (*del));
+			return (new_lst);
+		}
+		ft_lstadd_back(&new_lst, new_node);
+		lst = lst->next;
+	}
+	return (new_lst);
+}
+/*
+int main(void)
+{
+	t_list	*lst;
+	t_list *new_lst;
+
+	lst = ft_lstnew("hello");
+	ft_lstadd_back(&lst, ft_lstnew("world"));
+	new_lst = ft_lstmap(lst, uppercase_content, free_content);
+}*/

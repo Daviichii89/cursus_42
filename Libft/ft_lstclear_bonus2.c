@@ -18,11 +18,21 @@ void	delete_node(void *content)
 
 void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	if (!lst || !del || !(*lst))
+	t_list	*current;
+
+	if (!lst || !del)
 		return ;
-	ft_lstclear(&(*lst)->next, del);
-	(del)((*lst)->content);
-	free(*lst);
+	if (!(*lst))
+	{
+		ft_lstdelone((*lst), del);
+		return ;
+	}
+	while (*lst != NULL)
+	{
+		current = (*lst)->next;
+		ft_lstdelone((*lst), del);
+		*lst = current;
+	}
 	*lst = NULL;
 }
 /*
