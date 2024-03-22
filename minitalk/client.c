@@ -1,0 +1,57 @@
+#include <signal.h>
+#include <stdio.h>
+#include <stdlib.h>
+# include <unistd.h>
+# include <stdarg.h>
+
+ int ft_atoi(const char *str);
+
+void	send_signal(int pid, unsigned char c)
+{
+	int				i;
+	unsigned char	temp;
+
+	i = 8;
+	temp = c;
+	while (i > 0)
+	{
+		i--;
+		temp = c >> i;
+		if (temp % 2 == 0)
+			kill(pid, SIGUSR2);
+		else
+			kill(pid, SIGUSR1);
+		usleep(100);
+	}
+}
+void	handle_read_receipt(int signal)
+{
+	if (signal == SIGUSR1)
+		printf("Received bit 1\n");
+	else if (signal == SIGUSR2)
+		printf("Received bit 0\n");
+}
+int main(int argc, char *argv[])
+{
+	pid_t		server_pid;
+	const char	*message;
+	int			i;
+	
+	signal(SIGUSR1, handle_read_receipt);
+	signal(SIGUSR2, handle_read_receipt);
+	if (argc != 3)
+	{
+		printf("Uso: %s <pid> <message>\n", argv[0]);
+		exit(0);
+	}
+	server_pid = ft_atoi(argv[1]);
+	message = argv[2];
+	i = 0;
+	while (message[i])
+	{
+		send_signal(server_pid, message[i]);
+		i++;
+	}
+	send_signal(server_pid, '\0');
+	return (0);
+}
