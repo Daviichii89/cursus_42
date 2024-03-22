@@ -12,16 +12,44 @@
 
 NAME = so_long
 
-SOURCES = so_long.c
+SOURCES = so_long.c read_map.c get_next_line.c get_next_line_utils.c ft_free.c \
+			ft_error.c ft_bzero.c ft_calloc.c ft_memset.c print_map.c \
+			check_exit.c
 
-MLX = -Lmlx -lmlx -framework OpenGL -framework AppKit
+MLX = -L. -lmlx -framework OpenGL -framework AppKit
 
 OBJECTS = $(SOURCES:.c=.o)
 
-all: makemlx $(NAME)
+CC = gcc
+
+CFLAGS = -Wall -Wextra -Werror
+
 %.o: %.c
-	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
-$(NAME): $(OBJ)
-	$(CC) $(OBJ) $(MLX) -o $(NAME)
-makemlx:
-	make -C mlx/
+	@echo "Compiling $@"
+	$(CC) $(CFLAGS) -Imlx -c $< -o $@
+
+all: $(NAME)
+
+$(NAME): $(OBJECTS)
+	@make -C mlx/
+	@echo "Compilated mlx"
+	@cp mlx/libmlx.a .
+	@$(CC) $(OBJECTS) $(MLX) -o $(NAME)
+	@echo "Compilated so_long"
+
+clean:
+	@echo "Cleaning..."
+	@make -C mlx/ clean
+	@rm -f $(OBJECTS)
+	@echo "Cleaned objects successfully"
+
+fclean: clean
+	@echo "Full cleaning"
+	@make -C mlx/ clean
+	@rm -f $(NAME)
+	@rm -f libmlx.a
+	@echo "Cleaned all objects and executables successfully"
+
+re: fclean all
+
+.PHONY: all clean fclean re
