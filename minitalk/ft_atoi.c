@@ -1,27 +1,44 @@
-#include <stdlib.h>
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/09 11:34:26 by davifer2          #+#    #+#             */
+/*   Updated: 2024/01/20 15:06:54 by davifer2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 int	ft_atoi(const char *str)
 {
-	int		i;
-	int		negative;
-	int		result;
+	int		sign;
+	int		res;
 
-	i = 0;
-	negative = 1;
-	result = 0;
-	while (str[i] == ' ' || str[i] == '\f' || str[i] == '\n'
-		|| str[i] == '\r' || str[i] == '\t' || str[i] == '\v')
-		i++;
-	if (str[i] == '-')
-		negative *= -1;
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	while (str[i] >= '0' && str[i] <= '9')
+	res = 0;
+	sign = 1;
+	while (*str == 32 || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '-' || *str == '+')
 	{
-		result = (result * 10) + (str[i] - '0');
-		i++;
+		if (*str == '-')
+			sign = -1;
+		str++;
 	}
-	result *= negative;
-	return (result);
+	while (*str >= '0' && *str <= '9')
+	{
+		res = res * 10 + *str - '0';
+		str++;
+	}
+	return (sign * res);
 }
+
+/*
+int	main(void)
+{
+	const	char *str = "2147483649";
+	int	result = ft_atoi(str);
+	int	result2 = atoi(str);
+	printf("ft_atoi: %d\n", result);
+	printf("atoi: %d", result2);
+}*/

@@ -18,12 +18,19 @@ void	send_signal(int pid, unsigned char c)
 		usleep(100);
 	}
 }
-int	main(int argc, char *argv[])
+void	handle_read_receipt(int signal)
+{
+	(void)signal;
+	ft_printf("Received bit\n");
+}
+int main(int argc, char *argv[])
 {
 	pid_t		server_pid;
 	const char	*message;
 	int			i;
-
+	
+	signal(SIGUSR1, handle_read_receipt);
+	signal(SIGUSR2, handle_read_receipt);
 	if (argc != 3)
 	{
 		ft_printf("Usage: %s <pid> <message>\n", argv[0]);

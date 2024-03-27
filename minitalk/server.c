@@ -1,8 +1,4 @@
-#include "printf/ft_printf.h"
-#include <signal.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "minitalk.h"
 
 void	handle_signal(int signal)
 {
@@ -26,7 +22,8 @@ void	handle_signal(int signal)
 
 int	main(void)
 {
-	ft_printf("%d\n", getpid());
+	ft_printf("Server PID: %d\n", getpid());
+	ft_printf("Server ready to receive message...\n");
 	signal(SIGUSR1, handle_signal);
 	signal(SIGUSR2, handle_signal);
 	while (1)
