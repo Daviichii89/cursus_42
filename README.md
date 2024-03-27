@@ -25,5 +25,9 @@ Este repositorio contiene una serie de proyectos realizados como parte del cursu
 6. **[so_long](https://github.com/Daviichii89/cursus_42/tree/main/so_long)** [En desarrollo]
 
    - Creación de un pequeño "videojuego" en 2D con C.
+  
+7. **[minitalk](https://github.com/Daviichii89/cursus_42/tree/main/minitalk)** [Bonus en desarrollo]
+
+   -  Implementación de un sistema de comunicación simple entre cliente/servidor utilizando señales de Unix con C.
 
 ...
