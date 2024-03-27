@@ -59,7 +59,7 @@ $(PRINTF):
 	@echo "	=======================	"
 	@echo "\n"
 
-%.o: %.c Makefile
+%.o: %.c Makefile minitalk.h
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
