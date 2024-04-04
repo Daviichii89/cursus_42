@@ -3,16 +3,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+// #include <stddef.h>
 #include <unistd.h>
 #include <limits.h>
 
 typedef struct s_stack
 {
     int value;
-    int index;
     int size;
-    int current_position;
-    struct s_stack *target_node;
     struct s_stack *prev;
     struct s_stack *next;
 } t_stack;
@@ -20,18 +18,25 @@ typedef struct s_stack
 char **ft_split(const char *s, char c);
 int ft_atoi(const char *str);
 
-int is_sorted(t_stack *a);
-void sort_3(t_stack **stack);
-void sort_5(t_stack **a, t_stack **b);
-void sort(t_stack **a, t_stack **b);
-
 void create_stack(t_stack **a, char **argv);
 int ft_lstsize(t_stack *lst);
 t_stack *ft_lstlast(t_stack *lst);
-void free_stack(t_stack **a);
+void ft_lstclear(t_stack **stack);
+
+int is_sorted(t_stack *a);
+void sort_3(t_stack **stack);
+// void sort_5(t_stack **a, t_stack **b);
+// void sort(t_stack **a, t_stack **b);
 
 void sa(t_stack **a);
+void sb(t_stack **b);
 void ra(t_stack **a);
+void rb(t_stack **b);
+void rr(t_stack **a, t_stack **b);
 void rra(t_stack **a);
+void rrb(t_stack **b);
+void rrr(t_stack **a, t_stack **b);
+void pa(t_stack **a, t_stack **b);
+void pb(t_stack **a, t_stack **b);
 
 #endif

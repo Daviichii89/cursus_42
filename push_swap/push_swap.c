@@ -3,11 +3,11 @@
 int main(int argc, char *argv[])
 {
     t_stack *a;
-    t_stack *b;
+    // t_stack *b;
     t_stack *current;
 
     a = NULL;
-    b = NULL;
+    // b = NULL;
     if (argc < 2)
         return (1);
     else if (argc == 2)
@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
             printf("---\n  a\n\n");
         }
     }
-    free_stack(&a);
+    ft_lstclear(&a);
 }
 
 // calculatorsoup.com/calculators/statistics/random-number-generator.php

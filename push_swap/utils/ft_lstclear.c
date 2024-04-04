@@ -9,9 +9,9 @@
 /*   Updated: 2024/01/19 19:13:06 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
+#include "../push_swap.h"
 
-void free_stack(t_stack **stack)
+void ft_lstclear(t_stack **stack)
 {
     t_stack *tmp;
     t_stack *current;

@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
 static int error_repetition(t_stack *a, int num)
 {

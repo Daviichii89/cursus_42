@@ -9,7 +9,7 @@
 /*   Updated: 2024/01/20 15:07:40 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int ft_lstsize(t_stack *lst)
 {
