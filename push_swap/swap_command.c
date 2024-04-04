@@ -4,7 +4,7 @@ static void swap(t_stack **stack)
 {
     int len;
 
-    len = stack_len(*stack);
+    len = ft_lstsize(*stack);
     if (len < 2 || !*stack || !(*stack)->next)
         return;
     *stack = (*stack)->next;
@@ -19,7 +19,7 @@ static void swap(t_stack **stack)
 void sa(t_stack **a)
 {
     swap(a);
-    write(1, "sa\n", 3);
+    printf("sa -> Intercambio de posiciones\n\n");
 }
 void sb(t_stack **b)
 {

@@ -9,6 +9,7 @@
 /*   Updated: 2024/01/22 02:40:28 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "push_swap.h"
 #include <stddef.h>
 
 static int count_words(const char *s, char c)

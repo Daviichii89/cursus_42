@@ -18,11 +18,9 @@ static void push_to_stack(t_stack **a, int num)
     t_stack *node;
     t_stack *last_node;
 
-    if (!*a)
-        return;
     node = malloc(sizeof(t_stack));
     if (!node)
-        return (NULL);
+        return;
     node->next = NULL;
     node->value = num;
     if (!*a)
@@ -32,7 +30,7 @@ static void push_to_stack(t_stack **a, int num)
     }
     else
     {
-        last_node = find_last_node(*a);
+        last_node = ft_lstlast(*a);
         last_node->next = node;
         node->prev = last_node;
     }
@@ -42,7 +40,7 @@ void create_stack(t_stack **a, char **argv)
     int i;
     int num;
 
-    i = 0;
+    i = 1;
     while (argv[i])
     {
         num = ft_atoi(argv[i]);
@@ -52,6 +50,7 @@ void create_stack(t_stack **a, char **argv)
             exit(1);
         }
         push_to_stack(a, num);
+        a[0]->size++;
         i++;
     }
 }
