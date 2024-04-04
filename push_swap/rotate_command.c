@@ -21,7 +21,8 @@ static void rotate(t_stack **stack)
 void ra(t_stack **a)
 {
     rotate(a);
-    write(1, "ra\n", 3);
+    // write(1, "ra\n", 3);
+    printf("ra -> Rotar el primero al último.\n");
 }
 
 void rb(t_stack **b)
