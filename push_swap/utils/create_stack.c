@@ -18,12 +18,14 @@ static void push_to_stack(t_stack **a, int num)
     t_stack *node;
     t_stack *last_node;
 
+	if (!stack)
+		return ;
     node = malloc(sizeof(t_stack));
     if (!node)
-        return;
+        return ;
     node->next = NULL;
     node->value = num;
-    if (!*a)
+    if (!(*a))
     {
         *a = node;
         node->prev = NULL;
@@ -37,20 +39,20 @@ static void push_to_stack(t_stack **a, int num)
 }
 void create_stack(t_stack **a, char **argv)
 {
-    int i;
-    int num;
+    int		i;
+    long	num;
 
     i = 1;
     while (argv[i])
     {
-        num = ft_atoi(argv[i]);
-        if (error_repetition(*a, num))
-        {
-            write(2, "Error\n", 6);
-            exit(1);
-        }
-        push_to_stack(a, num);
-        a[0]->size++;
+		if (error_syntax(argv[i])
+			free_errors(a);
+        num = ft_atol(argv[i]);
+		if (n > INT_MAX || n < INT_MIN)
+			free_errors(a);
+        if (error_repetition(*a, (int)num))
+            free_errors(a);
+        push_to_stack(a, (int)num);
         i++;
     }
 }

@@ -22,7 +22,7 @@ void rra(t_stack **a)
 {
     reverse_rotate(a);
     // write(1, "rra\n", 4);
-    printf("rra -> Rotar el último al primero.\n\n");
+    printf("rra -> Rotar el último al primero.\n");
 }
 
 void rrb(t_stack **b)
