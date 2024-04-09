@@ -13,7 +13,19 @@ static t_stack *find_biggest_node(t_stack *node)
     }
     return (biggest_node);
 }
+t_stack	*find_smallest_node(t_stack *node)
+{
+	t_stack	*smallest_node;
 
+	smallest_node = node;
+	while (node)
+	{
+		if (node->value < smallest_node->value)
+			smallest_node = node;
+		node = node->next;
+	}
+	return (smallest_node);
+}
 void sort_3(t_stack **a)
 {
     t_stack *biggest_node;

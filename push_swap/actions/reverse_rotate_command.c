@@ -1,6 +1,6 @@
 #include "../push_swap.h"
 
-static void reverse_rotate(t_stack **stack)
+static void	reverse_rotate(t_stack **stack)
 {
     t_stack *last;
     t_stack *current;
@@ -18,20 +18,20 @@ static void reverse_rotate(t_stack **stack)
     current->next = NULL;
 }
 
-void rra(t_stack **a)
+void	rra(t_stack **a)
 {
     reverse_rotate(a);
     // write(1, "rra\n", 4);
     printf("rra -> Rotar el último al primero.\n");
 }
 
-void rrb(t_stack **b)
+void	rrb(t_stack **b)
 {
     reverse_rotate(b);
     write(1, "rrb\n", 4);
 }
 
-void rrr(t_stack **a, t_stack **b)
+void	rrr(t_stack **a, t_stack **b)
 {
     reverse_rotate(a);
     reverse_rotate(b);

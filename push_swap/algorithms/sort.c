@@ -1,23 +1,62 @@
 #include "../push_swap.h"
 
-void	current_index(t_stack *stack)
+static void	verify_if_on_top(t_stack **stack, t_stack *top_node, char stack_name)
 {
-	int	i;
-	int	median;
-
-	i = 0;
-	if (!stack)
-		return ;
-	median = ft_lstsize(stack) / 2;
-	while (stack)
+	while (*stack != top_node)
 	{
-		stack->index = i;
-		if (i <= median)
-			stack->above_median = true;
+		if (stack_name == 'a')
+		{
+			if (top_node->above_median)
+				ra(stack);
+			else
+				rra(stack);
+		}
+		else if (stack_name == 'b')
+		{
+			if (top_node->above_median)
+				rb(stack);
+			else
+				rrb(stack);
+		}
+	}
+}
+static void move_a_to_b(t_stack **a, t_stack **b)
+{
+	t_stack	*cheapest_node;
+
+	cheapes_node = get_cheapest(*a);
+	if (cheapest_node->above_median && cheapest_node->target_node->above_median)
+	{
+		while (*b != cheapest_node->target_node && *a != cheapest_node)
+			rr(a, b);
+		current_index(*a);
+		current_index(*b);
+	}
+	else if (!(cheapest_node->above_median)
+		&& !(cheapest_node->target_node->above_median))
+	{
+		while (*b != cheapest_node->target_node && *a != cheapest_node)
+			rr(a, b);
+		current_index(*a);
+		current_index(*b);
+	}
+	verify_if_on_top(a, cheapest_node, 'a');
+	verify_if_on_top(b, cheapest_node->target_node, 'b');
+	pb(b, a);
+}
+static void move_b_to_a(t_stack **a, t_stack **b)
+{
+	verify_if_on_top(a, (*b)->target_node, 'a');
+	pa(a, b);
+}
+static void	min_on_top(t_stack **a, t_stack **b)
+{
+	while ((*a)->value != find_smallest_node(*a)->nbr)
+	{
+		if (find_smallest_node(*a)->above_median)
+			ra(a);
 		else
-			stack->above_median = false;
-		stack = stack->next;
-		++i;
+			rra(a);
 	}
 }
 void	sort(t_stack **a, t_stack **b)
