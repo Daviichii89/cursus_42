@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
 
     a = NULL;
     b = NULL;
-    if (argc < 2 || (argc == 2 && !argv[1][0])
+    if (argc < 2 || (argc == 2 && !argv[1][0]))
         return (1);
     else if (argc == 2)
         argv = ft_split(argv[1], ' ');
@@ -44,7 +44,8 @@ int main(int argc, char *argv[])
         }
         else
         {
-            printf("Acciones realizadas:\n");
+			ft_printf("Mas de 3 números\n");
+            ft_printf("Acciones realizadas:\n");
             sort(&a, &b);
             printf("\n");
             printf("Lista ordenada:\n\n");

@@ -1,6 +1,6 @@
 #include "../push_swap.h"
 
-static t_stack *find_biggest_node(t_stack *node)
+t_stack *find_biggest_node(t_stack *node)
 {
     t_stack *biggest_node;
 
@@ -36,5 +36,5 @@ void sort_3(t_stack **a)
     else if (biggest_node == (*a)->next)
         rra(a);
     if ((*a)->value > (*a)->next->value)
-        sa(stack);
+        sa(a);
 }

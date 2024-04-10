@@ -1,6 +1,6 @@
 #include "../push_swap.h"
 
-static void	verify_if_on_top(t_stack **stack, t_stack *top_node, char stack_name)
+void	verify_if_on_top(t_stack **stack, t_stack *top_node, char stack_name)
 {
 	while (*stack != top_node)
 	{
@@ -20,11 +20,24 @@ static void	verify_if_on_top(t_stack **stack, t_stack *top_node, char stack_name
 		}
 	}
 }
-static void move_a_to_b(t_stack **a, t_stack **b)
+
+static t_stack	*get_cheapest(t_stack *node)
+{
+	if (!node)
+		return (NULL);
+	while (node)
+	{
+		if (node->cheapest)
+			return (node);
+		node = node->next;
+	}
+	return (NULL);
+}
+void move_a_to_b(t_stack **a, t_stack **b)
 {
 	t_stack	*cheapest_node;
 
-	cheapes_node = get_cheapest(*a);
+	cheapest_node = get_cheapest(*a);
 	if (cheapest_node->above_median && cheapest_node->target_node->above_median)
 	{
 		while (*b != cheapest_node->target_node && *a != cheapest_node)
@@ -49,9 +62,9 @@ static void move_b_to_a(t_stack **a, t_stack **b)
 	verify_if_on_top(a, (*b)->target_node, 'a');
 	pa(a, b);
 }
-static void	min_on_top(t_stack **a, t_stack **b)
+static void	min_on_top(t_stack **a)
 {
-	while ((*a)->value != find_smallest_node(*a)->nbr)
+	while ((*a)->value != find_smallest_node(*a)->value)
 	{
 		if (find_smallest_node(*a)->above_median)
 			ra(a);
@@ -62,17 +75,34 @@ static void	min_on_top(t_stack **a, t_stack **b)
 void	sort(t_stack **a, t_stack **b)
 {
 	int	len_a;
+	//t_stack	*current = *a;
 
 	len_a = ft_lstsize(*a);
 	if (len_a-- > 3 && !is_sorted(*a))
-		pb(b, a);
-	if (len_a-- > 3 && !is_sorted(*a))
-		pb(b, a);
-	while (len_a-- > 3 && !is_sorted(*a))
 	{
-		init_nodes_a(*a, *b);
-		move_a_to_b(a, b);
+		ft_printf("\n\nPush a b 1\n");
+		pb(a, b);
 	}
+	if (len_a-- > 3 && !is_sorted(*a))
+	{
+		ft_printf("\n\nPush a b 2\n");
+		pb(a, b);
+	}
+	while (len_a > 3 && !is_sorted(*a))
+	{
+		ft_printf("Sigo aqui porque hay mas de 3 números\n");
+		ft_printf("Cantidad nodos: %d\n", len_a);
+		pb(a, b);
+		/*while (a)
+		{
+			printf("\n%d\n", (*a)->value);
+			*a = (*a)->next;
+		}*/
+		len_a--;
+		//init_nodes_a(*a, *b);
+		//move_a_to_b(a, b);
+	}
+	ft_printf("\n\nAhora solo tengo 3 números\n");
 	sort_3(a);
 	while (*b)
 	{

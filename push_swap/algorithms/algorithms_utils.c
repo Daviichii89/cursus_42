@@ -86,7 +86,7 @@ void	cost_in_a(t_stack *a, t_stack *b)
 		a->push_cost = a->index;
 		if (!(a->above_median))
 			a->push_cost = len_a - a->index;
-		if (a->target_node->above_media)
+		if (a->target_node->above_median)
 			a->push_cost += a->target_node->index;
 		else
 			a->push_cost += len_b - a->target_node->index;
@@ -109,7 +109,7 @@ void	set_cheapest(t_stack *stack)
 			cheapest_value = stack->push_cost;
 			cheapest_node = stack;
 		}
-		stack = stack->next
+		stack = stack->next;
 	}
 	cheapest_node->cheapest = true;
 }

@@ -15,12 +15,26 @@ void pa(t_stack **src, t_stack **dst)
 
 void pb(t_stack **src, t_stack **dst)
 {
+	//t_stack *dest;
     t_stack *node_to_push;
-    write(1, "pb\n", 3);
+	static int	i = 1;
+
+    printf("pb %d\n", i);
     if (!*src)
-        return;
+	{
+		printf("Salgo %d\n", i);
+        return ;
+	}
     node_to_push = *dst;
     *dst = *src;
     *src = (*src)->next;
     (*dst)->next = node_to_push;
+	//dest = node_to_push;
+	while (*dst)
+	{
+		printf("\n  %d\n", (*dst)->value);
+		*dst = (*dst)->next;
+	}
+	printf("---\n  b\n");
+	i++;
 }

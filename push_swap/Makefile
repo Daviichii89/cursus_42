@@ -2,12 +2,15 @@ NAME = push_swap
 
 SRCS = 			push_swap.c
 
-SRCS_UTILS = 	utils/create_stack.c utils/ft_atoi.c utils/ft_lstclear.c utils/ft_lstlast.c utils/ft_lstsize.c \
+SRCS_UTILS = 	utils/create_stack.c utils/ft_atol.c utils/ft_lstclear.c \
+				utils/ft_lstlast.c utils/ft_lstsize.c utils/init_nodes.c\
 				utils/ft_split.c utils/is_sorted.c
 
-SRCS_ALGO =		algorithms/sort_3.c algorithms/sort_5.c algorithms/sort.c
+SRCS_ALGO =		algorithms/sort_3.c algorithms/algorithms_utils.c \
+				algorithms/sort.c
 
-SRCS_ACTIONS =  actions/swap_command.c actions/push_command.c actions/rotate_command.c actions/reverse_rotate_command.c
+SRCS_ACTIONS =  actions/swap_command.c actions/push_command.c \
+				actions/rotate_command.c actions/reverse_rotate_command.c
 
 OBJS = $(SRCS:.c=.o)
 OBJS_UTILS = $(SRCS_UTILS:.c=.o)
@@ -21,9 +24,11 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME): $(OBJS) $(OBJS_UTILS) $(OBJS_ALGO) $(OBJS_ACTIONS)
+	@echo "Compiling ft_printf..."
+	@echo make -C printf
 	@echo "\n"
 	@echo "Compiling..."
-	@$(CC) $(CFLAGS) $(OBJS) $(OBJS_UTILS) $(OBJS_ALGO) $(OBJS_ACTIONS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(OBJS_UTILS) $(OBJS_ALGO) $(OBJS_ACTIONS) printf/libftprintf.a -o $(NAME)
 	@echo "\n"
 	@echo "	===================	"
 	@echo "	 Push Swap created	"
