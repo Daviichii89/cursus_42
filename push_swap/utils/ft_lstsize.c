@@ -20,8 +20,8 @@ int ft_lstsize(t_stack *lst)
 	size = 0;
 	while (lst != NULL)
 	{
-		size++;
 		lst = lst->next;
+		size++;
 	}
 	return (size);
 }

@@ -3,7 +3,8 @@ NAME = push_swap
 SRCS = 			push_swap.c
 
 SRCS_UTILS = 	utils/create_stack.c utils/ft_atol.c utils/ft_lstclear.c \
-				utils/ft_lstlast.c utils/ft_lstsize.c utils/init_nodes.c\
+				utils/ft_lstlast.c utils/ft_lstsize.c \
+				utils/init_nodes_a.c utils/init_nodes_b.c \
 				utils/ft_split.c utils/is_sorted.c
 
 SRCS_ALGO =		algorithms/sort_3.c algorithms/algorithms_utils.c \

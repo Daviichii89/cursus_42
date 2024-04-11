@@ -2,38 +2,34 @@
 
 static void	reverse_rotate(t_stack **stack)
 {
-    t_stack *last;
-    t_stack *current;
-
-    if (!stack || !*stack || !(*stack)->next)
+    t_stack *last_node;
+    
+    if (!*stack || !(*stack)->next)
         return;
-    last = *stack;
-    while (last->next)
-        last = last->next;
-    current = last->prev;
-    last->prev = NULL;
-    last->next = *stack;
-    (*stack)->prev = last;
-    *stack = last;
-    current->next = NULL;
+    last_node = ft_lstlast(*stack);
+	last_node->prev->next = NULL;
+	last_node->next = *stack;
+    last_node->prev = NULL;
+    *stack = last_node;
+    last_node->next->prev = last_node;
 }
 
 void	rra(t_stack **a)
 {
     reverse_rotate(a);
-    // write(1, "rra\n", 4);
-    printf("rra -> Rotar el último al primero.\n");
+    ft_printf("rra -> Rotar el último al primero.\n");
 }
 
 void	rrb(t_stack **b)
 {
     reverse_rotate(b);
-    write(1, "rrb\n", 4);
+	ft_printf("rrb -> Rotar el último al primero.\n");
 }
+
 
 void	rrr(t_stack **a, t_stack **b)
 {
     reverse_rotate(a);
     reverse_rotate(b);
-    write(1, "rrr\n", 4);
+	ft_printf("rrr -> Rotar el último al primero en ambos.\n");
 }

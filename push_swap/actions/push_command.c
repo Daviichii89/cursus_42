@@ -1,40 +1,41 @@
 #include "../push_swap.h"
 
-void pa(t_stack **src, t_stack **dst)
+static void	push(t_stack **dst, t_stack **src)
 {
-    t_stack *node_to_push;
+	t_stack	*push_node;
 
-    write(1, "pa\n", 3);
-    if (!*src)
-        return;
-    node_to_push = *dst;
-    *dst = *src;
-    *src = (*src)->next;
-    (*dst)->next = node_to_push;
+	if (!*src)
+	{
+		printf("Hola no hay src\n");
+		return ;
+	}
+	push_node = *src;
+	*src = (*src)->next;
+	if (*src)
+		(*src)->prev = NULL;
+	push_node->prev = NULL;
+	if (!*dst) //Check if the other stack is empty
+	{
+		*dst = push_node;
+		push_node->next = NULL;
+	}
+	else
+	{
+		push_node->next = *dst;
+		push_node->next->prev = push_node;
+		*dst = push_node;
+	}
 }
 
-void pb(t_stack **src, t_stack **dst)
+void	pa(t_stack **a, t_stack **b) 
 {
-	//t_stack *dest;
-    t_stack *node_to_push;
-	static int	i = 1;
+	printf("el numero %d\n", (*b)->value);
+	push(a, b); 
+	ft_printf("pa\n");
+}
 
-    printf("pb %d\n", i);
-    if (!*src)
-	{
-		printf("Salgo %d\n", i);
-        return ;
-	}
-    node_to_push = *dst;
-    *dst = *src;
-    *src = (*src)->next;
-    (*dst)->next = node_to_push;
-	//dest = node_to_push;
-	while (*dst)
-	{
-		printf("\n  %d\n", (*dst)->value);
-		*dst = (*dst)->next;
-	}
-	printf("---\n  b\n");
-	i++;
+void	pb(t_stack **a, t_stack **b)
+{
+	push(b, a);
+	ft_printf("pb\n");
 }

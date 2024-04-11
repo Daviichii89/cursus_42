@@ -33,7 +33,6 @@ void	current_index(t_stack *stack);
 t_stack	*find_biggest_node(t_stack *node);
 t_stack	*find_smallest_node(t_stack *node);
 void	set_target_a(t_stack *a, t_stack *b);
-void	set_target_b(t_stack *a, t_stack *b);
 void	cost_in_a(t_stack *a, t_stack *b);
 void	set_cheapest(t_stack *stack);
 void	init_nodes_a(t_stack *a, t_stack *b);

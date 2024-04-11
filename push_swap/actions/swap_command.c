@@ -19,16 +19,16 @@ static void swap(t_stack **stack)
 void sa(t_stack **a)
 {
     swap(a);
-    printf("sa -> Intercambio de posiciones\n\n");
+    ft_printf("sa -> Intercambio de posiciones\n\n");
 }
 void sb(t_stack **b)
 {
     swap(b);
-    write(1, "sb\n", 3);
+	ft_printf("sb -> Intercambio de posiciones\n\n");
 }
 void ss(t_stack **a, t_stack **b)
 {
     swap(a);
     swap(b);
-    write(1, "ss\n", 3);
+	ft_printf("ss -> Intercambio de posiciones\n\n");
 }

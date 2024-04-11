@@ -7,11 +7,11 @@ int main(int argc, char *argv[])
 
     a = NULL;
     b = NULL;
-    if (argc < 2 || (argc == 2 && !argv[1][0]))
+    if (argc == 1 || (argc == 2 && !argv[1][0]))
         return (1);
     else if (argc == 2)
         argv = ft_split(argv[1], ' ');
-    create_stack(&a, argv);
+    create_stack(&a, argv + 1);
     if (!is_sorted(a))
     {
         printf("Ordenando números...\n\n");
@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
         }
         else
         {
-			ft_printf("Mas de 3 números\n");
+            ft_printf("Mas de 3 números\n");
             ft_printf("Acciones realizadas:\n");
             sort(&a, &b);
             printf("\n");
@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
         }
     }
     ft_lstclear(&a);
-	return (0);
+    return (0);
 }
 
 // calculatorsoup.com/calculators/statistics/random-number-generator.php
