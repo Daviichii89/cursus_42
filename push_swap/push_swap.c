@@ -10,8 +10,12 @@ int main(int argc, char *argv[])
     if (argc == 1 || (argc == 2 && !argv[1][0]))
         return (1);
     else if (argc == 2)
+    {
         argv = ft_split(argv[1], ' ');
-    create_stack(&a, argv + 1);
+        create_stack(&a, argv);
+    }
+    else
+        create_stack(&a, argv + 1);
     if (!is_sorted(a))
     {
         ft_printf("Ordenando números...\n\n");
