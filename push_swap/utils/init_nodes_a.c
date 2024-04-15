@@ -1,10 +1,10 @@
 #include "../push_swap.h"
 
-void	init_nodes_a(t_stack *a, t_stack *b)
+void init_nodes_a(t_stack *a, t_stack *b)
 {
-	printf("Hola entro en init a\n");
+	ft_printf("Hola entro en init a\n");
 	current_index(a);
-	printf("El número %d tiene el index: %d\n", a->value, a->index);
+	ft_printf("El número %d tiene el index: %d\n", a->value, a->index);
 	current_index(b);
 	set_target_a(a, b);
 	cost_in_a(a, b);

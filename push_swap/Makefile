@@ -26,13 +26,12 @@ all: $(NAME)
 
 $(NAME): $(OBJS) $(OBJS_UTILS) $(OBJS_ALGO) $(OBJS_ACTIONS)
 	@echo "Compiling ft_printf..."
-	@echo make -C printf
-	@echo "\n"
-	@echo "Compiling..."
+	@make -C printf
+	@echo "Compiling push swap..."
 	@$(CC) $(CFLAGS) $(OBJS) $(OBJS_UTILS) $(OBJS_ALGO) $(OBJS_ACTIONS) printf/libftprintf.a -o $(NAME)
 	@echo "\n"
 	@echo "	===================	"
-	@echo "	 Push Swap created	"
+	@echo "	 push swap created	"
 	@echo "	===================	"
 	@echo "\n"
 
@@ -43,6 +42,7 @@ clean:
 	@echo "\n"
 	@echo "Removing object files..."
 	@$(RM) $(OBJS) $(OBJS_UTILS) $(OBJS_ALGO) $(OBJS_ACTIONS)
+	@make -C printf clean
 	@echo "\n"
 	@echo "	======================	"
 	@echo "	 All .o files removed	"
@@ -53,6 +53,7 @@ fclean: clean
 	@echo "\n"
 	@echo "Removing all files..."
 	@$(RM) $(NAME)
+	@make -C printf fclean
 	@echo "\n"
 	@echo "	===================	"
 	@echo "	 All files removed	"

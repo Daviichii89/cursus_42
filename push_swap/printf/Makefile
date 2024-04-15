@@ -21,12 +21,17 @@ CFLAGS = -Wall -Werror -Wextra
 
 all: $(NAME)
 $(NAME): $(OBJECTS)
-	ar rcs $(NAME) $(OBJECTS)
+	@ar rcs $(NAME) $(OBJECTS)
+	@echo "\n"
+	@echo "	===================	"
+	@echo "	 ft_printf created	"
+	@echo "	===================	"
+	@echo "\n"
 %.o: %.c Makefile ft_printf.h
-	cc $(CFLAGS) -c $< -o $@
+	@cc $(CFLAGS) -c $< -o $@
 clean:
-	rm -f $(OBJECTS)
+	@rm -f $(OBJECTS)
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 re: fclean all
 .PHONY: all clean fclean re

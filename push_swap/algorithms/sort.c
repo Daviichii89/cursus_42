@@ -1,6 +1,6 @@
 #include "../push_swap.h"
 
-void	prep_for_push(t_stack **stack, t_stack *top_node, char stack_name)
+void prep_for_push(t_stack **stack, t_stack *top_node, char stack_name)
 {
 	while (*stack != top_node)
 	{
@@ -21,7 +21,7 @@ void	prep_for_push(t_stack **stack, t_stack *top_node, char stack_name)
 	}
 }
 
-static t_stack	*get_cheapest(t_stack *node)
+static t_stack *get_cheapest(t_stack *node)
 {
 	if (!node)
 		return (NULL);
@@ -35,7 +35,7 @@ static t_stack	*get_cheapest(t_stack *node)
 }
 static void move_a_to_b(t_stack **a, t_stack **b)
 {
-	t_stack	*cheapest_node;
+	t_stack *cheapest_node;
 
 	cheapest_node = get_cheapest(*a);
 	if (cheapest_node->above_median && cheapest_node->target_node->above_median)
@@ -45,24 +45,23 @@ static void move_a_to_b(t_stack **a, t_stack **b)
 		current_index(*a);
 		current_index(*b);
 	}
-	else if (!(cheapest_node->above_median)
-		&& !(cheapest_node->target_node->above_median))
+	else if (!(cheapest_node->above_median) && !(cheapest_node->target_node->above_median))
 	{
 		while (*b != cheapest_node->target_node && *a != cheapest_node)
-			rr(a, b);
+			rrr(a, b);
 		current_index(*a);
 		current_index(*b);
 	}
 	prep_for_push(a, cheapest_node, 'a');
 	prep_for_push(b, cheapest_node->target_node, 'b');
-	pb(b, a);
+	pb(a, b);
 }
 static void move_b_to_a(t_stack **a, t_stack **b)
 {
 	prep_for_push(a, (*b)->target_node, 'a');
 	pa(a, b);
 }
-static void	min_on_top(t_stack **a)
+static void min_on_top(t_stack **a)
 {
 	while ((*a)->value != find_smallest_node(*a)->value)
 	{
@@ -72,9 +71,9 @@ static void	min_on_top(t_stack **a)
 			rra(a);
 	}
 }
-void	sort(t_stack **a, t_stack **b)
+void sort(t_stack **a, t_stack **b)
 {
-	int	len_a;
+	int len_a;
 
 	len_a = ft_lstsize(*a);
 	if (len_a-- > 3 && !is_sorted(*a))

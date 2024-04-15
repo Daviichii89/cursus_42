@@ -42,23 +42,11 @@ void sort_3(t_stack **a)
 {
 	t_stack *biggest_node;
 
-	printf("Entro en sort_3\n");
-	printf("El valor del nodo 1 es %d\n", (*a)->value);
 	biggest_node = find_biggest_node(*a);
-	printf("El valor del nodo mas grande es %d\n", biggest_node->value);
 	if (biggest_node == *a)
-	{
-		printf("Entro en ra\n");
 		ra(a);
-	}
 	else if ((*a)->next == biggest_node)
-	{
-		printf("Entro en rra\n");
 		rra(a);
-	}
 	if ((*a)->value > (*a)->next->value)
-	{
-		printf("Entro en sa\n");
 		sa(a);
-	}
 }

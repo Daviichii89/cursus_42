@@ -14,53 +14,52 @@ int main(int argc, char *argv[])
     create_stack(&a, argv + 1);
     if (!is_sorted(a))
     {
-        printf("Ordenando números...\n\n");
+        ft_printf("Ordenando números...\n\n");
 
         if (ft_lstsize(a) == 2)
         {
-            printf("Acciones realizadas:\n");
+            ft_printf("Acciones realizadas:\n");
             sa(&a);
-            printf("\n");
-            printf("Lista ordenada:\n\n");
-            while (a)
-            {
-                printf("  %d\n", a->value);
-                a = a->next;
-            }
-            printf("---\n  a\n\n");
+            // ft_printf("\n");
+            // ft_printf("Lista ordenada:\n\n");
+            // while (a)
+            // {
+            //     ft_printf("  %d\n", a->value);
+            //     a = a->next;
+            // }
+            // ft_printf("---\n  a\n\n");
         }
         else if (ft_lstsize(a) == 3)
         {
-            printf("Acciones realizadas:\n");
+            ft_printf("Acciones realizadas:\n");
             sort_3(&a);
-            printf("\n");
-            printf("Lista ordenada:\n\n");
-            while (a)
-            {
-                printf("  %d\n", a->value);
-                a = a->next;
-            }
-            printf("---\n  a\n\n");
+            // ft_printf("\n");
+            // ft_printf("Lista ordenada:\n\n");
+            // while (a)
+            // {
+            //     ft_printf("  %d\n", a->value);
+            //     a = a->next;
+            // }
+            // ft_printf("---\n  a\n\n");
         }
         else
         {
-            ft_printf("Mas de 3 números\n");
             ft_printf("Acciones realizadas:\n");
             sort(&a, &b);
-            printf("\n");
-            printf("Lista ordenada:\n\n");
+            ft_printf("\n");
+            ft_printf("Lista ordenada:\n\n");
             while (a)
             {
-                printf("  %d\n", a->value);
+                ft_printf("  %d\n", a->value);
                 a = a->next;
             }
-            printf("---\n  a\n\n");
+            ft_printf("---\n  a\n\n");
             while (b)
             {
-                printf("  %d\n", b->value);
+                ft_printf("  %d\n", b->value);
                 b = b->next;
             }
-            printf("---\n  b\n\n");
+            ft_printf("---\n  b\n\n");
         }
     }
     ft_lstclear(&a);

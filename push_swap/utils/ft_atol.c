@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-long	ft_atol(const char *str)
+long ft_atol(const char *str)
 {
-	int		sign;
-	long	res;
+	int sign;
+	long res;
 
 	res = 0;
 	sign = 1;
@@ -27,7 +27,7 @@ long	ft_atol(const char *str)
 	}
 	while (*str >= '0' && *str <= '9')
 	{
-		res = res * 10 + *str - '0';
+		res = res * 10 + (*str - '0');
 		str++;
 	}
 	return (sign * res);
