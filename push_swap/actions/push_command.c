@@ -5,16 +5,13 @@ static void push(t_stack **dst, t_stack **src)
 	t_stack *push_node;
 
 	if (!*src)
-	{
-		ft_printf("Hola no hay src\n");
 		return;
-	}
 	push_node = *src;
 	*src = (*src)->next;
 	if (*src)
 		(*src)->prev = NULL;
 	push_node->prev = NULL;
-	if (!*dst) // Check if the other stack is empty
+	if (!*dst)
 	{
 		*dst = push_node;
 		push_node->next = NULL;

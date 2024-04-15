@@ -2,13 +2,13 @@
 
 static int error_syntax(char *str_n)
 {
-    if (!(*str_n == '+' || *str_n == '-' || (*str_n >= '0' && *str_n <= '9'))) // Check if the first character of the input string does not contain a sign or a digit
+    if (!(*str_n == '+' || *str_n == '-' || (*str_n >= '0' && *str_n <= '9')))
         return (1);
-    if ((*str_n == '+' || *str_n == '-') && !(str_n[1] >= '0' && str_n[1] <= '9')) // Check if the first character of the input string contains a sign, but the second character does not contain a digit
+    if ((*str_n == '+' || *str_n == '-') && !(str_n[1] >= '0' && str_n[1] <= '9'))
         return (1);
-    while (*++str_n) // If the error conditions above are passed, pre-increment to point to the next character in the string, and loop until the end of the string is reached
+    while (*++str_n)
     {
-        if (!(*str_n >= '0' && *str_n <= '9')) // Check if the next character in the string is not a digit
+        if (!(*str_n >= '0' && *str_n <= '9'))
             return (1);
     }
     return (0);
@@ -61,20 +61,20 @@ void create_stack(t_stack **a, char **argv)
     {
         if (error_syntax(argv[i]))
         {
-            ft_printf("Error syntax.\n");
+            ft_printf("Error\n");
             ft_lstclear(a);
             exit(1);
         }
         num = ft_atol(argv[i]);
         if (num > INT_MAX || num < INT_MIN)
         {
-            ft_printf("Error overflow.\n");
+            ft_printf("Error\n");
             ft_lstclear(a);
             exit(1);
         }
         if (error_repetition(*a, (int)num) == 1)
         {
-            ft_printf("Error duplicate.\n");
+            ft_printf("Error\n");
             ft_lstclear(a);
             exit(1);
         }
