@@ -2,34 +2,39 @@
 
 int main(int argc, char *argv[])
 {
-    if (argc != 2)
+    if (argc != 3)
     {
         printf("Uso: %s <nombre_archivo>\n", argv[0]);
         return 1;
     }
 
+	int i;
     int fd;
+	int fd2;
     char *line;
-    int count;
+	char *line2;
 
-    count = 0;
+	i = 0;
     fd = open(argv[1], O_RDONLY);
+	fd2 = open(argv[2], O_RDONLY);
     if (fd == -1)
     {
         printf("Error opening file");
         return 1;
     }
-    while (1)
+    while (i++ <= 8)
     {
         line = get_next_line(fd);
-        if (line == NULL)
-            break;
-        count++;
-        printf("Line %d: %s\n", count, line);
+		line2 = get_next_line(fd2);
+        printf("Line %d: %s\n", i, line);
+		printf("Line2 %d: %s\n", i, line2);
         free(line);
+		free(line2);
         line = NULL;
+		line2 = NULL;
     }
     close(fd);
+	close(fd2);
     return (0);
 }
 

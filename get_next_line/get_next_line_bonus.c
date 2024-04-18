@@ -9,7 +9,7 @@
 /*   Updated: 2024/01/04 15:06:54 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*free_store(char *buffer)
 {
@@ -87,9 +87,8 @@ char	*get_next_line(int fd)
 
 	info = 1;
 	buffer = (char *)malloc(BUFFER_SIZE + 1 * sizeof(char));
-	if (fd < 0 || read(fd, 0, 0) < 0 || BUFFER_SIZE <= 0)
-		return (free(store[fd]), free(buffer),
-			store[fd] = NULL, buffer = NULL, NULL);
+	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0)
+	return (NULL);
 	if (!buffer)
 		return (free(store[fd]), store[fd] = NULL, NULL);
 	line = read_extract_line(fd, store[fd], buffer, &info);
