@@ -1,4 +1,4 @@
-#include "so_long.h"
+#include "../so_long.h"
 
 void ft_error2(t_list *mlx, int num)
 {

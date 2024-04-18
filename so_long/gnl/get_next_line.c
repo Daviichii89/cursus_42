@@ -9,7 +9,7 @@
 /*   Updated: 2024/01/04 15:06:54 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "so_long.h"
+#include "../so_long.h"
 
 char *free_store(char *buffer)
 {

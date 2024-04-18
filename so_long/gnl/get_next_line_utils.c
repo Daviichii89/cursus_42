@@ -9,11 +9,11 @@
 /*   Updated: 2024/02/23 20:22:57 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "get_next_line.h"
+#include "../so_long.h"
 
-size_t ft_strlen(const char *str)
+int ft_strlen(const char *str)
 {
-	size_t i;
+	int i;
 
 	i = 0;
 	while (str[i] != '\0')
@@ -39,11 +39,11 @@ char *ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char *ft_substr(const char *s, unsigned int start, size_t len)
+char *ft_substr(const char *s, int start, int len)
 {
 	char *substring;
-	size_t i;
-	size_t j;
+	int i;
+	int j;
 
 	if (start > ft_strlen(s))
 		return (NULL);

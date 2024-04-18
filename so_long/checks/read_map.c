@@ -1,4 +1,4 @@
-#include "so_long.h"
+#include "../so_long.h"
 
 void check_start_line(t_list *data)
 {

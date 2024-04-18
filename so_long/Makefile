@@ -32,9 +32,11 @@ DARK_YELLOW =	\033[38;5;143m
 
 NAME = so_long
 
-SOURCES = so_long.c read_map.c get_next_line.c get_next_line_utils.c ft_free.c \
-			ft_error.c ft_bzero.c ft_calloc.c ft_memset.c print_map.c \
-			check_exit.c
+SOURCES = so_long.c \
+		  gnl/get_next_line.c gnl/get_next_line_utils.c \
+		  utils/ft_free.c utils/ft_error.c utils/ft_bzero.c \
+		  utils/ft_calloc.c utils/ft_memset.c \
+		  checks/print_map.c checks/check_exit.c checks/read_map.c
 
 MLX = -L. -lmlx -framework OpenGL -framework AppKit
 

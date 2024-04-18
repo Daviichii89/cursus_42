@@ -1,5 +1,5 @@
-#include "so_long.h"
-#include "mlx/mlx.h"
+#include "../so_long.h"
+#include "../mlx/mlx.h"
 
 void calc_xy(char c, int i, t_list *data)
 {
