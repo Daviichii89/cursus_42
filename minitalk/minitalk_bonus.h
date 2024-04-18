@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   minitalk_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,35 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#ifndef MINITALK_H
+#define MINITALK_H
 
-void	handle_signal(int signal)
-{
-	static unsigned char	current_char;
-	static int				bit_index;
+#include "printf/ft_printf.h"
+#include <signal.h>
+#include <stdlib.h>
 
-	current_char |= (signal == SIGUSR1);
-	bit_index++;
-	if (bit_index == 8)
-	{
-		if (current_char == '\0')
-			ft_printf("\n");
-		else
-			ft_printf("%c", current_char);
-		bit_index = 0;
-		current_char = 0;
-	}
-	else
-		current_char <<= 1;
-}
+int ft_atoi(const char *str);
 
-int	main(void)
-{
-	ft_printf("Server PID: %d\n", getpid());
-	ft_printf("Server ready to receive message...\n");
-	signal(SIGUSR1, handle_signal);
-	signal(SIGUSR2, handle_signal);
-	while (1)
-		pause();
-	return (0);
-}
+#endif

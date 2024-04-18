@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.c                                         :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/19 11:34:26 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/04 15:06:54 by davifer2         ###   ########.fr       */
+/*   Created: 2024/01/09 16:27:48 by davifer2          #+#    #+#             */
+/*   Updated: 2024/02/22 14:59:53 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "ft_printf.h"
 
-#ifndef MINITALK_H
-#define MINITALK_H
+size_t	ft_strlen(const char *str)
+{
+	size_t	len;
 
-#include "printf/ft_printf.h"
-#include <signal.h>
-#include <stdlib.h>
-
-int ft_atoi(const char *str);
-
-#endif
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
+}

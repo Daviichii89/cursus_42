@@ -1,4 +1,16 @@
-#include "minitalk.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/19 11:34:26 by davifer2          #+#    #+#             */
+/*   Updated: 2024/01/04 15:06:54 by davifer2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minitalk_bonus.h"
 
 int ft_atoi(const char *str);
 
@@ -23,10 +35,10 @@ void	handle_signal(int signal, siginfo_t *info, void *context)
 			ft_printf("%c", current_char);
 		bit_index = 0;
 		current_char = 0;
-		send_signal(info->si_pid, signal);
 	}
 	else
 		current_char <<= 1;
+	send_signal(info->si_pid, signal);
 }
 
 int	main(void)

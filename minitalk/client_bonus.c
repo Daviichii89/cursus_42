@@ -1,4 +1,16 @@
-#include "minitalk.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/19 11:34:26 by davifer2          #+#    #+#             */
+/*   Updated: 2024/01/04 15:06:54 by davifer2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minitalk_bonus.h"
 
 void	send_signal(int pid, unsigned char c)
 {
@@ -15,13 +27,15 @@ void	send_signal(int pid, unsigned char c)
 			kill(pid, SIGUSR2);
 		else
 			kill(pid, SIGUSR1);
-		usleep(100);
+		usleep(1000);
 	}
 }
 void	handle_read_receipt(int signal)
 {
-	(void)signal;
-	ft_printf("Received bit\n");
+	if (signal == SIGUSR1)
+		ft_printf("Received bit 1\n");
+	else if (signal == SIGUSR2)
+		ft_printf("Received bit 0\n");
 }
 int main(int argc, char *argv[])
 {

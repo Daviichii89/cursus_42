@@ -1,22 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.c                                         :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/19 11:34:26 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/04 15:06:54 by davifer2         ###   ########.fr       */
+/*   Created: 2024/01/19 16:53:17 by davifer2          #+#    #+#             */
+/*   Updated: 2024/02/22 15:02:19 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "ft_printf.h"
 
-#ifndef MINITALK_H
-#define MINITALK_H
+int	ft_putstr_fd(char *s, int fd)
+{
+	int	i;
 
-#include "printf/ft_printf.h"
-#include <signal.h>
-#include <stdlib.h>
-
-int ft_atoi(const char *str);
-
-#endif
+	i = 0;
+	if (!s)
+	{
+		if (write(fd, "(null)", 6) != 6)
+			return (-1);
+		return (6);
+	}
+	while (s[i])
+	{
+		if (ft_putchar_fd(s[i], fd) == -1)
+			return (-1);
+		i++;
+	}
+	return (i);
+}
+/*
+int	main(void)
+{
+	char	str[] = "Hola";
+	int	fd = 1;
+	ft_putstr_fd(str, fd);
+}*/

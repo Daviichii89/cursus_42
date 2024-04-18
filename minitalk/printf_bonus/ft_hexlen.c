@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.c                                         :+:      :+:    :+:   */
+/*   ft_hexlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/19 11:34:26 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/04 15:06:54 by davifer2         ###   ########.fr       */
+/*   Created: 2024/02/22 17:31:44 by davifer2          #+#    #+#             */
+/*   Updated: 2024/02/22 18:04:00 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "ft_printf.h"
 
-#ifndef MINITALK_H
-#define MINITALK_H
+size_t	ft_hexlen(unsigned long long nbr, char format)
+{
+	unsigned long long	len;
 
-#include "printf/ft_printf.h"
-#include <signal.h>
-#include <stdlib.h>
-
-int ft_atoi(const char *str);
-
-#endif
+	len = 0;
+	while (nbr / 16 != 0)
+	{
+		len++;
+		nbr /= 16;
+	}
+	len++;
+	if (format == 'p')
+		return (len + 2);
+	return (len);
+}
