@@ -4,9 +4,11 @@ int main(int argc, char *argv[])
 {
     t_stack *a;
     t_stack *b;
+	int i;
 
     a = NULL;
     b = NULL;
+	i = 0;
     if (argc == 1 || (argc == 2 && !argv[1][0]))
         return (1);
     else if (argc == 2)
@@ -25,6 +27,12 @@ int main(int argc, char *argv[])
         else
             sort(&a, &b);
     }
+	while (argv[i])
+	{
+		free(argv[i]);
+		i++;
+	}
+	free(argv);
     ft_lstclear(&a);
     return (0);
 }
