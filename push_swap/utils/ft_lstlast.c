@@ -6,12 +6,12 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:10 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/20 15:07:40 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/04/16 11:34:30 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../push_swap.h"
 
-t_stack *ft_lstlast(t_stack *lst)
+t_stack	*ft_lstlast(t_stack *lst)
 {
 	if (lst == NULL)
 		return (NULL);

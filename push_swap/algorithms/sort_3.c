@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_3.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/16 11:36:31 by davifer2          #+#    #+#             */
+/*   Updated: 2024/04/16 11:37:16 by davifer2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-t_stack *find_biggest_node(t_stack *node)
+t_stack	*find_biggest_node(t_stack *node)
 {
-	long max;
-	t_stack *biggest_node;
+	long	max;
+	t_stack	*biggest_node;
 
 	if (!node)
 		return (NULL);
@@ -19,10 +31,11 @@ t_stack *find_biggest_node(t_stack *node)
 	}
 	return (biggest_node);
 }
-t_stack *find_smallest_node(t_stack *node)
+
+t_stack	*find_smallest_node(t_stack *node)
 {
-	long min;
-	t_stack *smallest_node;
+	long	min;
+	t_stack	*smallest_node;
 
 	if (!node)
 		return (NULL);
@@ -38,9 +51,10 @@ t_stack *find_smallest_node(t_stack *node)
 	}
 	return (smallest_node);
 }
-void sort_3(t_stack **a)
+
+void	sort_3(t_stack **a)
 {
-	t_stack *biggest_node;
+	t_stack	*biggest_node;
 
 	biggest_node = find_biggest_node(*a);
 	if (biggest_node == *a)

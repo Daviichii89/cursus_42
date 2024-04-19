@@ -6,10 +6,10 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 10:15:57 by davifer2          #+#    #+#             */
-/*   Updated: 2024/02/23 20:22:57 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/04/19 13:01:54 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(const char *str)
 {

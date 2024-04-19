@@ -6,16 +6,16 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 15:53:07 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/22 02:40:28 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/04/16 11:33:47 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../push_swap.h"
 
-static int count_words(const char *s, char c)
+static int	count_words(const char *s, char c)
 {
-	int i;
-	int count;
-	int word;
+	int	i;
+	int	count;
+	int	word;
 
 	i = 0;
 	word = 0;
@@ -36,11 +36,11 @@ static int count_words(const char *s, char c)
 	return (word);
 }
 
-static char **assign_mem(char **array, char const *s, char c)
+static char	**assign_mem(char **array, char const *s, char c)
 {
-	int i;
-	int len;
-	int word;
+	int	i;
+	int	len;
+	int	word;
 
 	i = 0;
 	len = 0;
@@ -62,11 +62,11 @@ static char **assign_mem(char **array, char const *s, char c)
 	return (array);
 }
 
-static char **copy_letters(char **array, char const *s, char c)
+static char	**copy_letters(char **array, char const *s, char c)
 {
-	int i;
-	int word;
-	int letter;
+	int	i;
+	int	word;
+	int	letter;
 
 	i = 0;
 	word = 0;
@@ -88,9 +88,9 @@ static char **copy_letters(char **array, char const *s, char c)
 	return (array);
 }
 
-static char **free_mem(char **array)
+static char	**free_mem(char **array)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (array[i] != NULL)
@@ -103,10 +103,10 @@ static char **free_mem(char **array)
 	return (NULL);
 }
 
-char **ft_split(const char *s, char c)
+char	**ft_split(const char *s, char c)
 {
-	char **array;
-	int wordcount;
+	char	**array;
+	int		wordcount;
 
 	if (!s)
 	{

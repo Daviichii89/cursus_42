@@ -20,8 +20,14 @@ void	send_signal(int pid, unsigned char c)
 }
 void	handle_read_receipt(int signal)
 {
+	/*
 	(void)signal;
 	ft_printf("Received bit\n");
+	*/
+	if (signal == SIGUSR1)
+		printf("Received bit 1\n");
+	else if (signal == SIGUSR2)
+		printf("Received bit 0\n");
 }
 int main(int argc, char *argv[])
 {

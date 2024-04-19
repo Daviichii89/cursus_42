@@ -6,10 +6,10 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 11:34:26 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/04 15:06:54 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/04/19 13:01:27 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*free_store(char *buffer)
 {
@@ -85,11 +85,10 @@ char	*get_next_line(int fd)
 	char		*buffer;
 	int			info;
 
+	if (fd < 0 || BUFFER_SIZE < 0 || fd > OPEN_MAX)
+		return (NULL);
 	info = 1;
 	buffer = (char *)malloc(BUFFER_SIZE + 1 * sizeof(char));
-	if (fd < 0 || read(fd, 0, 0) < 0 || BUFFER_SIZE <= 0)
-		return (free(store[fd]), free(buffer),
-			store[fd] = NULL, buffer = NULL, NULL);
 	if (!buffer)
 		return (free(store[fd]), store[fd] = NULL, NULL);
 	line = read_extract_line(fd, store[fd], buffer, &info);
