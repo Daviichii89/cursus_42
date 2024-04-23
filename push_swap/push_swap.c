@@ -12,33 +12,59 @@
 
 #include "push_swap.h"
 
-void	free_argv(char *argv)
+static void	free_argv(char **argv)
 {
 	int	i;
-	int	flag;
 
 	i = 0;
-	flag = 0;
-	while (argv[i] && flag == 1)
+	while (argv[i])
 	{
-		free(argv[i++]);
+		free(argv[i]);
+		i++;
 	}
 	free(argv);
+}
+
+void free_memory(t_stack *a, char **result_split)
+{
+    if (result_split)
+        free_argv(result_split);
+    ft_lstclear(&a);
+}
+
+void	algorithm_selection(t_stack *a, t_stack *b)
+{
+	if (!is_sorted(a))
+	{
+		if (ft_lstsize(a) == 2)
+			sa(&a);
+		else if (ft_lstsize(a) == 3)
+			sort_3(&a);
+		else
+			sort(&a, &b);
+	}
+}
+
+void initialize_stacks(t_stack **a, t_stack **b, char ***result_split)
+{
+	*a = NULL;
+	*b = NULL;
+	*result_split = NULL;
 }
 
 int	main(int argc, char *argv[])
 {
 	t_stack	*a;
 	t_stack	*b;
+	char	**result_split;
 
-	a = NULL;
-	b = NULL;
+	initialize_stacks(&a, &b, &result_split);
 	if (argc == 1 || (argc == 2 && !argv[1][0]))
 		return (1);
 	else if (argc == 2)
 	{
-		argv = ft_split(argv[1], ' ');
-		create_stack(&a, argv);
+		result_split = ft_split(argv[1], ' ');
+		create_stack(&a, result_split);
 	}
 	else
 		create_stack(&a, argv + 1);
@@ -51,8 +77,7 @@ int	main(int argc, char *argv[])
 		else
 			sort(&a, &b);
 	}
-	free_argv(argv);
-	ft_lstclear(&a);
+	free_memory(a, result_split);
 	return (0);
 }
 // calculatorsoup.com/calculators/statistics/random-number-generator.php
