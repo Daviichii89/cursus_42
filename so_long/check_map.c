@@ -77,9 +77,12 @@ int check_valid_map(t_map *map, int pos_player)
 
 	i = 0;
 	// j = 0;
-	while (map->base_map[i])
+	t_map *tmp;
+
+	tmp = map;
+	while (tmp->base_map[i])
 	{
-		if (map->base_map[i] == 'P')
+		if (tmp->base_map[i] == 'P')
 		{
 			if (i != pos_player)
 			{
@@ -87,13 +90,13 @@ int check_valid_map(t_map *map, int pos_player)
 				return (0);
 			}
 		}
-		if (map->base_map[i] == 'E')
+		if (tmp->base_map[i] == 'E')
 			++map->chpath.exit;
-		if (map->base_map[i] == 'C')
-			++map->chpath.materias;
+		if (tmp->base_map[i] == 'C')
+			++tmp->chpath.materias;
 		++i;
 	}
-	if (map->chpath.exit != 1 || map->chpath.materias < 1)
+	if (tmp->chpath.exit != 1 || tmp->chpath.materias < 1)
 	{
 		ft_printf("Error\n");
 		return (0);
@@ -161,11 +164,10 @@ int check_map(t_map *map)
 	ft_printf("\nchpath inicializado.\n");
 	if (!(check_valid_map(map, pos_player)))
 	{
-		free(map->base_map);
+		//free_map(&map);
 		free(map->chpath.visited);
 		ft_printf("Error\n");
 		return (1);
 	}
-	ft_printf("Mapa con salida.\n");
 	return (0);
 }

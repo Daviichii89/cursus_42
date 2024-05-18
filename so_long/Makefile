@@ -6,7 +6,7 @@
 #    By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/12 14:29:19 by davifer2          #+#    #+#              #
-#    Updated: 2024/03/12 16:32:12 by davifer2         ###   ########.fr        #
+#    Updated: 2024/05/18 15:53:37 by davifer2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ LIBFT_PATH = libft/
 LIBFT = -Llibft -l ftprintf
 
 SOURCES = so_long.c \
-		  init_sprites.c check_map.c render_map.c
+		  init_sprites.c check_map.c render_map.c moves.c
 
 OBJECTS = $(SOURCES:.c=.o)
 

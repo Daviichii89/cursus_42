@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:19:01 by davifer2          #+#    #+#             */
-/*   Updated: 2024/03/12 14:24:48 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/18 15:59:33 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,13 @@ typedef struct s_window
 	t_map *map;
 } t_window;
 
-int init_sprites(t_window *window);
-int check_map(t_map *map);
-int render_map(t_window *window);
+int		init_sprites(t_window *window);
+int		check_map(t_map *map);
+int		render_map(t_window *window);
+void	free_map(t_map *map);
+void	move_w(t_map *map);
+void    move_a(t_map *map);
+void    move_s(t_map *map);
+void    move_d(t_map *map);
 
 #endif
