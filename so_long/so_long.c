@@ -31,6 +31,7 @@ static int	key_press(int key, t_window *window)
 		move_s(&map);	
 	if (key == 2)
 		move_d(&map);
+	ft_printf("tecla d presionada\n");
 	return (0);
 }
 
