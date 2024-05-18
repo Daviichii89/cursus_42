@@ -32,43 +32,71 @@ DARK_YELLOW =	\033[38;5;143m
 
 NAME = so_long
 
-SOURCES = so_long.c read_map.c get_next_line.c get_next_line_utils.c ft_free.c \
-			ft_error.c ft_bzero.c ft_calloc.c ft_memset.c print_map.c \
-			check_exit.c
+MLX = -Lmlx -lmlx -framework OpenGL -framework AppKit
+LIBFT_PATH = libft/
+LIBFT = -Llibft -l ftprintf
 
-MLX = -L. -lmlx -framework OpenGL -framework AppKit
+SOURCES = so_long.c \
+		  init_sprites.c check_map.c render_map.c
 
 OBJECTS = $(SOURCES:.c=.o)
 
 CC = gcc
-
-CFLAGS = -Wall -Wextra -Werror
-
-%.o: %.c
-	@echo "Compiling $@"
-	$(CC) $(CFLAGS) -Imlx -c $< -o $@
+CFLAGS = -Wall -Wextra -Werror -g
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS)
+
+$(NAME): $(OBJECTS) Makefile so_long.h
+	@echo "$(YELLOW)Compiling libft...\n"
+	@make -C $(LIBFT_PATH)
+	@echo "$(GREEN)\n"
+	@echo "	==============	"
+	@echo "	 libft created	"
+	@echo "	==============	"
+	@echo "\n"
+
+	@echo "$(YELLOW)Compiling mlx...\n"
 	@make -C mlx/
-	@echo "Compilated mlx"
-	@cp mlx/libmlx.a .
-	@$(CC) $(OBJECTS) $(MLX) -o $(NAME)
-	@echo "Compilated so_long"
+	@echo "$(GREEN)\n"
+	@echo "	==============	"
+	@echo "	 mlx created	"
+	@echo "	==============	"
+	@echo "\n"
+	
+	@echo "$(YELLOW)Compiling so_long...\n"
+	@$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT) $(MLX) -o $@
+	@echo "$(GREEN)\n"
+	@echo "	===================	"
+	@echo "	 so_long created	"
+	@echo "	===================	"
+	@echo "\n"
+
+%.o: %.c
+	@$(CC) $(CFLAGS) -Imlx -I libft/inc -c $< -o $@
 
 clean:
-	@echo "Cleaning..."
+	@echo "\n"
+	@echo "$(YELLOW)Removing object files...$(RED)"
+	@make -C $(LIBFT_PATH) clean
 	@make -C mlx/ clean
 	@rm -f $(OBJECTS)
-	@echo "Cleaned objects successfully"
+	@echo "\n"
+	@echo "	======================	"
+	@echo "	 All .o files removed	"
+	@echo "	======================	"
+	@echo "\n"
 
 fclean: clean
-	@echo "Full cleaning"
-	@make -C mlx/ clean
+	@echo "\n"
+	@echo "$(YELLOW)Removing all files...$(RED)"
+	@make -C $(LIBFT_PATH) fclean
 	@rm -f $(NAME)
-	@rm -f libmlx.a
-	@echo "Cleaned all objects and executables successfully"
+	@echo "\n"
+	@echo "	===================	"
+	@echo "	 All files removed	"
+	@echo "	===================	"
+	@echo "\n"
 
 re: fclean all
 

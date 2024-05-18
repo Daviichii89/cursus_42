@@ -40,6 +40,11 @@ void print_map(t_list *data)
     i = 0;
     while (data->big_line[i])
     {
+        printf("%c", data->big_line[i]);
+        i++;
+    }
+    while (data->big_line[i])
+    {
         if (data->big_line[i] == '\n')
             i++;
         if (data->big_line[i] != '1' && data->big_line[i] != '0' && data->big_line[i] != 'P' && data->big_line[i] != 'E' && data->big_line[i] != 'C')
