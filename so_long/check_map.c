@@ -1,11 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/19 10:56:08 by davifer2          #+#    #+#             */
+/*   Updated: 2024/05/19 11:53:44 by davifer2         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-static int check_map_extension(char *filename)
+static int	check_map_extension(char *filename)
 {
-	int i;
+	int	i;
 
 	i = ft_strlen(filename);
-	if (i > 2 && filename[i - 4] != '.' && filename[i - 3] != 'b' && filename[i - 2] != 'e' && filename[i - 1] != 'r')
+	if (i > 2 && filename[i - 4] != '.' && filename[i - 3] != 'b'
+		&& filename[i - 2] != 'e' && filename[i - 1] != 'r')
 	{
 		ft_printf("Error\nExtension del archivo invalida\n");
 		return (1);
@@ -13,9 +26,9 @@ static int check_map_extension(char *filename)
 	return (0);
 }
 
-static int check_map_size(t_map *map)
+static int	check_map_size(t_map *map)
 {
-	char *line;
+	char	*line;
 
 	map->fd = open(map->filename, O_RDONLY);
 	if (map->fd < 0)
@@ -53,36 +66,33 @@ static int check_map_size(t_map *map)
 	return (0);
 }
 
-int check_map_walls(t_map *map)
+int	check_map_walls(t_map *map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (map->base_map[i])
 	{
-		if (map->base_map[i] != '1' && map->base_map[i] != '0' && map->base_map[i] != 'P' && map->base_map[i] != 'E' && map->base_map[i] != 'C')
+		if (map->base_map[i] != '1' && map->base_map[i] != '0'
+			&& map->base_map[i] != 'P' && map->base_map[i] != 'E'
+			&& map->base_map[i] != 'C')
 		{
 			ft_printf("Error\n");
 			return (1);
 		}
-		++i;
+		i++;
 	}
 	return (0);
 }
 
-int check_valid_map(t_map *map, int pos_player)
+int	check_valid_map(t_map *map, int pos_player)
 {
-	int i;
-	// int j;
+	int	i;
 
 	i = 0;
-	// j = 0;
-	t_map *tmp;
-
-	tmp = map;
-	while (tmp->base_map[i])
+	while (map->base_map[i])
 	{
-		if (tmp->base_map[i] == 'P')
+		if (map->base_map[i] == 'P')
 		{
 			if (i != pos_player)
 			{
@@ -90,13 +100,13 @@ int check_valid_map(t_map *map, int pos_player)
 				return (0);
 			}
 		}
-		if (tmp->base_map[i] == 'E')
+		if (map->base_map[i] == 'E')
 			++map->chpath.exit;
-		if (tmp->base_map[i] == 'C')
-			++tmp->chpath.materias;
+		if (map->base_map[i] == 'C')
+			++map->chpath.materias;
 		++i;
 	}
-	if (tmp->chpath.exit != 1 || tmp->chpath.materias < 1)
+	if (map->chpath.exit != 1 || map->chpath.materias < 1)
 	{
 		ft_printf("Error\n");
 		return (0);
@@ -104,12 +114,11 @@ int check_valid_map(t_map *map, int pos_player)
 	return (1);
 }
 
-int validate_sprites(t_map *map)
+int	validate_sprites(t_map *map)
 {
-	int i;
-	int exit;
-	int player;
-	char character;
+	int		i;
+	int		exit;
+	int		player;
 
 	i = 0;
 	exit = 0;
@@ -117,14 +126,13 @@ int validate_sprites(t_map *map)
 	map->materias = 0;
 	while (map->base_map[i])
 	{
-		character = map->base_map[i];
-		if (character == 'P')
-			++player;
-		if (character == 'E')
-			++exit;
-		if (character == 'C')
+		if (map->base_map[i] == 'P')
+			player++;
+		if (map->base_map[i] == 'E')
+			exit++;
+		if (map->base_map[i] == 'C')
 			++map->materias;
-		++i;
+		i++;
 	}
 	if (player != 1 || exit != 1 || map->materias < 1)
 	{
@@ -134,9 +142,9 @@ int validate_sprites(t_map *map)
 	return (0);
 }
 
-static int find_player_position(t_map *map)
+static int	find_player_position(t_map *map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (map->base_map[i] != 'P')
@@ -144,9 +152,9 @@ static int find_player_position(t_map *map)
 	return (i);
 }
 
-int check_map(t_map *map)
+int	check_map(t_map *map)
 {
-	int pos_player;
+	int	pos_player;
 
 	if (check_map_extension(map->filename))
 		return (1);
@@ -164,7 +172,7 @@ int check_map(t_map *map)
 	ft_printf("\nchpath inicializado.\n");
 	if (!(check_valid_map(map, pos_player)))
 	{
-		//free_map(&map);
+		free(&map);
 		free(map->chpath.visited);
 		ft_printf("Error\n");
 		return (1);
