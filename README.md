@@ -26,11 +26,11 @@ Este repositorio contiene una serie de proyectos realizados como parte del cursu
 
    - Creación de un pequeño "videojuego" en 2D con C.
   
-7. **[minitalk](https://github.com/Daviichii89/cursus_42/tree/main/minitalk)** [Listo para corregir]
+7. **[minitalk](https://github.com/Daviichii89/cursus_42/tree/main/minitalk)** ![checks](https://github.com/Daviichii89/cursus_42/assets/21307408/3e9610c3-c287-4a7f-8065-63da2bca9672)
 
    -  Implementación de un sistema de comunicación simple entre cliente/servidor utilizando señales de Unix con C.
 
-8. **[push_swap](https://github.com/Daviichii89/cursus_42/tree/main/push_swap)** [En desarrollo]
+8. **[push_swap](https://github.com/Daviichii89/cursus_42/tree/main/push_swap)** ![checks](https://github.com/Daviichii89/cursus_42/assets/21307408/3e9610c3-c287-4a7f-8065-63da2bca9672)
 
    - Implementación de un programa que ordene una pila de números enteros en orden ascendente utilizando un conjunto limitado de operaciones.
 
