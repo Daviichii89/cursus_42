@@ -6,14 +6,14 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 18:07:08 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/21 11:40:09 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/29 20:26:13 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/libft.h"
 
-void *ft_memmove(void *dest, const void *src, size_t len)
+void	*ft_memmove(void *dest, const void *src, size_t len)
 {
-	unsigned char *dest_p;
+	unsigned char	*dest_p;
 
 	dest_p = dest;
 	if ((!dest && !src) || dest == src)

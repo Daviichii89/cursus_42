@@ -6,14 +6,14 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:16:10 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/20 15:07:40 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/29 20:23:05 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/libft.h"
 
-t_list *ft_lstnew(void *content)
+t_list	*ft_lstnew(void *content)
 {
-	t_list *node;
+	t_list	*node;
 
 	node = (t_list *)malloc(sizeof(t_list));
 	if (!node)

@@ -6,21 +6,21 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 20:32:50 by davifer2          #+#    #+#             */
-/*   Updated: 2024/03/07 15:07:40 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/29 20:21:23 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/libft.h"
 
-void ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list *current;
+	t_list	*current;
 
 	if (!lst || !new)
-		return;
+		return ;
 	if (!(*lst))
 	{
 		*lst = new;
-		return;
+		return ;
 	}
 	current = *lst;
 	while (current->next)

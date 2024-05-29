@@ -6,14 +6,14 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 16:27:48 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/21 14:57:19 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/29 20:32:37 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/libft.h"
 
-int ft_strlen(const char *str)
+int	ft_strlen(const char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] != '\0')

@@ -6,16 +6,16 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:39:52 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/21 14:54:23 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/29 20:34:41 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/libft.h"
 
-char *ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	char *str;
-	int i;
-	int j;
+	char	*str;
+	int		i;
+	int		j;
 
 	i = 0;
 	if (!s1 || !set)

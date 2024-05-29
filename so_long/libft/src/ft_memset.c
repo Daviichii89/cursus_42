@@ -6,15 +6,15 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 15:28:00 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/20 16:53:41 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/29 20:26:35 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/libft.h"
 
-void *ft_memset(void *s, int c, size_t n)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	unsigned char *str;
-	size_t i;
+	unsigned char	*str;
+	size_t			i;
 
 	str = s;
 	i = 0;

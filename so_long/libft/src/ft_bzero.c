@@ -6,12 +6,12 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:10 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/20 15:07:40 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/29 20:17:42 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/libft.h"
 
-void ft_bzero(void *str, size_t n)
+void	ft_bzero(void *str, size_t n)
 {
 	ft_memset(str, 0, n);
 }

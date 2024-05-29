@@ -6,15 +6,15 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:55:18 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/19 18:45:53 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/29 20:27:10 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/libft.h"
 
-void ft_putendl_fd(char *s, int fd)
+void	ft_putendl_fd(char *s, int fd)
 {
-	int i;
-	int len;
+	int	i;
+	int	len;
 
 	i = 0;
 	len = ft_strlen(s);

@@ -6,14 +6,14 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 18:09:27 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/22 02:44:07 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/29 20:34:59 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/libft.h"
 
-char *ft_substr(const char *s, unsigned int start, int len)
+char	*ft_substr(const char *s, unsigned int start, int len)
 {
-	char *substring;
+	char	*substring;
 
 	if (!s)
 		return (0);

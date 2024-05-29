@@ -6,14 +6,14 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 17:02:46 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/20 17:22:03 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/29 20:27:36 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/libft.h"
 
-void ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
-	unsigned int nbr;
+	unsigned int	nbr;
 
 	if (n < 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 18:56:24 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/19 19:13:06 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/29 20:21:40 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/libft.h"
@@ -16,10 +16,10 @@ void	delete_node(void *content)
 	free(content);
 }*/
 
-void ft_lstclear(t_list **lst, void (*del)(void *))
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
 	if (!lst || !del || !(*lst))
-		return;
+		return ;
 	ft_lstclear(&(*lst)->next, del);
 	(del)((*lst)->content);
 	free(*lst);

@@ -6,14 +6,14 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 19:53:29 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/20 15:13:00 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/29 20:19:54 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/libft.h"
 
-static int ft_len_nbr(int n)
+static int	ft_len_nbr(int n)
 {
-	int size;
+	int	size;
 
 	size = 0;
 	if (n <= 0)
@@ -26,7 +26,7 @@ static int ft_len_nbr(int n)
 	return (size);
 }
 
-static void ft_fill_str(int size, int offset, int n, char *str)
+static void	ft_fill_str(int size, int offset, int n, char *str)
 {
 	while (size > offset)
 	{
@@ -36,11 +36,11 @@ static void ft_fill_str(int size, int offset, int n, char *str)
 	}
 }
 
-char *ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-	int offset;
-	int size;
-	char *str;
+	int		offset;
+	int		size;
+	char	*str;
 
 	offset = 0;
 	size = ft_len_nbr(n);

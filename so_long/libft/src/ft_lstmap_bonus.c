@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:16:10 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/20 15:07:40 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/29 20:22:49 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/libft.h"
@@ -35,11 +35,11 @@ void free_content(void *content)
 	free(content);
 }*/
 
-t_list *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list *new_lst;
-	t_list *new_node;
-	void *aux;
+	t_list	*new_lst;
+	t_list	*new_node;
+	void	*aux;
 
 	if (!lst || !f || !del)
 		return (NULL);

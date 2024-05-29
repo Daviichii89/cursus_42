@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:19:01 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/29 15:45:56 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/29 20:05:33 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,13 @@ typedef struct s_window
 int		init_sprites(t_window *window);
 int		check_map(t_map *map);
 int		render_map(t_window *window);
+int		check_map_extension(char *filename);
+int		find_player_position(t_map *map);
+int		error_map_size(char *line, t_map *map, int error_code);
+int		error_fd(void);
 void	free_map(t_map *map);
+int		exit_program(t_window *window);
+void	ft_collect_materia(t_window *window, int player_pos);
 void	move_w(t_window *window);
 void	move_a(t_window *window);
 void	move_s(t_window *window);

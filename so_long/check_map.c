@@ -6,25 +6,11 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 10:56:08 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/29 17:46:59 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/29 19:55:15 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-static int	check_map_extension(char *filename)
-{
-	int	i;
-
-	i = ft_strlen(filename);
-	if (i > 2 && filename[i - 4] != '.' && filename[i - 3] != 'b'
-		&& filename[i - 2] != 'e' && filename[i - 1] != 'r')
-	{
-		ft_printf("Error\nExtension del archivo invalida\n");
-		return (1);
-	}
-	return (0);
-}
 
 static int	check_map_size(t_map *map)
 {
@@ -32,10 +18,7 @@ static int	check_map_size(t_map *map)
 
 	map->fd = open(map->filename, O_RDONLY);
 	if (map->fd < 0)
-	{
-		ft_printf("Error\nNo se pudo abrir el archivo\n");
-		return (1);
-	}
+		error_fd();
 	line = get_next_line(map->fd);
 	if (!line)
 		return (1);
@@ -48,19 +31,11 @@ static int	check_map_size(t_map *map)
 		free(line);
 		line = get_next_line(map->fd);
 		if (line && (int)ft_strlen(line) - 1 != map->x)
-		{
-			ft_printf("Error\nEl mapa no es rectangular.\n");
-			close(map->fd);
-			free(line);
-			return (1);
-		}
+			error_map_size(line, map, 1);
 	}
 	close(map->fd);
 	if (map->x <= map->y)
-	{
-		ft_printf("Error\nEl mapa no es rectangular.\n");
-		return (1);
-	}
+		error_map_size(line, map, 3);
 	map->width = map->x * 50;
 	map->height = map->y * 50;
 	return (0);
@@ -140,16 +115,6 @@ int	validate_sprites(t_map *map)
 		return (1);
 	}
 	return (0);
-}
-
-static int	find_player_position(t_map *map)
-{
-	int	i;
-
-	i = 0;
-	while (map->base_map[i] != 'P')
-		++i;
-	return (i);
 }
 
 int	check_map(t_map *map)

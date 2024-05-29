@@ -6,17 +6,17 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:32:07 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/28 18:24:43 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/29 20:30:06 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/libft.h"
 
-char *ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char *str;
-	int i;
-	int j;
-	int len;
+	char	*str;
+	int		i;
+	int		j;
+	int		len;
 
 	if (!s1 || !s2)
 		return (0);

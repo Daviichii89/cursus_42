@@ -6,16 +6,16 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 15:30:58 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/22 02:50:28 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/29 20:29:10 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/libft.h"
 
-char *ft_strdup(const char *src)
+char	*ft_strdup(const char *src)
 {
-	char *str;
-	int i;
-	int size;
+	char	*str;
+	int		i;
+	int		size;
 
 	i = 0;
 	size = 0;

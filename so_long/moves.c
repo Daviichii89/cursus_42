@@ -6,18 +6,12 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 15:49:20 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/29 18:02:16 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/29 20:01:46 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "mlx/mlx.h"
-
-static void	ft_collect_materia(t_window *window, int player_pos)
-{
-	window->map->base_map[player_pos] = '0';
-	--window->map->materias;
-}
 
 static int	ft_validate_movement(t_window *window)
 {
@@ -42,8 +36,7 @@ static int	ft_validate_movement(t_window *window)
 			return (1);
 		}
 		ft_printf("Has ganado!\n");
-		mlx_destroy_window(window->mlx_ptr, window->window_ptr);
-		exit(0);
+		exit_program(window);
 	}
 	++window->movements;
 	return (0);

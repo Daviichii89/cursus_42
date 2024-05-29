@@ -6,7 +6,7 @@
 #    By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/12 14:29:19 by davifer2          #+#    #+#              #
-#    Updated: 2024/05/29 18:18:48 by davifer2         ###   ########.fr        #
+#    Updated: 2024/05/29 19:35:26 by davifer2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,18 +36,19 @@ MLX = -Lmlx -lmlx -framework OpenGL -framework AppKit
 LIBFT_PATH = libft/
 LIBFT = -Llibft -l ftprintf
 
-SOURCES = so_long.c \
+SOURCES = so_long.c so_long_utils.c \
 		  init_sprites.c check_map.c render_map.c moves.c
 
 OBJECTS = $(SOURCES:.c=.o)
+DEPS = $(SOURCES:.c=.d)
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g -MMD
 
 all: $(NAME)
 
 
-$(NAME): $(OBJECTS) Makefile so_long.h
+$(NAME): $(OBJECTS) Makefile so_long.h libft/Makefile
 	@echo "$(YELLOW)Compiling libft...\n"
 	@make -C $(LIBFT_PATH)
 	@echo "$(GREEN)\n"
@@ -57,13 +58,13 @@ $(NAME): $(OBJECTS) Makefile so_long.h
 	@echo "\n"
 
 	@echo "$(YELLOW)Compiling mlx...\n"
-	@make -C mlx/
+	@make -C mlx/ 2> /dev/null
 	@echo "$(GREEN)\n"
 	@echo "	==============	"
 	@echo "	 mlx created	"
 	@echo "	==============	"
 	@echo "\n"
-	
+
 	@echo "$(YELLOW)Compiling so_long...\n"
 	@$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT) $(MLX) -o $@
 	@echo "$(GREEN)\n"
@@ -97,6 +98,8 @@ fclean: clean
 	@echo "	 All files removed	"
 	@echo "	===================	"
 	@echo "\n"
+
+-include $(DEPS)
 
 re: fclean all
 

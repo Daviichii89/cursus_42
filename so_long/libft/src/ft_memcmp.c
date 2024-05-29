@@ -6,16 +6,16 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 11:51:12 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/20 15:20:37 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/29 20:25:26 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/libft.h"
 
-int ft_memcmp(const void *p1, const void *p2, size_t n)
+int	ft_memcmp(const void *p1, const void *p2, size_t n)
 {
-	size_t i;
-	const unsigned char *str1;
-	const unsigned char *str2;
+	size_t				i;
+	const unsigned char	*str1;
+	const unsigned char	*str2;
 
 	i = 0;
 	str1 = (unsigned char *)p1;

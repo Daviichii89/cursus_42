@@ -6,15 +6,15 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 14:08:24 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/21 15:09:25 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/29 20:32:22 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/libft.h"
 
-size_t ft_strlcpy(char *dest, char *src, size_t size)
+size_t	ft_strlcpy(char *dest, char *src, size_t size)
 {
-	size_t i;
-	size_t len;
+	size_t	i;
+	size_t	len;
 
 	i = 0;
 	len = 0;

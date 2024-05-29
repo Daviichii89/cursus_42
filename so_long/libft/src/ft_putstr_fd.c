@@ -6,15 +6,15 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:53:17 by davifer2          #+#    #+#             */
-/*   Updated: 2024/01/19 18:51:05 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/29 20:27:54 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/libft.h"
 
-void ft_putstr_fd(char *s, int fd)
+void	ft_putstr_fd(char *s, int fd)
 {
-	int len;
-	int i;
+	int	len;
+	int	i;
 
 	len = ft_strlen(s);
 	i = 0;

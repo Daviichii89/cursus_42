@@ -6,7 +6,7 @@
 #    By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/09 13:06:50 by davifer2          #+#    #+#              #
-#    Updated: 2024/01/22 17:35:42 by davifer2         ###   ########.fr        #
+#    Updated: 2024/05/29 19:18:32 by davifer2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,10 +44,10 @@ OBJECTS = $(SOURCES:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS) Makefile inc/libft.h inc/ft_printf.h inc/get_next_line.h
+$(NAME): $(OBJECTS)
 	@ar rcs $(NAME) $(OBJECTS)
 
-%.o: %.c
+%.o: %.c Makefile inc/libft.h inc/ft_printf.h inc/get_next_line.h
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
