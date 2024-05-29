@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:21:07 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/19 11:28:08 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/29 18:11:09 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,10 @@ int	render_map(t_window *window)
 
 	materias = ft_itoa(window->map->materias);
 	movements = ft_itoa(window->movements);
-	ft_printf("Materias: %s\nMovimientos: %s\n", materias, movements);
 	render_background(window);
-	ft_printf("Background render\n");
-	ft_printf("x: %d, y: %d\n", window->player.pos_x, window->player.pos_y);
 	mlx_put_image_to_window(window->mlx_ptr, window->window_ptr,
 		window->player.down, window->player.pos_x, window->player.pos_y);
-	ft_printf("Player render\n");
+	ft_printf("Movimientos: %s\n", movements);
 	free(materias);
 	free(movements);
 	return (0);

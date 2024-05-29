@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:36:09 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/19 11:41:05 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/29 17:46:33 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	init_sprites(t_window *window)
 {
-	ft_printf("width: %d\n", window->width);
-	ft_printf("height: %d\n", window->height);
 	window->background.bush = mlx_xpm_file_to_image(window->mlx_ptr,
 			"sprites/bush.xpm", &(window->width), &(window->height));
 	window->background.imgexit = mlx_xpm_file_to_image(window->mlx_ptr,

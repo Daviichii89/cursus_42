@@ -6,16 +6,21 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 15:23:50 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/19 11:52:06 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/29 18:29:03 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+int	exit_program(t_window *window)
+{
+	if (window)
+		mlx_destroy_window(window->mlx_ptr, window->window_ptr);
+	exit(1);
+}
+
 static int	key_press(int key, t_window *window)
 {
-	t_map	map;
-
 	if (key == 53)
 	{
 		if (window->window_ptr)
@@ -24,14 +29,14 @@ static int	key_press(int key, t_window *window)
 		exit(1);
 	}
 	if (key == 13)
-		move_w(&map);
+		move_w(window);
 	if (key == 0)
-		move_a(&map);
+		move_a(window);
 	if (key == 1)
-		move_s(&map);
+		move_s(window);
 	if (key == 2)
-		move_d(&map);
-	ft_printf("tecla d presionada\n");
+		move_d(window);
+	render_map(window);
 	return (0);
 }
 
@@ -80,14 +85,16 @@ int	main(int argc, char **argv)
 		return (1);
 	window = create_window(map.width, map.height);
 	if (init_sprites(&window))
-		return (1);
+	{
+		mlx_destroy_window(window.mlx_ptr, window.window_ptr);
+		exit (1);
+	}
 	window.map = &map;
 	window.player.render = window.player.down;
 	window.movements = 0;
-	ft_printf("Movimientos: %d\n", window.movements);
 	render_map(&window);
-	ft_printf("Mapa renderizado\n");
 	mlx_key_hook(window.window_ptr, key_press, &window);
+	mlx_hook(window.window_ptr, 17, 0, exit_program, 0);
 	mlx_loop(window.mlx_ptr);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:19:01 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/19 11:48:55 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:45:56 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ int		init_sprites(t_window *window);
 int		check_map(t_map *map);
 int		render_map(t_window *window);
 void	free_map(t_map *map);
-void	move_w(t_map *map);
-void	move_a(t_map *map);
-void	move_s(t_map *map);
-void	move_d(t_map *map);
+void	move_w(t_window *window);
+void	move_a(t_window *window);
+void	move_s(t_window *window);
+void	move_d(t_window *window);
 
 #endif

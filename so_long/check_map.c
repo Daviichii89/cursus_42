@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 10:56:08 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/19 11:53:44 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/29 17:46:59 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,12 +164,10 @@ int	check_map(t_map *map)
 		return (1);
 	}
 	pos_player = find_player_position(map);
-	ft_printf("\nPosicion del jugador: %d.\n", pos_player);
 	map->chpath.valid = 0;
 	map->chpath.materias = 0;
 	map->chpath.exit = 0;
 	map->chpath.visited = ft_calloc(map->x * map->y, sizeof(int));
-	ft_printf("\nchpath inicializado.\n");
 	if (!(check_valid_map(map, pos_player)))
 	{
 		free(&map);
