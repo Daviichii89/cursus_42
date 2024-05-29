@@ -6,7 +6,7 @@
 #    By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/12 14:29:19 by davifer2          #+#    #+#              #
-#    Updated: 2024/05/29 19:35:26 by davifer2         ###   ########.fr        #
+#    Updated: 2024/05/29 20:42:14 by davifer2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,7 @@ clean:
 	@echo "$(YELLOW)Removing object files...$(RED)"
 	@make -C $(LIBFT_PATH) clean
 	@make -C mlx/ clean
-	@rm -f $(OBJECTS)
+	@rm -f $(OBJECTS) $(DEPS)
 	@echo "\n"
 	@echo "	======================	"
 	@echo "	 All .o files removed	"
