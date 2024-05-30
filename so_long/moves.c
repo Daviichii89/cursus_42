@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 15:49:20 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/29 20:01:46 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:32:53 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,12 @@ static int	ft_validate_movement(t_window *window)
 	{
 		if (window->map->materias != 0)
 		{
-			ft_printf("No puedes salir.\n");
+			perror("No puedes salir.\n");
 			return (1);
 		}
-		ft_printf("Has ganado!\n");
+		ft_printf("\n\n\n	🥳🥳 Has ganado! 🥳🥳\n\n\n");
 		exit_program(window);
 	}
-	++window->movements;
 	return (0);
 }
 
@@ -47,6 +46,11 @@ void	move_w(t_window *window)
 	window->player.pos_y -= 50;
 	if (ft_validate_movement(window))
 		window->player.pos_y += 50;
+	else
+	{
+		window->movements++;
+		ft_printf("Movimientos: %d\n", window->movements);
+	}
 }
 
 void	move_a(t_window *window)
@@ -54,6 +58,11 @@ void	move_a(t_window *window)
 	window->player.pos_x -= 50;
 	if (ft_validate_movement(window))
 		window->player.pos_x += 50;
+	else
+	{
+		window->movements++;
+		ft_printf("Movimientos: %d\n", window->movements);
+	}
 }
 
 void	move_s(t_window *window)
@@ -61,6 +70,11 @@ void	move_s(t_window *window)
 	window->player.pos_y += 50;
 	if (ft_validate_movement(window))
 		window->player.pos_y -= 50;
+	else
+	{
+		window->movements++;
+		ft_printf("Movimientos: %d\n", window->movements);
+	}
 }
 
 void	move_d(t_window *window)
@@ -68,4 +82,9 @@ void	move_d(t_window *window)
 	window->player.pos_x += 50;
 	if (ft_validate_movement(window))
 		window->player.pos_x -= 50;
+	else
+	{
+		window->movements++;
+		ft_printf("Movimientos: %d\n", window->movements);
+	}
 }

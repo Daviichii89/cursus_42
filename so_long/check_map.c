@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 10:56:08 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/29 19:55:15 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/30 19:30:46 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	check_map_size(t_map *map)
 	map->y = 0;
 	while (line)
 	{
-		++map->y;
+		map->y++;
 		map->base_map = ft_strjoin(map->base_map, ft_strtrim(line, "\n"));
 		free(line);
 		line = get_next_line(map->fd);
@@ -34,7 +34,7 @@ static int	check_map_size(t_map *map)
 			error_map_size(line, map, 1);
 	}
 	close(map->fd);
-	if (map->x <= map->y)
+	if (map->x == map->y)
 		error_map_size(line, map, 3);
 	map->width = map->x * 50;
 	map->height = map->y * 50;
@@ -44,49 +44,57 @@ static int	check_map_size(t_map *map)
 int	check_map_walls(t_map *map)
 {
 	int	i;
+	int	x;
+	int	y;
 
 	i = 0;
-	while (map->base_map[i])
+	y = 0;
+	while (y < map->y)
 	{
-		if (map->base_map[i] != '1' && map->base_map[i] != '0'
-			&& map->base_map[i] != 'P' && map->base_map[i] != 'E'
-			&& map->base_map[i] != 'C')
+		x = 0;
+		while (x < map->x)
 		{
-			ft_printf("Error\n");
-			return (1);
+			if ((y == 0 && map->base_map[i] != '1') || (y == map->y -1
+					&& map->base_map[i] != '1') || (x == 0
+					&& map->base_map[i] != '1') || (x == map->x -1
+					&& map->base_map[i] != '1'))
+			{
+				perror("Error\nEl mapa debe estar cerrado con paredes.\n");
+				return (1);
+			}
+			x++;
+			i++;
 		}
-		i++;
+		y++;
 	}
 	return (0);
 }
 
 int	check_valid_map(t_map *map, int pos_player)
 {
-	int	i;
-
-	i = 0;
-	while (map->base_map[i])
+	if (map->chpath.exit == 1 && map->chpath.materias == map->materias)
+		map->chpath.valid = 1;
+	if (map->base_map[pos_player] == '1' || map->chpath.valid == 1)
+		return (0);
+	map->chpath.visited[pos_player] = 'V';
+	if (map->base_map[pos_player] == 'C')
+		map->chpath.materias++;
+	if (map->base_map[pos_player] == 'E')
 	{
-		if (map->base_map[i] == 'P')
-		{
-			if (i != pos_player)
-			{
-				ft_printf("Error\n");
-				return (0);
-			}
-		}
-		if (map->base_map[i] == 'E')
-			++map->chpath.exit;
-		if (map->base_map[i] == 'C')
-			++map->chpath.materias;
-		++i;
-	}
-	if (map->chpath.exit != 1 || map->chpath.materias < 1)
-	{
-		ft_printf("Error\n");
+		map->chpath.exit++;
 		return (0);
 	}
-	return (1);
+	if (map->chpath.visited[pos_player - 1] != 'V')
+		check_valid_map(map, pos_player - 1);
+	if (map->chpath.visited[pos_player + 1] != 'V')
+		check_valid_map(map, pos_player + 1);
+	if (map->chpath.visited[pos_player - map->x] != 'V')
+		check_valid_map(map, pos_player - map->x);
+	if (map->chpath.visited[pos_player + map->x] != 'V')
+		check_valid_map(map, pos_player + map->x);
+	if (map->chpath.exit == 1 && map->chpath.materias == map->materias)
+		map->chpath.valid = 1;
+	return (map->chpath.valid);
 }
 
 int	validate_sprites(t_map *map)
@@ -111,7 +119,7 @@ int	validate_sprites(t_map *map)
 	}
 	if (player != 1 || exit != 1 || map->materias < 1)
 	{
-		ft_printf("Error\n");
+		perror("Error\nLa cantidad de elementos no son correctos.\n");
 		return (1);
 	}
 	return (0);
@@ -122,7 +130,10 @@ int	check_map(t_map *map)
 	int	pos_player;
 
 	if (check_map_extension(map->filename))
+	{
+		free(map->base_map);
 		return (1);
+	}
 	if (check_map_size(map) || check_map_walls(map) || validate_sprites(map))
 	{
 		free(map->base_map);
@@ -135,9 +146,9 @@ int	check_map(t_map *map)
 	map->chpath.visited = ft_calloc(map->x * map->y, sizeof(int));
 	if (!(check_valid_map(map, pos_player)))
 	{
-		free(&map);
+		free(map->base_map);
 		free(map->chpath.visited);
-		ft_printf("Error\n");
+		perror("Error\nSalida o coleccionables inaccesibles.\n");
 		return (1);
 	}
 	return (0);

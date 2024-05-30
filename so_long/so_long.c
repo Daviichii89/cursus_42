@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 15:23:50 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/29 18:29:03 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:31:08 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ static int	key_press(int key, t_window *window)
 static int	check_args_error(int argc)
 {
 	if (argc == 1)
-		ft_printf("Error\n");
+		perror("Error\nDebes introducir un mapa válido.\n");
 	if (argc > 2)
-		ft_printf("Error\n");
+		perror("Error\nCantidad de argumentos no válidos.\n");
 	exit(1);
 }
 
@@ -56,16 +56,16 @@ static t_window	create_window(int width, int height)
 	window.mlx_ptr = mlx_init();
 	if (!window.mlx_ptr)
 	{
-		ft_printf("Error\nFallo al iniciar la mlx\n");
+		perror("Error\nFallo al iniciar la mlx\n");
 		exit(1);
 	}
 	window.width = width;
 	window.height = height;
 	window.window_ptr = mlx_new_window(window.mlx_ptr, window.width,
-			window.height, "so_long");
+			window.height, "Yuffie, la cazadora de materias.");
 	if (!window.window_ptr)
 	{
-		ft_printf("Error\nFallo al crear la ventana\n");
+		perror("Error\nFallo al crear la ventana\n");
 		exit(1);
 	}
 	return (window);

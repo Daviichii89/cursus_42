@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:19:01 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/29 20:05:33 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/30 19:53:19 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 # include <stdlib.h>
 # include "mlx/mlx.h"
-# include "libft.h"
-# include "ft_printf.h"
-# include "get_next_line.h"
+# include "libft/inc/libft.h"
+# include "libft/inc/ft_printf.h"
+# include "libft/inc/get_next_line.h"
 
 typedef struct s_check_path
 {

@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 11:36:09 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/29 17:46:33 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:41:43 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	init_sprites(t_window *window)
 		|| window->background.collectible == NULL
 		|| window->player.down == NULL)
 	{
-		ft_printf("Error\nNo se pudo cargar los sprites\n");
+		perror("Error\nNo se pudo cargar los sprites correctamente.\n");
 		return (1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 #    By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/12 14:29:19 by davifer2          #+#    #+#              #
-#    Updated: 2024/05/29 20:42:14 by davifer2         ###   ########.fr        #
+#    Updated: 2024/05/30 20:05:19 by davifer2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,9 +31,14 @@ DARK_GREEN =	\033[38;2;75;179;82m
 DARK_YELLOW =	\033[38;5;143m
 
 NAME = so_long
+LIB_NAME = libft/libftprintf.a
+MLX_NAME = mlx/libmlx.a
+
+LIBFT_PATH = libft/
+DEPS_PATH = deps/
+OBJS_PATH = objects/
 
 MLX = -Lmlx -lmlx -framework OpenGL -framework AppKit
-LIBFT_PATH = libft/
 LIBFT = -Llibft -l ftprintf
 
 SOURCES = so_long.c so_long_utils.c \
@@ -48,7 +53,24 @@ CFLAGS = -Wall -Wextra -Werror -g -MMD
 all: $(NAME)
 
 
-$(NAME): $(OBJECTS) Makefile so_long.h libft/Makefile
+$(NAME): $(OBJECTS) $(LIB_NAME) $(MLX_NAME) Makefile so_long.h
+	@echo "$(YELLOW)Compiling so_long...\n"
+	@mkdir -p $(DEPS_PATH)
+	@mkdir -p $(OBJS_PATH) 
+	@$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT) $(MLX) -o $@
+
+	@mv *.d $(DEPS_PATH)
+	
+	@echo "$(GREEN)\n"
+	@echo "	===================	"
+	@echo "	 so_long created	"
+	@echo "	===================	"
+	@echo "\n"
+
+$(OBJS_PATH)%.o: %.c
+	@$(CC) $(CFLAGS) -Ilibft/inc -c $< -o $@
+
+$(LIB_NAME): libft/Makefile	
 	@echo "$(YELLOW)Compiling libft...\n"
 	@make -C $(LIBFT_PATH)
 	@echo "$(GREEN)\n"
@@ -57,6 +79,7 @@ $(NAME): $(OBJECTS) Makefile so_long.h libft/Makefile
 	@echo "	==============	"
 	@echo "\n"
 
+$(MLX_NAME): mlx/Makefile
 	@echo "$(YELLOW)Compiling mlx...\n"
 	@make -C mlx/ 2> /dev/null
 	@echo "$(GREEN)\n"
@@ -65,23 +88,14 @@ $(NAME): $(OBJECTS) Makefile so_long.h libft/Makefile
 	@echo "	==============	"
 	@echo "\n"
 
-	@echo "$(YELLOW)Compiling so_long...\n"
-	@$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT) $(MLX) -o $@
-	@echo "$(GREEN)\n"
-	@echo "	===================	"
-	@echo "	 so_long created	"
-	@echo "	===================	"
-	@echo "\n"
-
-%.o: %.c
-	@$(CC) $(CFLAGS) -Imlx -I libft/inc -c $< -o $@
-
 clean:
 	@echo "\n"
 	@echo "$(YELLOW)Removing object files...$(RED)"
 	@make -C $(LIBFT_PATH) clean
-	@make -C mlx/ clean
-	@rm -f $(OBJECTS) $(DEPS)
+	@make -C mlx/ clean 
+	@rm -rf $(DEPS_PATH)
+	@rm -rf $(OBJS_PATH)
+	@rm -f $(OBJECTS)
 	@echo "\n"
 	@echo "	======================	"
 	@echo "	 All .o files removed	"
