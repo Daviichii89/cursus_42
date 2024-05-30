@@ -6,7 +6,7 @@
 #    By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/12 14:29:19 by davifer2          #+#    #+#              #
-#    Updated: 2024/05/30 20:05:19 by davifer2         ###   ########.fr        #
+#    Updated: 2024/05/30 20:52:11 by davifer2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ LIBFT = -Llibft -l ftprintf
 SOURCES = so_long.c so_long_utils.c \
 		  init_sprites.c check_map.c render_map.c moves.c
 
-OBJECTS = $(SOURCES:.c=.o)
+OBJECTS = $(patsubst %.c, $(OBJS_PATH)%.o, $(SOURCES))
 DEPS = $(SOURCES:.c=.d)
 
 CC = gcc
@@ -55,12 +55,7 @@ all: $(NAME)
 
 $(NAME): $(OBJECTS) $(LIB_NAME) $(MLX_NAME) Makefile so_long.h
 	@echo "$(YELLOW)Compiling so_long...\n"
-	@mkdir -p $(DEPS_PATH)
-	@mkdir -p $(OBJS_PATH) 
 	@$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT) $(MLX) -o $@
-
-	@mv *.d $(DEPS_PATH)
-	
 	@echo "$(GREEN)\n"
 	@echo "	===================	"
 	@echo "	 so_long created	"
@@ -68,11 +63,14 @@ $(NAME): $(OBJECTS) $(LIB_NAME) $(MLX_NAME) Makefile so_long.h
 	@echo "\n"
 
 $(OBJS_PATH)%.o: %.c
+	@mkdir -p $(OBJS_PATH) 
+	@mkdir -p $(DEPS_PATH)
 	@$(CC) $(CFLAGS) -Ilibft/inc -c $< -o $@
+	@mv $(OBJS_PATH)*.d $(DEPS_PATH) 
 
 $(LIB_NAME): libft/Makefile	
 	@echo "$(YELLOW)Compiling libft...\n"
-	@make -C $(LIBFT_PATH)
+	@make -C $(LIBFT_PATH) > /dev/null
 	@echo "$(GREEN)\n"
 	@echo "	==============	"
 	@echo "	 libft created	"
@@ -81,7 +79,7 @@ $(LIB_NAME): libft/Makefile
 
 $(MLX_NAME): mlx/Makefile
 	@echo "$(YELLOW)Compiling mlx...\n"
-	@make -C mlx/ 2> /dev/null
+	@make -C mlx/ &> /dev/null
 	@echo "$(GREEN)\n"
 	@echo "	==============	"
 	@echo "	 mlx created	"
@@ -89,30 +87,46 @@ $(MLX_NAME): mlx/Makefile
 	@echo "\n"
 
 clean:
-	@echo "\n"
-	@echo "$(YELLOW)Removing object files...$(RED)"
-	@make -C $(LIBFT_PATH) clean
-	@make -C mlx/ clean 
-	@rm -rf $(DEPS_PATH)
-	@rm -rf $(OBJS_PATH)
-	@rm -f $(OBJECTS)
-	@echo "\n"
-	@echo "	======================	"
-	@echo "	 All .o files removed	"
-	@echo "	======================	"
-	@echo "\n"
+	@if [ -d "$(OBJS_PATH)" ] && [ -n "$$(find $(OBJS_PATH) -name '*.o' -print -quit)" ] || \
+		[ -d "$(DEPS_PATH)" ] && [ -n "$$(find $(DEPS_PATH) -name '*.d' -print -quit)" ]; then \
+		echo "\n"; \
+		echo "$(YELLOW)Removing object files...$(RED)"; \
+		make -C $(LIBFT_PATH) clean > /dev/null; \
+		make -C mlx/ clean > /dev/null; \
+		rm -rf $(DEPS_PATH); \
+		rm -rf $(OBJS_PATH); \
+		rm -f $(OBJECTS); \
+		echo "\n"; \
+		echo "	======================	"; \
+		echo "	 All .o files removed	"; \
+		echo "	======================	"; \
+		echo "\n"; \
+	else \
+		echo "$(RED)\n"; \
+		echo "	========================	"; \
+		echo "	 No .o files to remove.	"; \
+		echo "	========================	"; \
+		echo "\n"; \
+	fi
 
 fclean: clean
-	@echo "\n"
-	@echo "$(YELLOW)Removing all files...$(RED)"
-	@make -C $(LIBFT_PATH) fclean
-	@rm -f $(NAME)
-	@echo "\n"
-	@echo "	===================	"
-	@echo "	 All files removed	"
-	@echo "	===================	"
-	@echo "\n"
-
+	@if [ -f "$(NAME)" ] || [ -d "$(LIBFT_PATH)" ] && [ -n "$$(find $(LIBFT_PATH) -name '*.a' -print -quit)" ]; then \
+		echo "\n"; \
+		echo "$(YELLOW)Removing all files...$(RED)"; \
+		make -C $(LIBFT_PATH) fclean > /dev/null; \
+		rm -f $(NAME); \
+		echo "\n"; \
+		echo "	===================	"; \
+		echo "	 All files removed	"; \
+		echo "	===================	"; \
+		echo "\n"; \
+	else \
+		echo "$(RED)\n"; \
+		echo "	=====================	"; \
+		echo "	 No files to remove.	"; \
+		echo "	=====================	"; \
+		echo "\n"; \
+	fi
 -include $(DEPS)
 
 re: fclean all
