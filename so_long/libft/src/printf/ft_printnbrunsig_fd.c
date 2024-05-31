@@ -6,12 +6,12 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 17:02:46 by davifer2          #+#    #+#             */
-/*   Updated: 2024/02/22 15:02:04 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/31 12:11:51 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../inc/ft_printf.h"
 
-int ft_printnbrunsig_fd(unsigned int n, int fd)
+int	ft_printnbrunsig_fd(unsigned int n, int fd)
 {
 	if (n < 10)
 	{

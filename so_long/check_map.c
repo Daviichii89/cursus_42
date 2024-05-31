@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 10:56:08 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/30 21:16:17 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/31 12:43:17 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	check_map_size(t_map *map)
 		error_fd();
 	line = get_next_line(map->fd);
 	if (!line)
-		return (1);
+		return (perror("Error\nNo se puede leer el contenido\n"), 1);
 	map->x = ft_strlen(line) - 1;
 	map->y = 0;
 	while (line)

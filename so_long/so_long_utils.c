@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 19:27:44 by davifer2          #+#    #+#             */
-/*   Updated: 2024/05/30 21:05:23 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/31 12:45:06 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -28,10 +28,8 @@ int	check_map_extension(char *filename)
 	i = ft_strlen(filename);
 	if (!filename)
 		return (1);
-	for(int j = 4; j >= 0; j--)
-		ft_printf("%c\n", filename[i - j]);
 	if (filename[i - 4] != '.' || (i > 5 && filename[i - 3] != 'b'
-		&& filename[i - 2] != 'e' && filename[i - 1] != 'r'))
+			&& filename[i - 2] != 'e' && filename[i - 1] != 'r'))
 	{
 		perror("Error\nExtension del archivo inválido\n");
 		return (1);
@@ -44,7 +42,7 @@ int	error_map_size(char *line, t_map *map, int error_code)
 	(void)line;
 	if (error_code == 1)
 	{
-		perror("Error\nEl mapa no es rectangular error 1.\n");
+		perror("Error\nEl mapa no es rectangular.\n");
 		close(map->fd);
 		exit (1);
 	}
@@ -55,7 +53,7 @@ int	error_map_size(char *line, t_map *map, int error_code)
 	}
 	else if (error_code == 3)
 	{
-		perror("Error\nEl mapa no es rectangular error 3.\n");
+		perror("Error\nEl mapa no es rectangular.\n");
 		exit (1);
 	}
 	return (0);

@@ -6,12 +6,12 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 17:02:46 by davifer2          #+#    #+#             */
-/*   Updated: 2024/02/22 15:02:04 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/31 12:11:35 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../inc/ft_printf.h"
 
-static int ft_printnbr_max(int nb)
+static int	ft_printnbr_max(int nb)
 {
 	if (nb == -2147483648)
 	{
@@ -21,9 +21,9 @@ static int ft_printnbr_max(int nb)
 	return (11);
 }
 
-int ft_printnbr_fd(int n, int fd)
+int	ft_printnbr_fd(int n, int fd)
 {
-	unsigned int nbr;
+	unsigned int	nbr;
 
 	nbr = n;
 	if (n == -2147483648)

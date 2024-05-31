@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_printstr_fd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 16:53:17 by davifer2          #+#    #+#             */
-/*   Updated: 2024/02/22 15:02:19 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/31 12:12:47 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../inc/ft_printf.h"
 
-int ft_printstr_fd(char *s, int fd)
+int	ft_printstr_fd(char *s, int fd)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!s)

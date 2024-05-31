@@ -6,12 +6,12 @@
 /*   By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:28:53 by davifer2          #+#    #+#             */
-/*   Updated: 2024/02/22 16:02:53 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/05/31 12:10:28 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../inc/ft_printf.h"
 
-static int ft_format(va_list args, const char format)
+static int	ft_format(va_list args, const char format)
 {
 	if (format == 'c')
 		return (ft_printchar_fd(va_arg(args, int), 1));
@@ -35,9 +35,9 @@ static int ft_format(va_list args, const char format)
 		return (-1);
 }
 
-int ft_printf_loop(const char *str, va_list args, int count)
+int	ft_printf_loop(const char *str, va_list args, int count)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -60,10 +60,10 @@ int ft_printf_loop(const char *str, va_list args, int count)
 	return (count);
 }
 
-int ft_printf(char const *str, ...)
+int	ft_printf(char const *str, ...)
 {
-	va_list args;
-	int count;
+	va_list	args;
+	int		count;
 
 	count = 0;
 	va_start(args, str);
