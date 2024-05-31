@@ -6,7 +6,7 @@
 #    By: davifer2 <davifer2@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/12 14:29:19 by davifer2          #+#    #+#              #
-#    Updated: 2024/05/30 20:52:11 by davifer2         ###   ########.fr        #
+#    Updated: 2024/05/31 14:02:15 by davifer2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,6 @@ LIB_NAME = libft/libftprintf.a
 MLX_NAME = mlx/libmlx.a
 
 LIBFT_PATH = libft/
-DEPS_PATH = deps/
 OBJS_PATH = objects/
 
 MLX = -Lmlx -lmlx -framework OpenGL -framework AppKit
@@ -53,7 +52,7 @@ CFLAGS = -Wall -Wextra -Werror -g -MMD
 all: $(NAME)
 
 
-$(NAME): $(OBJECTS) $(LIB_NAME) $(MLX_NAME) Makefile so_long.h
+$(NAME): $(OBJECTS) libfta $(MLX_NAME)
 	@echo "$(YELLOW)Compiling so_long...\n"
 	@$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT) $(MLX) -o $@
 	@echo "$(GREEN)\n"
@@ -62,15 +61,13 @@ $(NAME): $(OBJECTS) $(LIB_NAME) $(MLX_NAME) Makefile so_long.h
 	@echo "	===================	"
 	@echo "\n"
 
-$(OBJS_PATH)%.o: %.c
+$(OBJS_PATH)%.o: %.c Makefile so_long.h
 	@mkdir -p $(OBJS_PATH) 
-	@mkdir -p $(DEPS_PATH)
 	@$(CC) $(CFLAGS) -Ilibft/inc -c $< -o $@
-	@mv $(OBJS_PATH)*.d $(DEPS_PATH) 
 
-$(LIB_NAME): libft/Makefile	
+libfta: libft/Makefile	
 	@echo "$(YELLOW)Compiling libft...\n"
-	@make -C $(LIBFT_PATH) > /dev/null
+	@make -C $(LIBFT_PATH) --no-print-directory
 	@echo "$(GREEN)\n"
 	@echo "	==============	"
 	@echo "	 libft created	"
@@ -87,13 +84,11 @@ $(MLX_NAME): mlx/Makefile
 	@echo "\n"
 
 clean:
-	@if [ -d "$(OBJS_PATH)" ] && [ -n "$$(find $(OBJS_PATH) -name '*.o' -print -quit)" ] || \
-		[ -d "$(DEPS_PATH)" ] && [ -n "$$(find $(DEPS_PATH) -name '*.d' -print -quit)" ]; then \
+	@if [ -d "$(OBJS_PATH)" ] && [ -n "$$(find $(OBJS_PATH) -name '*.o' -print -quit)" ]; then \
 		echo "\n"; \
 		echo "$(YELLOW)Removing object files...$(RED)"; \
 		make -C $(LIBFT_PATH) clean > /dev/null; \
 		make -C mlx/ clean > /dev/null; \
-		rm -rf $(DEPS_PATH); \
 		rm -rf $(OBJS_PATH); \
 		rm -f $(OBJECTS); \
 		echo "\n"; \
