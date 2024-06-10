@@ -39,7 +39,11 @@ int check_arg(char *n_arg, int pos, t_data *data)
     }
 }
 
-                                  
+static int	print_error(int return_value, char *str_error)
+{
+	printf("%s\n", str_error);
+	return (return_value);
+}
 
 int main(int argc, char **argv)
 {
@@ -47,10 +51,7 @@ int main(int argc, char **argv)
     t_data  *data;
 
     if (argc != 5 && argc != 6)
-    {
-        printf("Error: wrong number of arguments\n");
-        return (1);
-    }
+        return (print_error("Error: wrong number of arguments\n"));
     i = 1;
     data = malloc(sizeof(t_data));
     if (!data)
