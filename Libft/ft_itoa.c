@@ -20,49 +20,46 @@ static int	ft_len_nbr(int n)
 		size++;
 	while (n != 0)
 	{
-		n = n / 10;
+		n /= 10;
 		size++;
 	}
 	return (size);
 }
 
-static void	ft_fill_str(int size, int offset, int n, char *str)
+char	*ft_fill_str(int nbr, int len, char *result)
 {
-	while (size > offset)
+	while (nbr)
 	{
-		str[size - 1] = n % 10 + '0';
-		n = n / 10;
-		size--;
+		result[--len] = nbr % 10 + '0';
+		nbr /= 10 ;
 	}
+	return (result);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(int nbr)
 {
-	int		offset;
-	int		size;
-	char	*str;
+	int		len;
+	char	*result;
 
-	offset = 0;
-	size = ft_len_nbr(n);
-	str = (char *)malloc(sizeof(char) * size + 1);
-	if (!(str))
-		return (0);
-	if (n == -2147483648)
+	len = ft_len_nbr(nbr);
+	if (nbr == -2147483648)
+		return (ft_strdup("-2147483648"));
+	result = (char *)malloc(sizeof(char) * (len + 1));
+	if (!result)
+		return (NULL);
+	result[len] = '\0';
+	if (nbr == 0)
 	{
-		str[0] = '-';
-		str[1] = '2';
-		n = 147483648;
-		offset = 2;
+		result[0] = '0';
+		return (result);
 	}
-	if (n < 0)
+	if (nbr < 0)
 	{
-		str[0] = '-';
-		offset = 1;
-		n = -n;
+		result[0] = '-';
+		nbr = -nbr;
 	}
-	ft_fill_str(size, offset, n, str);
-	str[size] = '\0';
-	return (str);
+	result = ft_fill_str(nbr, len, result);
+	return (result);
 }
 /*
 	int main(void)
