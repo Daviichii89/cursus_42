@@ -52,9 +52,12 @@ void    start_simulation(t_data *data)
 {
     if (data->n_philos == 1)
     {
-        printf("%li Philosopher %d has taken left fork\n", ft_convert_to_ms(data->simu_start), data->n_philos);
-        ft_usleep(data->time_to_die * 1000);
-        printf("%li Philosopher 1 died\n", ft_convert_to_ms(data->simu_start));
+        long    current_time;
+
+    current_time = data->simu_start.tv_sec * 1000 + data->simu_start.tv_usec / 1000;
+        printf("%ld Philosopher %d has taken left fork\n", current_time, data->n_philos);
+        usleep(data->time_to_die * 1000);
+        printf("%ld Philosopher 1 died\n", current_time);
         return ;
     }
     else
