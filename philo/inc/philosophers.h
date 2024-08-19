@@ -16,6 +16,7 @@
 # include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <string.h>
 # include <unistd.h>
 # include <sys/time.h>
 
@@ -29,8 +30,8 @@ typedef struct s_data
     int				        philo_eats;
     int				        *meals;
     struct timeval          simu_start;
-    pthread_mutex_t			lfork;
-    pthread_mutex_t			rfork;
+    pthread_mutex_t			*forks;
+    pthread_mutex_t			*print_mutex;
 }				t_data;
 
 int		ft_atoi(const char *str);

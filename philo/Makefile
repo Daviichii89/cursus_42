@@ -49,9 +49,9 @@ $(NAME):  $(OBJS) inc/philosophers.h
 
 
 $(OBJS_PATH)%.o: $(SRC_PATH)%.c inc/philosophers.h
-	mkdir -p $(@D)
+	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) -c $< -o $@
-	mkdir -p $(subst $(OBJS_PATH),$(DEPS_PATH),$(@D))
+	@mkdir -p $(subst $(OBJS_PATH),$(DEPS_PATH),$(@D))
 	@mv $(patsubst %.o,%.d,$@) $(subst $(OBJS_PATH),$(DEPS_PATH),$(@D))/
 
 clean:
