@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: davifer2 <davifer2@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:41:26 by davifer2          #+#    #+#             */
-/*   Updated: 2024/06/04 13:02:05 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/08/21 00:08:45 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,43 @@
 # include <string.h>
 # include <unistd.h>
 # include <sys/time.h>
+# include <limits.h>
+
+typedef struct s_fork
+{
+	int				fork_id;
+	pthread_mutex_t	fork_mutex;
+}	t_fork;
+
+typedef struct s_philo
+{
+	int				philo_id;
+	long			meal_count;
+	long			max_meals;
+	long			meal_time;
+	t_fork			*left_fork;
+	t_fork			*right_fork;
+	pthread_mutex_t	philo_mutex;
+	pthread_t		philo_thread;
+	t_data			*data;
+}	t_philo;
 
 typedef struct s_data
 {
-    int                     philo_id;
-    int				        n_philos;
-    int				        time_to_die;
-    int				        time_to_eat;
-    int				        time_to_sleep;
-    int				        philo_eats;
-    int				        *meals;
-    struct timeval          simu_start;
-    pthread_mutex_t			*forks;
-    pthread_mutex_t			*print_mutex;
-}				t_data;
+	long	n_philos;
+	long	time_to_die;
+	long	time_to_eat;
+	long	time_to_sleep;
+	long	n_meals;
+	long	simu_start;
+	t_fork	*forks;
+	t_philo	*philos;
+}	t_data;
 
-int		ft_atoi(const char *str);
-void    *routine(void *philo);
+int		check_arg(char **argv, t_data **data);
+void	init_data(t_data *data);
+void	start_simulation(t_data *data);
+void	*routine(void *philo);
+void	free_all(t_data *data);
 
 #endif

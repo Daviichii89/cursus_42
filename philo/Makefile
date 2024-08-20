@@ -27,8 +27,12 @@ SRC_PATH = src/
 OBJS_PATH = objects/
 DEPS_PATH = deps/
 
-SRCS = main/philosophers.c main/routine.c \
-	   utils/ft_atoi.c \
+SRCS =	main/check_args.c \
+		main/philosophers.c \
+		main/routine.c \
+		main/simulator.c \
+		utils/free_all.c \
+		utils/init_data.c \
 
 OBJS = $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))
 DEPS = $(addprefix $(DEPS_PATH), $(SRCS:.c=.d))
