@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 18:35:22 by davifer2          #+#    #+#             */
-/*   Updated: 2024/08/23 18:54:27 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/08/26 18:08:38 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,12 @@ bool  ft_check_args(t_pipex *pipex, int argc, char **argv)
 	return (true);
 }
 
-char	*ft_get_path(char *cmd, char **envp)
+char	*ft_find_path(char *cmd, char **envp)
 {
-	
+	int	i;
+	char	*path;
+	char	**paths;
+	char	*full_path;	
 }
 
 bool  ft_parser_cmds(t_pipex *pipex, int argc, char **argv, char **envp)
@@ -52,7 +55,7 @@ bool  ft_parser_cmds(t_pipex *pipex, int argc, char **argv, char **envp)
 			pipex->paths = NULL;
 			return (false);
 		}
-		pipex->paths[i - 1] = ft_get_path(cmd[0], envp);
+		pipex->paths[i - 1] = ft_find_path(cmd[0], envp);
 		if (!pipex->paths[i - 1])
 			return (false);
 		free(cmd);
