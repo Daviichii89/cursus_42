@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:41:26 by davifer2          #+#    #+#             */
-/*   Updated: 2024/08/21 00:08:45 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/08/27 09:28:14 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <unistd.h>
 # include <sys/time.h>
 # include <limits.h>
+
+typedef struct s_data	t_data;
 
 typedef struct s_fork
 {
@@ -56,6 +58,9 @@ int		check_arg(char **argv, t_data **data);
 void	init_data(t_data *data);
 void	start_simulation(t_data *data);
 void	*routine(void *philo);
+
+int		ft_strlen(char *str);
+void	error_msg(int fd, char *msg);
 void	free_all(t_data *data);
 
 #endif

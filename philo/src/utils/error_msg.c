@@ -1,35 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.c                                     :+:      :+:    :+:   */
+/*   error_msg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/04 12:41:03 by davifer2          #+#    #+#             */
-/*   Updated: 2024/08/26 18:38:05 by davifer2         ###   ########.fr       */
+/*   Created: 2024/08/26 18:26:22 by davifer2          #+#    #+#             */
+/*   Updated: 2024/08/26 18:37:47 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	main(int argc, char **argv)
+void	error_msg(int fd, char *msg)
 {
-	t_data	*data;
-
-	if (argc != 5 && argc != 6)
-	{
-		error_msg(2, "Error: wrong number of arguments\n");
-		return (1);
-	}
-	if (check_arg(argv, &data))
-	{
-		error_msg(2, "Error: malloc failed\n");
-		return (1);
-	}
-	init_data(data);
-	printf("Start simulation\n");
-	start_simulation(data);
-	printf("End simulation\n");
-	free_all(data);
-	return (0);
+    write(fd, msg, ft_strlen(msg));
+    write(fd, "\n", 1);
+    exit(1);
 }

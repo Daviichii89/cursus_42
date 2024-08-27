@@ -19,7 +19,7 @@ DARK_GREEN =	\033[38;2;75;179;82m
 DARK_YELLOW =	\033[38;5;143m
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -MMD
+CFLAGS = -Wall -Wextra -Werror -g -MMD -Iinc
 
 NAME = philo
 
@@ -31,8 +31,10 @@ SRCS =	main/check_args.c \
 		main/philosophers.c \
 		main/routine.c \
 		main/simulator.c \
+		utils/error_msg.c
 		utils/free_all.c \
 		utils/init_data.c \
+		utils/utils.c
 
 OBJS = $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))
 DEPS = $(addprefix $(DEPS_PATH), $(SRCS:.c=.d))

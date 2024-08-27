@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 00:01:51 by davifer2          #+#    #+#             */
-/*   Updated: 2024/08/21 00:02:04 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/08/26 18:38:29 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	init_data(t_data *data)
 	t_philo	*philos;
 
 	i = 0;
+	philos = data->philos;
 	data->philos = (t_philo *)malloc(sizeof(t_philo) * data->n_philos);
 	data->forks = (t_fork *)malloc(sizeof(t_fork) * data->n_philos);
 	while (i < data->n_philos)
