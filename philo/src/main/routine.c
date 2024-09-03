@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 15:15:20 by davifer2          #+#    #+#             */
-/*   Updated: 2024/09/02 20:21:14 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/09/03 14:33:55 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,18 @@
 // 	pthread_mutex_unlock(&philo->right_fork->fork_mutex);
 // }
 
-// void	*routine(void *arg)
-// {
-// 	t_data	*data;
-// 	int		id;
+void	*routine(void *arg)
+{
+	t_philo	*philo;
+	int		id;
 
-// 	data = (t_data *)arg;
-// 	id = data->philos->philo_id;
-// 	if (data->n_philos <= 0)
-// 		return (NULL);
-// 	philo_eating(data);
-// 	philo_sleeping(data);
-// 	printf("Philosopher %d is thinking\n", id);
-// 	return (NULL);
-// }
+	philo = (t_philo *)arg;
+	id = philo->philo_id;
+	if (philo->data->n_philos <= 0)
+		return (NULL);
+	// print_data(&philo->data);
+	// philo_eating(data);
+	// philo_sleeping(data);
+	printf("Philosopher %d is thinking\n", id);
+	return (NULL);
+}

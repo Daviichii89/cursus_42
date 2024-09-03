@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 00:01:51 by davifer2          #+#    #+#             */
-/*   Updated: 2024/09/03 09:13:12 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/09/03 11:43:02 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ int init_philos(t_data *data, char **args)
         data->philo[i].time_to_eat = ft_atol(args[3]);
         data->philo[i].time_to_sleep = ft_atol(args[4]);
         data->philo[i].meal_count = 0;
+        data->philo[i].data = data;
 		i++;
 	}
+    print_data(&data);
     return (0);
 }
 
