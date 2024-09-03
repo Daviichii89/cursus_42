@@ -34,8 +34,9 @@ SRCS =	main/check_args.c \
 		utils/error_msg.c \
 		utils/free_all.c \
 		utils/init_data.c \
-		utils/print_data.c \
-		utils/utils.c
+		utils/utils.c \
+		utils/tests.c
+
 
 OBJS = $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))
 DEPS = $(addprefix $(DEPS_PATH), $(SRCS:.c=.d))

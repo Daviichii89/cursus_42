@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:41:03 by davifer2          #+#    #+#             */
-/*   Updated: 2024/09/03 11:25:56 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/09/03 21:05:10 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,10 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	if (check_arg(argv, argc))
-	{
-		error_msg(2, "Error: malloc failed\n");
 		return (1);
-	}
 	if (init_data(&data, argv, argc))
-	{
-		error_msg(2, "Error: malloc failed\n");
 		return (1);
-	}
-	printf("=================\n");
-	printf("Start simulation\n");
-	printf("=================\n");
 	start_simulation(data);
-	printf("=================\n");
-	printf("End simulation\n");
-	printf("=================\n");
 	free_all(data);
 	return (0);
 }
