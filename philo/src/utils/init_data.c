@@ -6,35 +6,50 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 00:01:51 by davifer2          #+#    #+#             */
-/*   Updated: 2024/08/26 18:38:29 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/09/03 09:13:12 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	init_data(t_data *data)
+int init_philos(t_data *data, char **args)
 {
-	int		i;
-	t_philo	*philos;
+    int		i;
+	
+	i = 0;
+    data->philo = malloc(sizeof(t_philo) * data->n_philos);
+    if (!data->philo)
+    {
+        printf("Error: malloc failed\n");
+        return (1);
+    }
+    while (i < data->n_philos)
+	{
+        data->philo[i].philo_id = i + 1;
+        data->philo[i].time_to_die = ft_atol(args[2]);
+        data->philo[i].time_to_eat = ft_atol(args[3]);
+        data->philo[i].time_to_sleep = ft_atol(args[4]);
+        data->philo[i].meal_count = 0;
+		i++;
+	}
+    return (0);
+}
 
-	i = 0;
-	philos = data->philos;
-	data->philos = (t_philo *)malloc(sizeof(t_philo) * data->n_philos);
-	data->forks = (t_fork *)malloc(sizeof(t_fork) * data->n_philos);
-	while (i < data->n_philos)
-	{
-		pthread_mutex_init(&data->forks[i].fork_mutex, NULL);
-		data->forks[i].fork_id = i;
-		i++;
-	}
-	i = 0;
-	while (i < data->n_philos)
-	{
-		philos->philo_id = i + 1;
-		philos->meal_count = 0;
-		philos->max_meals = data->n_meals;
-		philos->data = data;
-		pthread_mutex_init(&philos->philo_mutex, NULL);
-		i++;
-	}
+int init_data(t_data **data, char **args, int total_args)
+{
+    *data = malloc(sizeof(t_data));
+    if (!(*data))
+    {
+        printf("Error: malloc failed\n");
+        return (1);
+    }
+    (*data)->n_philos = ft_atol(args[1]);
+    if (total_args == 6)
+        (*data)->n_meals = ft_atol(args[5]);
+    else
+        (*data)->n_meals = -1;
+    (*data)->dead = 0;
+	if (init_philos(*data, args))
+        return (1);
+    return (0);
 }

@@ -31,7 +31,7 @@ SRCS =	main/check_args.c \
 		main/philosophers.c \
 		main/routine.c \
 		main/simulator.c \
-		utils/error_msg.c
+		utils/error_msg.c \
 		utils/free_all.c \
 		utils/init_data.c \
 		utils/utils.c

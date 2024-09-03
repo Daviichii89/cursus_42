@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 18:26:22 by davifer2          #+#    #+#             */
-/*   Updated: 2024/08/26 18:37:47 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/09/02 20:24:07 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,4 @@
 void	error_msg(int fd, char *msg)
 {
     write(fd, msg, ft_strlen(msg));
-    write(fd, "\n", 1);
-    exit(1);
 }
