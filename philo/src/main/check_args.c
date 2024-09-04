@@ -6,32 +6,27 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 00:00:29 by davifer2          #+#    #+#             */
-/*   Updated: 2024/09/03 19:17:11 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/09/04 19:45:26 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	check_arg(char **args, int total_args)
+void	check_arg(t_data *data ,char **args)
 {
-	int	i;
-	int	j;
-
-	i = 1;
-	while (i < total_args)
+	data->n_philos = ft_atol(args[1]);
+	data->time_to_die = ft_atol(args[2]) * 1000;
+	data->time_to_eat = ft_atol(args[3]) * 1000;
+	data->time_to_sleep = ft_atol(args[4]) * 1000;
+	if (data->time_to_die < 60 || data->time_to_eat < 60
+		|| data->time_to_sleep < 60)
+		error_msg("Values must be greater than 60");
+	if (args[5])
 	{
-		j = 0;
-		while (args[i][j])
-		{
-			if (!ft_isdigit(args[i][j]))
-			{
-				printf("args[%d][%d] = %c\n", i, j, args[i][j]);
-				error_msg(2, "Error: wrong input format\n");
-				return (1);
-			}
-			j++;
-		}
-		i++;
+		data->n_meals = ft_atol(args[5]);
+		if (data->n_meals < 1)
+			error_msg("Number of meals must be greater than 0");
 	}
-	return (0);
+	else
+		data->n_meals = -1;
 }

@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 23:41:03 by davifer2          #+#    #+#             */
-/*   Updated: 2024/09/03 09:14:59 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/09/04 19:47:38 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	free_all(t_data *data)
 {
-	free(data->philo);
+	free(data->philos);
     free(data);
 }
