@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 18:50:34 by davifer2          #+#    #+#             */
-/*   Updated: 2024/09/04 19:52:19 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/09/09 21:30:36 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	print_data(t_data **data)
 	printf("== Number of philosophers: %ld  			    ==\n", (*data)->n_philos);
 	printf("== Time to die: %ld 				    ==\n", (*data)->time_to_die);
 	printf("== Time to eat: %ld 				    ==\n", (*data)->time_to_eat);
-	printf("== Time to sleep: %ld 			    ==\n", (*data)->time_to_sleep);
+	printf("== Time to sleep: %ld 			    	    ==\n", (*data)->time_to_sleep);
 	printf("== Number of meals: %ld 				    ==\n", (*data)->n_meals);
 
 	i = -1;

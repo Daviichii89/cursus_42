@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 00:00:29 by davifer2          #+#    #+#             */
-/*   Updated: 2024/09/04 19:45:26 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:31:31 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	check_arg(t_data *data ,char **args)
 {
 	data->n_philos = ft_atol(args[1]);
-	data->time_to_die = ft_atol(args[2]) * 1000;
-	data->time_to_eat = ft_atol(args[3]) * 1000;
-	data->time_to_sleep = ft_atol(args[4]) * 1000;
+	data->time_to_die = ft_atol(args[2]);
+	data->time_to_eat = ft_atol(args[3]);
+	data->time_to_sleep = ft_atol(args[4]);
 	if (data->time_to_die < 60 || data->time_to_eat < 60
 		|| data->time_to_sleep < 60)
 		error_msg("Values must be greater than 60");
