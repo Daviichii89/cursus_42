@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:41:26 by davifer2          #+#    #+#             */
-/*   Updated: 2024/10/22 21:10:08 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/10/22 22:17:36 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ enum e_status
 	WAITING_SIMULATION
 };
 
-t_fork;
-
 typedef struct s_philo
 {
 	long			id;
@@ -58,7 +56,7 @@ typedef struct s_philo
 	t_mutex			*print_mtx;
 	t_mutex			*first_fork;
 	t_mutex			*second_fork;
-	t_mutex			*status_mtx;
+	t_mutex			status_mtx;
 	t_mutex			death_check;
 	struct s_data	*data;
 }	t_philo;
@@ -80,24 +78,26 @@ typedef struct s_data
 // MAIN FUNCTIONS
 int		check_arg(t_data *data, char **args);
 int		init_data(t_data *data);
-void	start_simulation(t_data *data);
 void	*routine(void *philo);
+void	start_simulation(t_data *data);
 
 // UTILS FUNCTIONS
-int		ft_strlen(char *str);
 int		error_msg(char *msg);
+int		ft_strlen(char *str);
+int		init_forks(int total_forks, t_mutex **forks);
 int		update_status(t_philo *philo, int new_status);
-long	ft_atol(const char *str);
 long	get_time(void);
+long    get_timestamp(long simu_start);
+long	ft_atol(const char *str);
 t_mutex	*get_first_fork(t_philo *philo);
 t_mutex	*get_second_fork(t_philo *philo);
 bool	check_status(t_philo *philo, int status);
-void	update_print_status(int new_status, t_philo *philo);
 void	ft_usleep(long miliseconds);
+void	update_print_status(int new_status, t_philo *philo);
 
 // FREE FUNCTIONS
-int		free_philos(t_data *data, long n_philos);
 void    free_forks(t_mutex **forks, int n_forks);
+int		free_philos(t_data *data, long n_philos);
 
 // TEST FUNCTIONS
 void	print_data(t_data **data);

@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 18:50:34 by davifer2          #+#    #+#             */
-/*   Updated: 2024/09/04 19:52:19 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/10/22 22:24:56 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	print_data(t_data **data)
 
 	i = -1;
 	while (++i < (*data)->n_philos)
-		printf("== ID %d: left: %p rigth: %p ==\n", (*data)->philos[i].id,
+		printf("== ID %ld: left: %p rigth: %p ==\n", (*data)->philos[i].id,
             (*data)->philos[i].first_fork, (*data)->philos[i].second_fork);
 	printf("======================================================\n");
 	printf("======================================================\n");

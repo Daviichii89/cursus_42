@@ -32,10 +32,13 @@ SRCS =	main/check_args.c \
 		main/routine.c \
 		main/simulator.c \
 		utils/error_msg.c \
+		utils/forks_utils.c \
 		utils/free_all.c \
 		utils/init_data.c \
+		utils/print_utils.c \
+		utils/tests.c \
+		utils/time_utils.c \
 		utils/utils.c \
-		utils/tests.c
 
 
 OBJS = $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))

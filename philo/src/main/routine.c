@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 15:15:20 by davifer2          #+#    #+#             */
-/*   Updated: 2024/10/22 21:13:39 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/10/22 22:06:02 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,22 @@ void	*routine(void *arg)
 		update_status(philo, FULL);
 	if (philo->id % 2 != 0 && !check_status(philo, FULL))
 	{
-		update_and_print_status(THINKING, philo);
+		update_print_status(THINKING, philo);
 		ft_usleep(philo->data->time_to_eat / 2);
 	}
 	while (philo->simu_on && !check_status(philo, FULL))
 	{
 		if (pickup_forks(philo))
 			break ;
+		update_print_status(EATING, philo);
+		if(philo->simu_on)
+			ft_usleep(philo->data->time_to_eat);
+		if (leave_forks(philo))
+			break ;
+		update_print_status(SLEEPING, philo);
+		if (philo->simu_on)
+			ft_usleep(philo->data->time_to_sleep);
+		update_print_status(THINKING, philo);
 	}
 	return (NULL);
 }
