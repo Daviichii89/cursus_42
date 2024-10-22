@@ -6,36 +6,24 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 15:15:20 by davifer2          #+#    #+#             */
-/*   Updated: 2024/09/04 23:55:59 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/10/22 20:55:53 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/philosophers.h"
-
-void	philo_sleeping(t_philo *philo)
-{
-	printf("%.10ld Philosopher %d is sleeping\n",(philo->data->simu_start - get_time(MILLISECOND)), philo->id);
-	usleep(philo->data->time_to_sleep);
-}
-
-void	philo_eating(t_philo *philo)
-{
-	// pthread_mutex_lock(philo->first_fork);
-	printf("%.10ld Philosopher %d has taken the first fork\n", (philo->data->simu_start - get_time(MILLISECOND)), philo->id);
-	// pthread_mutex_lock(philo->second_fork);
-	printf("%.10ld Philosopher %d has taken the second fork\n", (philo->data->simu_start - get_time(MILLISECOND)), philo->id);
-	philo->meal_count++;
-	printf("%.10ld Philosopher %d is eating\n", (philo->data->simu_start - get_time(MILLISECOND)), philo->id);
-	usleep(philo->data->time_to_eat);
-	// pthread_mutex_unlock(philo->first_fork);
-	// pthread_mutex_unlock(philo->second_fork);
-}
+#include "philosophers.h"
 
 void	*routine(void *arg)
 {
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
+	if (philo->meal_count == philo->data->n_meals)
+		update_status(philo, FULL);
+	if (philo->id % 2 != 0 && !check_status(philo, FULL))
+	{
+		update_and_print_status(THINKING, philo);
+		usleep(100);
+	}
 	while (!philo->data->simu_end)
 	{
 		philo_eating(philo);

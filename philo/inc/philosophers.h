@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:41:26 by davifer2          #+#    #+#             */
-/*   Updated: 2024/10/22 20:26:52 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/10/22 20:55:14 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,11 @@ void	*routine(void *philo);
 
 // UTILS FUNCTIONS
 int		ft_strlen(char *str);
-long	ft_atol(const char *str);
 int		error_msg(char *msg);
+int		update_status(t_philo *philo, int new_status);
+long	ft_atol(const char *str);
 long	get_time(void);
+bool	check_status(t_philo *philo, int status);
 
 // FREE FUNCTIONS
 int		free_philos(t_data *data, long n_philos);

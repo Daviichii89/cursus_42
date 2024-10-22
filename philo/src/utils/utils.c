@@ -6,12 +6,38 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 09:27:37 by davifer2          #+#    #+#             */
-/*   Updated: 2024/09/04 19:42:08 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/10/22 20:54:27 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
+bool	check_status(t_philo *philo, int status)
+{
+	bool	ret;
+
+	if (pthread_mutex_lock(&philo->status_mtx) == -1)
+		return (false);
+	ret = philo->status == status;
+	if (pthread_mutex_unlock(&philo->status_mtx) == -1)
+		return (false);
+	return (ret);
+}
+
+int	update_status(t_philo *philo, int new_status)
+{
+	if (pthread_mutex_lock(&philo->status_mtx) == -1)
+		return (1);
+	if (philo->status != DEAD && philo->status != FULL)
+	{
+		philo->status = new_status;
+		if (philo->meal_count == philo->data->n_meals)
+			philo->status = FULL;
+	}
+	if (pthread_mutex_unlock(&philo->status_mtx) == -1)
+		return (1);
+	return (0);
+}
 
 static int	ft_isdigit(int c)
 {
