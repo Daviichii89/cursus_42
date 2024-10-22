@@ -6,63 +6,62 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 00:01:51 by davifer2          #+#    #+#             */
-/*   Updated: 2024/09/04 23:05:08 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/10/22 20:06:21 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static void    assign_forks(t_philo *philo, t_fork *forks, int philo_pos)
+static int  init_philo_mutexes(t_philo *philo)
 {
-    int n_philos;
-
-    n_philos = philo->data->n_philos;
-    philo->first_fork = &forks[(philo_pos + 1) % n_philos];
-    philo->second_fork = &forks[philo_pos];
-    if (philo->id % 2 == 0)
+    if (pthread_mutex_init(&philo->death_check, NULL))
+        return (1);
+    if (pthread_mutex_init(&philo->status_mtx, NULL))
     {
-        philo->first_fork = &forks[philo_pos];
-        philo->second_fork = &forks[(philo_pos + 1) % n_philos];
+        pthread_mutex_destroy(&philo->death_check);
+        return (1);
     }
+    return (0);
 }
 
-static void    init_philo(t_data *data)
+static int  init_philo(t_data *data)
 {
     int i;
-    t_philo *philo;
-
+    
+    data->philos = (t_philo *)malloc(sizeof(t_philo) * data->n_philos);
+    if (!data->philos)
+        return (1);
     i = -1;
     while (++i < data->n_philos)
     {
-        philo = data->philos + i;
-        philo->id = i + 1;
-        philo->full = false;
-        philo->meal_count = 0;
-        philo->data = data;
-        assign_forks(philo, data->forks, i);
+        data->philos[i].id = i;
+        data->philos[i].last_meal = 0;
+        data->philos[i].meal_count = 0;
+        data->philos[i].status = WAITING_SIMULATION;
+        data->philos[i].simu_on = true;
+        data->philos[i].print_mtx = &data->print_mtx;
+        data->philos[i].first_fork = data->forks + i;
+        data->philos[i].data = data;
+        if (data->n_philos == i + 1)
+            data->philos[i].second_fork = data->forks;
+        else
+            data->philos[i].second_fork = data->forks + i + 1;
+        if (init_philo_mutexes(&data->philos[i]))
+            return (free_philos(data, i));
     }
+    return (0);
 }
 
 int    init_data(t_data *data)
 {
-    int i;
-
-    i = -1;
-    data->simu_end = false;
-    data->all_ready = false;
-    data->philos = malloc(sizeof(t_philo) * data->n_philos);
-    if (!data->philos)
-        return (error_msg("malloc failed\n"));
-    pthread_mutex_init(&data->data_mtx, NULL);
-    data->forks = malloc(sizeof(t_fork) * data->n_philos);
-    if (!data->forks)
-        return (error_msg("malloc failed\n"));
-    while (++i < data->n_philos)
+    if (init_forks(data->forks, data->n_philos) == -1)
+        return (1);
+    if (pthread_mutex_init(&data->print_mtx, NULL)
+        || init_philos(data) == -1)
     {
-        pthread_mutex_init(&data->forks[i].fork, NULL);
-        data->forks[i].id = i;
+        free_forks(data->forks, data->n_philos);
+        pthread_mutex_destroy(&data->print_mtx);
+        return(1);
     }
-    init_philo(data);
-    print_data(&data);
     return (0);
 }

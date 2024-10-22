@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:41:26 by davifer2          #+#    #+#             */
-/*   Updated: 2024/09/04 23:49:14 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/10/22 20:26:52 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,30 +31,35 @@
 # define CYN "\033[36m" // Cyan
 # define WHT "\033[37m" // White
 
-typedef enum e_time_code
-{
-	SECOND,
-	MILLISECOND,
-	MICROSECOND
-}	t_time_code;
+typedef pthread_mutex_t	t_mutex;
+typedef pthread_t t_thread;
 
-typedef pthread_mutex_t	t_mtx;
-
-typedef struct s_fork
+enum e_status
 {
-	t_mtx	fork;
-	int		id;
-}	t_fork;
+	THINKING,
+	EATING,
+	SLEEPING,
+	DEAD,
+	FULL,
+	GRAB_FORK,
+	WAITING_SIMULATION
+};
+
+t_fork;
 
 typedef struct s_philo
 {
-	int				id;
+	long			id;
 	long			last_meal;
 	long			meal_count;
-	bool			full;
-	t_fork			*first_fork;
-	t_fork			*second_fork;
-	pthread_t		philo_thread;
+	int				status;
+	bool			simu_on;
+	t_thread		philo_thread;
+	t_mutex			*print_mtx;
+	t_mutex			*first_fork;
+	t_mutex			*second_fork;
+	t_mutex			*status_mtx;
+	t_mutex			death_check;
 	struct s_data	*data;
 }	t_philo;
 
@@ -67,14 +72,13 @@ typedef struct s_data
 	long	n_meals;
 	long	simu_start;
 	bool	simu_end;
-	bool	all_ready;
-	t_mtx	data_mtx;
+	t_mutex	*forks;
+	t_mutex print_mtx;
 	t_philo	*philos;
-	t_fork	*forks;
 }	t_data;
 
 // MAIN FUNCTIONS
-void	check_arg(t_data *data, char **args);
+int		check_arg(t_data *data, char **args);
 int		init_data(t_data *data);
 void	start_simulation(t_data *data);
 void	*routine(void *philo);
@@ -83,10 +87,11 @@ void	*routine(void *philo);
 int		ft_strlen(char *str);
 long	ft_atol(const char *str);
 int		error_msg(char *msg);
-long	get_time(t_time_code time_code);
+long	get_time(void);
 
 // FREE FUNCTIONS
-void	free_all(t_data *data);
+int		free_philos(t_data *data, long n_philos);
+void    free_forks(t_mutex **forks, int n_forks);
 
 // TEST FUNCTIONS
 void	print_data(t_data **data);
