@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 00:01:51 by davifer2          #+#    #+#             */
-/*   Updated: 2024/10/22 22:24:17 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/10/22 23:03:02 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int    init_data(t_data *data)
 {
     if (init_forks(data->n_philos, &data->forks) == -1)
         return (1);
-    if (pthread_mutex_init(&data->print_mtx, NULL)
+    if (pthread_mutex_init(&data->print_mtx, NULL) == -1
         || init_philos(data) == -1)
     {
         free_forks(&data->forks, data->n_philos);

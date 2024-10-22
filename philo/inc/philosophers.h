@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:41:26 by davifer2          #+#    #+#             */
-/*   Updated: 2024/10/22 22:17:36 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/10/22 23:10:59 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ enum e_status
 	SLEEPING,
 	DEAD,
 	FULL,
-	GRAB_FORK,
+	PICKUP_FORK,
 	WAITING_SIMULATION
 };
 

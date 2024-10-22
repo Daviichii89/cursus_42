@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 20:38:31 by davifer2          #+#    #+#             */
-/*   Updated: 2024/10/22 21:05:36 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/10/22 23:11:11 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	print_status(int new_status, t_philo *philo, long timestamp)
 		printf(GRN"%ld %ld is eating\n"RST, timestamp, philo->id + 1);
 	else if (new_status == THINKING)
 		printf(YEL"%ld %ld is thinking\n"RST, timestamp, philo->id + 1);
-	else if (new_status == GRAB_FORK)
+	else if (new_status == PICKUP_FORK)
 		printf(WHT"%ld %ld has taken a fork\n"RST, timestamp, philo->id + 1);
 }
 

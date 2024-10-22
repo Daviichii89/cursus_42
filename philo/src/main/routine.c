@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 15:15:20 by davifer2          #+#    #+#             */
-/*   Updated: 2024/10/22 22:06:02 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/10/22 23:12:00 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ static int	pickup_forks(t_philo *philo)
 {
 	if (pthread_mutex_lock(get_first_fork(philo)))
 		return (1);
-	update_print_status(GRAB_FORK, philo);
-	if (get_first_fork(philo) == philo->first_fork
+	update_print_status(PICKUP_FORK, philo);
+	if (get_first_fork(philo) == get_second_fork(philo)
 		|| pthread_mutex_unlock(get_second_fork(philo)))
 	{
 		pthread_mutex_unlock(get_first_fork(philo));
 		return (1);
 	}
-	update_print_status(GRAB_FORK, philo);
+	update_print_status(PICKUP_FORK, philo);
 	return (0);
 }
 

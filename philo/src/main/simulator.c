@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 12:41:03 by davifer2          #+#    #+#             */
-/*   Updated: 2024/10/22 20:26:35 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/10/22 23:06:08 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	check_philos(t_data *data)
 		if (is_philo_dead(&data->philos[i], data->simu_start))
 			data->simu_end = true;
 		else if (data->philos[i].status == FULL)
-			philo_full++;
+			++philo_full;
 		if (pthread_mutex_unlock(&data->philos[i].death_check))
 			return ;
 	}
