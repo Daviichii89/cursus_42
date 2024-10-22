@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:41:26 by davifer2          #+#    #+#             */
-/*   Updated: 2024/10/22 21:00:38 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/10/22 21:10:08 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,10 @@ int		error_msg(char *msg);
 int		update_status(t_philo *philo, int new_status);
 long	ft_atol(const char *str);
 long	get_time(void);
+t_mutex	*get_first_fork(t_philo *philo);
+t_mutex	*get_second_fork(t_philo *philo);
 bool	check_status(t_philo *philo, int status);
+void	update_print_status(int new_status, t_philo *philo);
 void	ft_usleep(long miliseconds);
 
 // FREE FUNCTIONS

@@ -6,7 +6,7 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 20:38:31 by davifer2          #+#    #+#             */
-/*   Updated: 2024/10/22 20:45:13 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/10/22 21:05:36 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	print_status(int new_status, t_philo *philo, long timestamp)
 		printf(WHT"%ld %ld has taken a fork\n"RST, timestamp, philo->id + 1);
 }
 
-void	update_and_print_status(int new_status, t_philo *philo)
+void	update_print_status(int new_status, t_philo *philo)
 {
 	long	timestamp;
 
