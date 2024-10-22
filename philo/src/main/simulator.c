@@ -6,50 +6,67 @@
 /*   By: davifer2 <davifer2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 12:41:03 by davifer2          #+#    #+#             */
-/*   Updated: 2024/09/04 23:44:40 by davifer2         ###   ########.fr       */
+/*   Updated: 2024/10/22 20:26:35 by davifer2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-long	get_time(t_time_code time_code)
+static bool is_philo_dead(t_philo *philo, long simu_start)
 {
-	struct timeval	tv;
-	
-	if (gettimeofday(&tv, NULL))
-		return (error_msg("Error getting time\n"));
-	if (time_code == SECOND)
-		return (tv.tv_sec + tv.tv_usec / 1000000);
-	else if (time_code == MILLISECOND)
-		return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
-	else if (time_code == MICROSECOND)
-		return ((tv.tv_sec * 1000000) + tv.tv_usec);
-	return (error_msg("Invalid time code\n"));
+	long	elapsed_time;
+	long	timestamp;
+
+	if (philo->status == FULL)
+		return (false);
+	timestamp = get_timestamp(simu_start);
+	elapsed_time = timestamp - philo->last_meal;
+	if (elapsed_time > philo->data->time_to_die)
+		return (true);
+	return (false);
+}
+
+static void	check_philos(t_data *data)
+{
+	long	i;
+	long	philo_full;
+
+	i = -1;
+	philo_full = 0;
+	while (philo_full != data->n_philos && !data->simu_end)
+	{
+		if (++i == data->n_philos)
+		{
+			i = 0;
+			philo_full = 0;
+		}
+		if (pthread_mutex_lock(&data->philos[i].death_check))
+			return ;
+		if (is_philo_dead(&data->philos[i], data->simu_start))
+			data->simu_end = true;
+		else if (data->philos[i].status == FULL)
+			philo_full++;
+		if (pthread_mutex_unlock(&data->philos[i].death_check))
+			return ;
+	}
+	if (data->simu_end)
+		update_print_status(DEAD, &data->philos[i]);
 }
 
 void	start_simulation(t_data *data)
 {
-	int	i;
+	long	i;
 
+	data->simu_start = get_time();
+	data->simu_end = false;
 	i = -1;
-	if (!data->n_meals)
-		return ;
-	else if (data->n_philos == 1)
-	{
-		printf("%ld %d has taken the first fork\n", get_time(MILLISECOND), data->philos[0].id);
-		usleep(data->time_to_die);
-		printf("%ld %d died\n", get_time(MILLISECOND), data->philos[0].id);
-		return ;
-	}
-	else
-	{
-		while (++i < data->n_philos)
-			pthread_create(&data->philos[i].philo_thread, NULL, routine,
-				&data->philos[i]);
-	}
-	data->simu_start = get_time(MILLISECOND);
+	while (++i < data->n_philos)
+		pthread_create(&data->philos[i].philo_thread, NULL, routine, &data->philos[i]);
+	check_philos(data);
 	i = -1;
 	while (++i < data->n_philos)
 		pthread_join(data->philos[i].philo_thread, NULL);
+	
+	
 }
 
